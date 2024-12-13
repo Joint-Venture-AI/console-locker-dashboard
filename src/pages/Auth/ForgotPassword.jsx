@@ -2,7 +2,7 @@ import { Button, Checkbox, Input } from "antd";
 import Form from "antd/es/form/Form";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import image from "/forgetPassword.png";
+// import image from "/forgetPassword.png";
 import PageHeading from "../../Components/PageHeading";
 // import { useForgotPasswordMutation } from "../../redux/features/Auth/authApi";
 // import Swal from "sweetalert2";
@@ -38,7 +38,7 @@ const ForgotPassword = () => {
   return (
     <div className="min-h-[92vh] w-full grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-1 lg:gap-8">
       <div className="border-r-0 lg:border-r-2 border-primary w-[99%] p-[8%] lg:p-[12%] lg:pr-0">
-        <img src={image} alt="" />
+        {/* <img src={image} alt="" /> */}
       </div>
       <div className="lg:p-[5%] order-first lg:order-last">
         <div className="w-full py-[64px] lg:px-[44px] space-y-8">

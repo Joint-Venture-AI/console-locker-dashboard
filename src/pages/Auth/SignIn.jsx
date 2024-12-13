@@ -2,7 +2,7 @@ import { Button, Checkbox, Input } from "antd";
 import Form from "antd/es/form/Form";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import image from "/logIn.png";
+// import image from "/logIn.png";
 // import { useDispatch } from "react-redux";
 // import { usePostLoginMutation } from "../../redux/features/Auth/authApi";
 // import { setUser } from "../../redux/features/Auth/authSlice";
@@ -57,7 +57,7 @@ const SignIn = () => {
   return (
     <div className="min-h-[92vh] w-full grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-1 lg:gap-8">
       <div className="lg:border-r-2 border-primary mx-auto w-[92%] lg:p-[15%] lg:pr-[20%] ">
-        <img src={image} alt="" />
+        {/* <img src={image} alt="" /> */}
       </div>
       <div className="lg:p-[5%] order-first lg:order-last">
         <div className="w-full py-[44px] lg:px-[44px]">
