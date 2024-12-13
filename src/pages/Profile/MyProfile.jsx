@@ -49,12 +49,12 @@ const MyProfile = () => {
           }}
         >
           <div className="col-span-3 space-y-6 ">
-            <div className="min-h-[365px] flex flex-col items-center justify-center p-8 rounded-lg border border-primary shadow-inner space-y-4">
+            <div className="min-h-[365px] flex flex-col items-center justify-center p-8 gap-8">
               <div className="my-3 ">
                 <img
                   src={dashProfile}
                   alt=""
-                  className="h-[144px] w-[144px] rounded-full border-4 border-indigo-400"
+                  className="h-[200px] w-[200px] rounded-full border-4 border-indigo-400"
                 />
               </div>
               {/* <h5 className="text-lg text-[#222222]">{"Chelfor"}</h5>

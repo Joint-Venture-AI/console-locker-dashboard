@@ -30,6 +30,7 @@ export default function StudioList() {
             title: "Total Review",
             dataIndex: "Review",
             key: "Review",
+           
         },
       
     ];

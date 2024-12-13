@@ -8,11 +8,12 @@ const TermsConditions = () => {
   return (
     <div className="min-h-[70vh] flex flex-col justify-between">
       <div className="space-y-4">
-        <PageHeading title="Terms & Conditions" disabledBackBtn={true} />
+      
 
         <div className="bg-gray-100 ">
           <div className="bg-white shadow-md rounded-lg p-8">
-            <h1 className="text-2xl font-bold text-blue-600 mb-6">Terms & Condition</h1>
+            {/* <h1 className="">Terms & Condition</h1> */}
+            <PageHeading title="Terms & Conditions" className={'text-3xl font-bold text-blue-600 mb-6'} disabledBackBtn={true} />
 
             <section className="mb-6">
               <h3 className="text-lg font-semibold text-gray-800 mb-2">1. Acceptance of Terms</h3>

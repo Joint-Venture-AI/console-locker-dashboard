@@ -1,5 +1,5 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import logo from "../../assets/images/Vector.png";
+import logo from "../../assets/images/logo1.png";
 import { createElement, useEffect, useState } from "react";
 import { routeLinkGenerators } from "../../utils/routeLinkGenerators";
 import { dashboardItems } from "../../constants/router.constants";
