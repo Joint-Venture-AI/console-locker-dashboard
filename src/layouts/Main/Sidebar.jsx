@@ -91,9 +91,9 @@ const Sidebar = () => {
                           to={subPath}
                           className={({ isActive }) =>
                             isActive
-                              ? "bg-[#00d68f] text-white" +
+                              ? "bg-playground text-white" +
                                 " w-full px-4 py-1 flex items-center justify-start gap-3 transition-all rounded-sm"
-                              : "text-[#646464] hover:text-white hover:bg-[#00D698]" +
+                              : "text-[#646464] hover:text-white hover:bg-playground" +
                                 " w-full px-4 py-1 flex items-center justify-start gap-3 transition-all rounded-sm"
                           }
                         >
