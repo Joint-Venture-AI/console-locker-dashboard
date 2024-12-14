@@ -11,7 +11,7 @@ const Notifications = () => {
     <div className=" rounded-lg min-h-screen bg-[#FDFDFD]">
       <div className="px-[32px] py-6 text-white bg-info rounded-t-lg flex items-center gap-3">
           <FaAngleLeft onClick={() => navigate(-1)} className="text-white" size={34} />
-        <h1 className="text-[30px] text-[#052255] font-bold">All Notifications</h1>
+        <h1 className="text-[30px] text-[#052255] font-bold">All Notifications</h1> 
       </div>
       <div className="p-[24px]">
         <div className="group flex items-center gap-4 px-[24px] py-4 cursor-pointer border-b border-blue-50 hover:bg-gray-100 transition-all">
