@@ -33,8 +33,8 @@ const Sidebar = () => {
     // console.log(location.pathname.includes("earnings"));
   }, [location.pathname]);
   return (
-    <div className="fixed top-0 left-0 w-[326px] min-h-screen h-full p-6 pr-0 ">
-      <div className="h-full flex flex-col justify-between bg-primary pt-[50px] border drop-shadow rounded-lg">
+    <div className="fixed top-0 left-0 w-[326px] min-h-screen h-full pr-0 ">
+      <div className="h-full flex flex-col justify-between  pt-[50px] border drop-shadow">
         <div className="space-y[24px">
           <div className="px-[38px]">
             <img className="w-[60%] mx-auto" src={logo} alt="" />
@@ -51,7 +51,7 @@ const Sidebar = () => {
                         }));
                       }}
                       className={cn(
-                        "outline-none hover:text-white text-[20px] hover:bg-playground w-full px-4 py-3 flex items-center justify-between gap-3 text-lg transition-all rounded-lg",
+                        "outline-none hover:text-white text-[20px] hover:bg-black w-full px-4 py-3 flex items-center justify-between gap-3 text-lg transition-all rounded-full",
                         {
                           "bg-playground text-white":
                             name === openNome?.name ||
@@ -93,7 +93,7 @@ const Sidebar = () => {
                             isActive
                               ? "bg-playground text-white" +
                                 " w-full px-4 py-1 flex items-center justify-start gap-3 transition-all rounded-sm"
-                              : "text-[#646464] hover:text-white hover:bg-playground" +
+                              : "text-[#646464] hover:text-white hover:bg-black" +
                                 " w-full px-4 py-1 flex items-center justify-start gap-3 transition-all rounded-sm"
                           }
                         >
@@ -116,10 +116,10 @@ const Sidebar = () => {
                       to={path}
                       className={({ isActive }) =>
                         isActive
-                          ? "bg-playground text-white" +
-                            " w-full px-4 py-3 flex items-center justify-start gap-3 text-lg transition-all rounded-lg"
-                          : " hover:text-white text-[20px] hover:bg-playground" +
-                            " w-full px-4 py-3 flex items-center justify-start gap-3 text-lg transition-all rounded-lg"
+                          ? "bg-black text-white" +
+                            " w-full px-4 py-3 flex items-center justify-start gap-3 text-lg transition-all rounded-full"
+                          : " hover:text-white text-[20px] hover:bg-black" +
+                            " w-full px-4 py-3 flex items-center justify-start gap-3 text-lg transition-all rounded-full"
                       }
                     >
                       <div>{createElement(icon, { size: "20" })}</div>
