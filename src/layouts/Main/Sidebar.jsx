@@ -51,7 +51,7 @@ const Sidebar = () => {
                         }));
                       }}
                       className={cn(
-                        "outline-none hover:text-white text-[20px] hover:bg-black w-full px-4 py-3 flex items-center justify-between gap-3 text-md transition-all rounded-full",
+                        "outline-none hover:text-white  hover:bg-black w-full px-4 py-3 flex items-center justify-between gap-3 text-md transition-all rounded-full",
                         {
                           "bg-black text-white":
                             name === openNome?.name ||
@@ -62,7 +62,7 @@ const Sidebar = () => {
                     >
                       <div className="flex items-center justify-start gap-3">
                         <div>{createElement(icon, { size: "17" })}</div>
-                        <span className="text-md">{name}</span>
+                        <span>{name}</span>
                       </div>
                       <MdOutlineArrowRight
                         className={cn("text-gray-500", {
@@ -118,7 +118,7 @@ const Sidebar = () => {
                         isActive
                           ? "bg-black text-white" +
                             " w-full px-4 py-3 flex items-center justify-start gap-3 text-md transition-all rounded-full"
-                          : " hover:text-white text-[20px] hover:bg-black" +
+                          : " hover:text-white  hover:bg-black" +
                             " w-full px-4 py-3 flex items-center justify-start gap-3 text-md transition-all rounded-full"
                       }
                     >
