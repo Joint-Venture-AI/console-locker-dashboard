@@ -12,7 +12,7 @@ import EditPrivacyPolicy from "../pages/Settings/EditPrivacyPolicy";
 import EditAboutUs from "../pages/Settings/EditAboutUs";
 import AboutUs from "../pages/Settings/AboutUs";
 import Notifications from "../pages/Main/Notifications/Notifications";
-import { FaUsers } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import {
   MdOutlineAdminPanelSettings,
   MdOutlineSecurityUpdateWarning,
@@ -34,6 +34,12 @@ export const dashboardItems = [
     path: "/",
     icon: RiDashboardHorizontalFill,
     element: <DashboardHome />,
+  },
+  {
+    name: "User",
+    path: "users",
+    icon: FaUser,
+    element: <Guests />,
   },
   {
     name: "Approve Request",
@@ -62,12 +68,7 @@ export const dashboardItems = [
     path: '/reviews',
     element: <Review></Review>
   },
-  {
-    name: "Users",
-    path: "users",
-    icon: FaUsers,
-    element: <Guests />,
-  },
+  
   {
     name: "Studio List ",
     path: "studioList",

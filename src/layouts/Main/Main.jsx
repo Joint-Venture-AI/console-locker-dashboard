@@ -9,7 +9,7 @@ const Main = () => {
       <div className="">
         <Sidebar />
       </div>
-      <div className="flex-1 pl-[326px]">
+      <div className="flex-1 pl-[326px] bg-[#F2F5F7]">
         <div className="sticky top-0 w-full p-[24px] z-10 ">
           <Header />
         </div>

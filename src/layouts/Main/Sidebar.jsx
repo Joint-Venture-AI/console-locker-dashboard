@@ -33,7 +33,7 @@ const Sidebar = () => {
     // console.log(location.pathname.includes("earnings"));
   }, [location.pathname]);
   return (
-    <div className="fixed top-0 left-0 w-[326px] min-h-screen h-full pr-0 ">
+    <div className="fixed top-0 left-0 w-[310px] min-h-screen h-full pr-0 bg-white">
       <div className="h-full flex flex-col justify-between  pt-[50px] border drop-shadow">
         <div className="space-y[24px">
           <div className="px-[38px]">
@@ -51,9 +51,9 @@ const Sidebar = () => {
                         }));
                       }}
                       className={cn(
-                        "outline-none hover:text-white text-[20px] hover:bg-black w-full px-4 py-3 flex items-center justify-between gap-3 text-lg transition-all rounded-full",
+                        "outline-none hover:text-white text-[20px] hover:bg-black w-full px-4 py-3 flex items-center justify-between gap-3 text-md transition-all rounded-full",
                         {
-                          "bg-playground text-white":
+                          "bg-black text-white":
                             name === openNome?.name ||
                             (location.pathname.includes(rootPath) &&
                               !openNome.name),
@@ -61,8 +61,8 @@ const Sidebar = () => {
                       )}
                     >
                       <div className="flex items-center justify-start gap-3">
-                        <div>{createElement(icon, { size: "20" })}</div>
-                        <span>{name}</span>
+                        <div>{createElement(icon, { size: "17" })}</div>
+                        <span className="text-md">{name}</span>
                       </div>
                       <MdOutlineArrowRight
                         className={cn("text-gray-500", {
@@ -92,9 +92,9 @@ const Sidebar = () => {
                           className={({ isActive }) =>
                             isActive
                               ? "bg-playground text-white" +
-                                " w-full px-4 py-1 flex items-center justify-start gap-3 transition-all rounded-sm"
+                                " w-full px-4 py-1 flex items-center justify-start gap-3 transition-all rounded-sm text-md"
                               : "text-[#646464] hover:text-white hover:bg-black" +
-                                " w-full px-4 py-1 flex items-center justify-start gap-3 transition-all rounded-sm"
+                                " w-full px-4 py-1 flex items-center justify-start gap-3 transition-all rounded-sm text-md"
                           }
                         >
                           <div>{createElement(subIcon, { size: "17" })}</div>
@@ -117,12 +117,12 @@ const Sidebar = () => {
                       className={({ isActive }) =>
                         isActive
                           ? "bg-black text-white" +
-                            " w-full px-4 py-3 flex items-center justify-start gap-3 text-lg transition-all rounded-full"
+                            " w-full px-4 py-3 flex items-center justify-start gap-3 text-md transition-all rounded-full"
                           : " hover:text-white text-[20px] hover:bg-black" +
-                            " w-full px-4 py-3 flex items-center justify-start gap-3 text-lg transition-all rounded-full"
+                            " w-full px-4 py-3 flex items-center justify-start gap-3 text-md transition-all rounded-full"
                       }
                     >
-                      <div>{createElement(icon, { size: "20" })}</div>
+                      <div>{createElement(icon, { size: "18" })}</div>
                       <span> {name}</span>
                     </NavLink>
                   </li>
@@ -133,7 +133,7 @@ const Sidebar = () => {
         <div className="p-4 mt-auto text-center">
           <button
             onClick={handleLogOut}
-            className="bg-light-gray w-full bg-[#afacfb] text-black  font-semibold px-4 py-3 flex items-center justify-start gap-3 text-lg outline-none rounded-lg"
+            className="bg-light-gray w-full bg-[#afacfb] text-black  font-semibold px-4 py-3 flex items-center justify-start gap-3 text-md outline-none rounded-lg"
           >
             <FiLogOut className="text-red-400" size={20} />
             <span>Logout</span>
