@@ -37,7 +37,7 @@ const ChatPage = () => {
             </div>
 
             {/* Chat */}
-            <div className='container mx-auto max-w-7xl'>
+            <div className='container mx-auto max-w-7xl space-y-12'>
                 <div className='bg-white rounded-md flex items-center justify-start p-2'>
                     <img src={chatHeadImage} alt="" className='w-14 h-14 object-contain' />
                     <h1>Banedict Fring Dron</h1>
