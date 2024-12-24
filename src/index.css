@@ -76,6 +76,20 @@
   border-bottom: 1px solid #b9b5b5;
 }
 
+.ant-input:focus {
+  border-color: black;
+  outline: 0;
+
+}
+.ant-input {
+  border-color: black;
+}
+.ant-input:hover {
+  border-color: black;
+}
+.ant-input::placeholder {
+  color: gray;
+}
 
 
 
