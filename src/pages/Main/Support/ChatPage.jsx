@@ -3,6 +3,7 @@ import SupportChatHeader from '../../../layouts/Main/SupportChatHeader';
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import ChatHeads from './ChatHeads';
 import chatHeadImage from '../../../assets/images/chatHeadPerson.png';
+import { Link } from 'react-router-dom';
 
 const ChatPage = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -25,7 +26,7 @@ const ChatPage = () => {
             </div>
 
             {/* Back button */}
-            <div className="p-4  text-center flex items-center justify-center absolute top-28 left-14">
+            <Link to='/' className="p-4  text-center flex items-center justify-center absolute top-28 left-14">
                 <button
                     className="w-fit bg-transparent text-black border border-black px-4 py-[7px] flex items-center justify-center gap-2 text-sm outline-none rounded-lg"
                 >
@@ -34,7 +35,7 @@ const ChatPage = () => {
                     </div>
                     <p className="text-black font-light">Back</p>
                 </button>
-            </div>
+            </Link>
 
             {/* Chat */}
             <div className='container mx-auto max-w-7xl space-y-12'>
