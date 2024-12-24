@@ -1,5 +1,6 @@
 import { Table } from "antd";
 import exlamIcon from "../../../assets/images/exclamation-circle.png";
+import { Link } from "react-router-dom";
 
 const Support = () => {
    const columns = [
@@ -29,14 +30,14 @@ const Support = () => {
         key: "Review",
         aligen: 'center',
         render: (_, data) => (
-          <div className="  items-center justify-around textcenter flex " >
+          <Link to='/support-chat' className="  items-center justify-around textcenter flex " >
             {/* Review Icon */}
             <img src={exlamIcon} alt="" className="btn  px-3 py-1 text-sm rounded-full cursor-pointer" onClick={() => showModal(data)} />
             {/* <Link to={'/reviews'} className="btn bg-black text-white px-3 py-1 text-sm rounded-full">
                    
                     View
                   </Link> */}
-          </div>
+          </Link>
         ),
       },
     ];
@@ -55,7 +56,7 @@ const Support = () => {
     }
   return (
     <div className="rounded-lg border py-4 border-black mt-8 recent-users-table">
-      <h3 className="text-2xl text-black mb-4 pl-2">Earnings</h3>
+      <h3 className="text-2xl text-black mb-4 pl-2">Support</h3>
       {/* Ant Design Table */}
       <Table
         columns={columns}

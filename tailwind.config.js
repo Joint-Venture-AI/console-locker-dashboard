@@ -8,6 +8,7 @@ export default {
         playground: "#052255",
         black: "#333333",
         red: "#F70300",
+        lightGray: '#B0B0B0',
       },
     },
   },
