@@ -1,4 +1,6 @@
+import { Select } from 'antd';
 import React, { PureComponent } from 'react';
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
@@ -17,8 +19,34 @@ const data = [
 ];
 
 const BarChartComponent = () => {
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
+
   return (
     <div>
+      <div className='flex items-center justify-between py-7'>
+        <h1 className='text-sm md:text-2xl'>Overview</h1>
+      <Select
+            defaultValue="2024 May"
+            style={{
+              width: 120,
+            }}
+            bordered={false}
+            suffixIcon={<MdOutlineKeyboardArrowDown color="gray" fontSize={30} />}
+            onChange={handleChange}
+            options={[
+              {
+                value: '2024 May',
+                label: '2024 May',
+              },
+              {
+                value: '2024 Apr',
+                label: '2024 Apr',
+              }
+            ]}
+          />
+      </div>
       <ResponsiveContainer width="100%" height={500}>
         <BarChart
           width={500}
