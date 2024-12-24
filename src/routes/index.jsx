@@ -7,7 +7,7 @@ import { dashboardItems } from "../constants/router.constants";
 import ForgotPassword from "../pages/Auth/ForgotPassword";
 import VerifyEmail from "../pages/Auth/VerifyEmail";
 import ResetPassword from "../pages/Auth/ResetPassword";
-import Chat from "../pages/Main/Support/Chat";
+import ChatPage from "../pages/Main/Support/ChatPage";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/support-chat",
-    element: <Chat />
+    element: <ChatPage />
   },
   {
     path: "/auth",
