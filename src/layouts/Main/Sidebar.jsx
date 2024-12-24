@@ -8,10 +8,12 @@ import Swal from "sweetalert2";
 import { FiLogOut } from "react-icons/fi";
 import { MdOutlineArrowRight } from "react-icons/md";
 import { cn } from "../../lib/utils";
+
 const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [openNome, setOpenNome] = useState({});
+
   const handleLogOut = () => {
     Swal.fire({
       text: "Are you sure you want to logout?",
@@ -43,93 +45,93 @@ const Sidebar = () => {
           <ul className="mt-10 max-h-[650px] overflow-y-auto space-y-1 xl:space-y-2 px-4">
             {routeLinkGenerators(dashboardItems).map(
               ({ name, icon, path, children, rootPath }, indx) =>
-                children?.length ? null 
-              // (
-              //     <li key={indx} className="overflow-hidden">
-              //       <button
-              //         onClick={() => {
-              //           setOpenNome((c) => ({
-              //             name: c?.name === name ? null : name,
-              //           }));
-              //         }}
-              //         className={cn(
-              //           "outline-none hover:text-white  hover:bg-black w-full px-4 py-3 flex items-center justify-between gap-3 text-md transition-all rounded-full",
-              //           {
-              //             "bg-black text-white":
-              //               name === openNome?.name ||
-              //               (location.pathname.includes(rootPath) &&
-              //                 !openNome.name),
-              //           }
-              //         )}
-              //       >
-              //         <div className="flex items-center justify-start gap-3">
-              //           <div>{createElement(icon, { size: "17" })}</div>
-              //           <span>{name}</span>
-              //         </div>
-              //         <MdOutlineArrowRight
-              //           className={cn("text-gray-500", {
-              //             "rotate-90 text-white":
-              //               name === openNome?.name ||
-              //               (location.pathname.includes(rootPath) &&
-              //                 !openNome.name),
-              //           })}
-              //           size={23}
-              //         />
-              //       </button>
-              //       <div
-              //         className={cn(
-              //           "pl-8 pr-6 space-y-0.5 h-0 overflow-hidden",
-              //           {
-              //             "h-fit pt-1":
-              //               name === openNome?.name ||
-              //               (location.pathname.includes(rootPath) &&
-              //                 !openNome.name),
-              //           }
-              //         )}
-              //       >
-              //         {children?.map(({ subName, subPath, subIcon }, inx) => (
-              //           <NavLink
-              //             key={inx}
-              //             to={subPath}
-              //             className={({ isActive }) =>
-              //               isActive
-              //                 ? "bg-playground text-white" +
-              //                   " w-full px-4 py-1 flex items-center justify-start gap-3 transition-all rounded-sm text-md"
-              //                 : "text-[#646464] hover:text-white hover:bg-black" +
-              //                   " w-full px-4 py-1 flex items-center justify-start gap-3 transition-all rounded-sm text-md"
-              //             }
-              //           >
-              //             <div>{createElement(subIcon, { size: "17" })}</div>
-              //             <span> {subName}</span>
-              //           </NavLink>
-              //         ))}
-              //       </div>
-              //     </li>
-              //   ) 
-                : (
-                  <li
-                    onClick={() => {
-                      setOpenNome((c) => ({
-                        name: c?.name === name ? null : name,
-                      }));
-                    }}
-                    key={indx}
-                  >
-                    <NavLink
-                      to={path}
-                      className={({ isActive }) =>
-                        isActive
-                          ? "bg-black text-white" +
-                            " w-full px-4 py-3 flex items-center justify-start gap-3 text-md transition-all rounded-full"
-                          : " hover:text-white  hover:bg-black" +
-                            " w-full px-4 py-3 flex items-center justify-start gap-3 text-md transition-all rounded-full"
-                      }
+                children?.length ? null
+                  // (
+                  //     <li key={indx} className="overflow-hidden">
+                  //       <button
+                  //         onClick={() => {
+                  //           setOpenNome((c) => ({
+                  //             name: c?.name === name ? null : name,
+                  //           }));
+                  //         }}
+                  //         className={cn(
+                  //           "outline-none hover:text-white  hover:bg-black w-full px-4 py-3 flex items-center justify-between gap-3 text-md transition-all rounded-full",
+                  //           {
+                  //             "bg-black text-white":
+                  //               name === openNome?.name ||
+                  //               (location.pathname.includes(rootPath) &&
+                  //                 !openNome.name),
+                  //           }
+                  //         )}
+                  //       >
+                  //         <div className="flex items-center justify-start gap-3">
+                  //           <div>{createElement(icon, { size: "17" })}</div>
+                  //           <span>{name}</span>
+                  //         </div>
+                  //         <MdOutlineArrowRight
+                  //           className={cn("text-gray-500", {
+                  //             "rotate-90 text-white":
+                  //               name === openNome?.name ||
+                  //               (location.pathname.includes(rootPath) &&
+                  //                 !openNome.name),
+                  //           })}
+                  //           size={23}
+                  //         />
+                  //       </button>
+                  //       <div
+                  //         className={cn(
+                  //           "pl-8 pr-6 space-y-0.5 h-0 overflow-hidden",
+                  //           {
+                  //             "h-fit pt-1":
+                  //               name === openNome?.name ||
+                  //               (location.pathname.includes(rootPath) &&
+                  //                 !openNome.name),
+                  //           }
+                  //         )}
+                  //       >
+                  //         {children?.map(({ subName, subPath, subIcon }, inx) => (
+                  //           <NavLink
+                  //             key={inx}
+                  //             to={subPath}
+                  //             className={({ isActive }) =>
+                  //               isActive
+                  //                 ? "bg-playground text-white" +
+                  //                   " w-full px-4 py-1 flex items-center justify-start gap-3 transition-all rounded-sm text-md"
+                  //                 : "text-[#646464] hover:text-white hover:bg-black" +
+                  //                   " w-full px-4 py-1 flex items-center justify-start gap-3 transition-all rounded-sm text-md"
+                  //             }
+                  //           >
+                  //             <div>{createElement(subIcon, { size: "17" })}</div>
+                  //             <span> {subName}</span>
+                  //           </NavLink>
+                  //         ))}
+                  //       </div>
+                  //     </li>
+                  //   ) 
+                  : (
+                    <li
+                      onClick={() => {
+                        setOpenNome((c) => ({
+                          name: c?.name === name ? null : name,
+                        }));
+                      }}
+                      key={indx}
                     >
-                      <div>{createElement(icon, { size: "18" })}</div>
-                      <span> {name}</span>
-                    </NavLink>
-                  </li>
-                )
+                      <NavLink
+                        to={path}
+                        className={({ isActive }) =>
+                          isActive
+                            ? "bg-black text-white" +
+                            " w-full px-4 py-3 flex items-center justify-start gap-3 text-md transition-all rounded-full"
+                            : " hover:text-white  hover:bg-black" +
+                            " w-full px-4 py-3 flex items-center justify-start gap-3 text-md transition-all rounded-full"
+                        }
+                      >
+                        <div>{createElement(icon, { size: "18" })}</div>
+                        <span> {name}</span>
+                      </NavLink>
+                    </li>
+                  )
             )}
           </ul>
         </div>
@@ -138,7 +140,7 @@ const Sidebar = () => {
             onClick={handleLogOut}
             className=" w-full bg-red text-black  font-semibold px-12 py-3 flex items-center justify-center gap-3 text-md outline-none rounded-full"
           >
-           <img className="" src={logout} alt="" />
+            <img className="" src={logout} alt="" />
             <span className="text-white font-light">Logout</span>
           </button>
         </div>
