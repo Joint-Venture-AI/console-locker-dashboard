@@ -85,16 +85,41 @@ const Users = () => {
         maxWidth="500px"
       >
         <div>
-          <h2 className="text-xl font-bold mb-4">User Details</h2>
-          <p>
-            <strong>Name:</strong> {modalData.name}
-          </p>
-          <p>
-            <strong>Email:</strong> {modalData.Email}
-          </p>
-          <p>
-            <strong>Phone:</strong> {modalData.Phone}
-          </p>
+          <h2 className="text-lg text-center mb-4">User Details</h2>
+          <div className="flex justify-between mb-2 text-gray-600">
+            <p>#SL</p>
+            <p>{modalData.transIs}</p>
+          </div>
+          <div className="flex justify-between mb-2 text-gray-600">
+            <p>User Name</p>
+            <p>{modalData.name}</p>
+          </div>
+          <div className="flex justify-between mb-2 text-gray-600">
+            <p>Email</p>
+            <p>{modalData.Email}</p>
+          </div>
+          <div className="flex justify-between mb-2 text-gray-600">
+            <p>Mobile Phone</p>
+            <p>{modalData.Phone}</p>
+          </div>
+          <div className="flex justify-between mb-2 text-gray-600">
+            <p>Service</p>
+            <p>{modalData.transIs}</p>
+          </div>
+          <div className="flex justify-between mb-2 text-gray-600">
+            <p>Date</p>
+            <p>{modalData.transIs}</p>
+          </div>
+          <div className="flex justify-between mb-2 text-gray-600">
+            <p>Time</p>
+            <p>{modalData.transIs}</p>
+          </div>
+          <div className="flex justify-between mb-2 text-gray-600">
+            <p>Amount</p>
+            <p>{modalData.transIs}</p>
+          </div>
+         
+          
         </div>
       </DashboardModal>
     </div>
