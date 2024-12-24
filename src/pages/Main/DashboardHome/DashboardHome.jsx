@@ -1,4 +1,5 @@
 import DashboardHomeTable from "../../../Components/DashboardHomeTable";
+import BarChartComponent from "./BarChart";
 
 
 const DashboardHome = () => {
@@ -34,6 +35,7 @@ const DashboardHome = () => {
 
         
       </div>
+      <BarChartComponent/>
       <DashboardHomeTable />
     </div>
   );
