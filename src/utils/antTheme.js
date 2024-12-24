@@ -85,6 +85,7 @@ export const mainTheme = {
       headerBorderRadius: 0,
       borderRadius: 0,
       headerSplitColor: "none",
+      
     },
     Modal: {
       // contentBg: "#5271FF",
