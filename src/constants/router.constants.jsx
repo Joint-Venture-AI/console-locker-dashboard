@@ -32,6 +32,7 @@ import Driver from "../pages/Main/Driver/Driver";
 import DriverRequest from "../pages/Main/DriverRequest/DriverRequest";
 import Setting from "../pages/Main/Setting/Setting";
 import Support from "../pages/Main/Support/Support";
+import earningImg from "../assets/images/earnings.png";
 
 export const dashboardItems = [
   {
@@ -77,7 +78,7 @@ export const dashboardItems = [
   {
     name: "Earning",
     path: "earnings",
-    icon: MdOutlineAdminPanelSettings,
+    icon: () => <img src={earningImg} alt="Earnings" style={{ width: "20px", height: "20px" }} className="bg-white" />,
     element: <Earnings />,
   },
   {

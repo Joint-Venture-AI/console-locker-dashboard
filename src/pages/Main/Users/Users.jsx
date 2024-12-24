@@ -4,6 +4,7 @@ import { FiAlertCircle } from "react-icons/fi";
 import DashboardModal from "../../../Components/DashboardModal";
 import { IoSearch } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import exlamIcon from "../../../assets/images/exclamation-circle.png";
 
 const Users = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,62 +15,50 @@ const Users = () => {
   };
   const columns = [
     {
-      title: "#SI No.",
-      dataIndex: "transIs",
-      key: "transIs",
-      render: (text) => <a>{text}</a>,
-    },
-    {
-      title: "User Name",
-      dataIndex: "name",
-      key: "name",
-    },
-    {
-      title: "Email",
-      dataIndex: "Email",
-      key: "Email",
-    },
-    {
-      title: "Report",
-      key: "Report",
-      dataIndex: "Report",
-    },
-    {
-      title: "Review",
-      key: "Review",
-      aligen:'center',
-      render: (_, data) => (
-        <div className="">
-          {/* Review Icon */}
-          <Link to={'/reviews'} className="btn bg-[#052255] text-white px-3 py-1 text-sm rounded-full">
-            {/* <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-gray-600"
-            >
-              View
-            </svg> */}
-            View
-          </Link>
-
-        </div>
-      ),
-    },
+          title: "#SI",
+          dataIndex: "transIs",
+          key: "transIs",
+          render: (text) => <a>{text}</a>,
+        },
+        {
+          title: "Name",
+          dataIndex: "name",
+          key: "name",
+        },
+        {
+          title: "Email",
+          dataIndex: "Email",
+          key: "Email",
+        },
+        {
+          title: "Phone Number",
+          key: "Phone",
+          dataIndex: "Phone",
+        },
+        {
+          title: "Action",
+          key: "Review",
+          aligen: 'center',
+          render: (_, data) => (
+            <div className="  items-center justify-around textcenter flex">
+              {/* Review Icon */}
+              <img src={exlamIcon} alt="" className="btn  px-3 py-1 text-sm rounded-full" />
+              {/* <Link to={'/reviews'} className="btn bg-black text-white px-3 py-1 text-sm rounded-full">
+               
+                View
+              </Link> */}
+            </div>
+          ),
+        },
   ];
 
   const data = [];
-  for (let index = 0; index < 6; index++) {
+  for (let index = 0; index < 20; index++) {
     data.push({
       transIs: `${index + 1}`,
       name: "Henry",
       Email: "sharif@gmail.com",
-      Report: "5",
+      Phone: "+12746478994",
       Review: "See Review",
       date: "16 Apr 2024",
       _id: index,
@@ -77,9 +66,8 @@ const Users = () => {
   }
 
   return (
-    <div className="rounded-lg border py-4 px-6 bg-white shadow-lg mt-8">
-      <h3 className="text-2xl text-playground font-semibold mb-4">All User</h3>
-
+    <div className="rounded-lg border py-4 border-black mt-8 recent-users-table">
+      <h3 className="text-2xl text-black mb-4 pl-2">Recent Users</h3>
       {/* Ant Design Table */}
       <Table
         columns={columns}
@@ -87,8 +75,6 @@ const Users = () => {
         pagination={{ position: ["bottomCenter"] }}
         className="rounded-lg"
       />
-
-
     </div>
   );
 };

@@ -50,7 +50,7 @@ const DashboardHomeTable = () => {
       transIs: `${index + 1}`,
       name: "Henry",
       Email: "sharif@gmail.com",
-      Phone: "+1 2746478994",
+      Phone: "+12746478994",
       Review: "See Review",
       date: "16 Apr 2024",
       _id: index,
@@ -60,7 +60,6 @@ const DashboardHomeTable = () => {
   return (
     <div className="rounded-lg border py-4 border-black mt-8 recent-users-table">
       <h3 className="text-2xl text-black mb-4 pl-2">Recent Users</h3>
-
       {/* Ant Design Table */}
       <Table
         columns={columns}
@@ -68,8 +67,6 @@ const DashboardHomeTable = () => {
         pagination={{ position: ["bottomCenter"] }}
         className="rounded-lg"
       />
-
-
     </div>
   );
 };
