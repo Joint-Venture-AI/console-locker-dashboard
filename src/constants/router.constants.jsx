@@ -18,7 +18,7 @@ import {
   MdOutlineSecurityUpdateWarning,
 } from "react-icons/md";
 import HostDetails from "../pages/Main/Host/HostDetails";
-import {  LuWallet } from "react-icons/lu";
+import { LuWallet } from "react-icons/lu";
 import { FaServicestack } from "react-icons/fa6";
 import { BiMessageSquareDetail } from "react-icons/bi";
 import { PiHandWithdrawBold } from "react-icons/pi";
@@ -33,6 +33,7 @@ import DriverRequest from "../pages/Main/DriverRequest/DriverRequest";
 import Setting from "../pages/Main/Setting/Setting";
 import Support from "../pages/Main/Support/Support";
 import earningImg from "../assets/images/earnings.png";
+import ChangePassword from "../pages/Main/Setting/Change-password/ChangePassword";
 
 export const dashboardItems = [
   {
@@ -47,34 +48,34 @@ export const dashboardItems = [
     icon: FaUser,
     element: <Guests />,
   },
-  {
-    name: "Approve Request",
-    rootPath: "approveRequest",
-    icon: GrMoney,
-    children: [
-      {
-        name: "Studio Post",
-        path: "approveRequest/all-earnings",
-        icon: LuWallet,
-        element: <StudioPost />,
-      },
-      {
-        name: "Trainer Post",
-        path: "approveRequest/withdraw",
-        icon: PiHandWithdrawBold,
-        element: <TrainerPost />,
-      },
-    ],
-  },
-  {
-    path: "notifications",
-    element: <Notifications />,
-  },
-  {
-    path: '/reviews',
-    element: <Review></Review>
-  },
-  
+  // {
+  //   name: "Approve Request",
+  //   rootPath: "approveRequest",
+  //   icon: GrMoney,
+  //   children: [
+  //     {
+  //       name: "Studio Post",
+  //       path: "approveRequest/all-earnings",
+  //       icon: LuWallet,
+  //       element: <StudioPost />,
+  //     },
+  //     {
+  //       name: "Trainer Post",
+  //       path: "approveRequest/withdraw",
+  //       icon: PiHandWithdrawBold,
+  //       element: <TrainerPost />,
+  //     },
+  //   ],
+  // },
+  // {
+  //   path: "notifications",
+  //   element: <Notifications />,
+  // },
+  // {
+  //   path: '/reviews',
+  //   element: <Review></Review>
+  // },
+
   {
     name: "Earning",
     path: "earnings",
@@ -101,7 +102,7 @@ export const dashboardItems = [
   },
   {
     name: "Setting",
-    path: "setting",
+    path: "settings",
     icon: MdOutlineAdminPanelSettings,
     element: <Setting />,
   },
@@ -115,14 +116,20 @@ export const dashboardItems = [
     icon: CiSettings,
     children: [
       {
-        name: "Profile",
-        path: "settings/prifile",
+        name: "Personal Information",
+        path: "settings/profile",
         icon: CiUser,
         element: <MyProfile />,
       },
       {
-        path: "settings/prifile/edit",
+        path: "settings/profile/edit",
         element: <EditMyProfile />,
+      },
+      {
+        name: "Change Password",
+        icon: FaServicestack,
+        path: "settings/change-password",
+        element: <ChangePassword />,
       },
       {
         name: "Terms & Services",
