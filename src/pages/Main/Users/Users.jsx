@@ -9,10 +9,12 @@ import exlamIcon from "../../../assets/images/exclamation-circle.png";
 const Users = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState({});
+
   const showModal = (data) => {
     setIsModalOpen(true);
     setModalData(data);
   };
+
   const columns = [
     {
           title: "#SI",
@@ -40,9 +42,9 @@ const Users = () => {
           key: "Review",
           aligen: 'center',
           render: (_, data) => (
-            <div className="  items-center justify-around textcenter flex">
+            <div className="  items-center justify-around textcenter flex " >
               {/* Review Icon */}
-              <img src={exlamIcon} alt="" className="btn  px-3 py-1 text-sm rounded-full" />
+              <img src={exlamIcon} alt="" className="btn  px-3 py-1 text-sm rounded-full cursor-pointer" onClick={() => showModal(data)} />
               {/* <Link to={'/reviews'} className="btn bg-black text-white px-3 py-1 text-sm rounded-full">
                
                 View
@@ -75,6 +77,26 @@ const Users = () => {
         pagination={{ position: ["bottomCenter"] }}
         className="rounded-lg"
       />
+
+      {/* Dashboard Modal */}
+      <DashboardModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        maxWidth="500px"
+      >
+        <div>
+          <h2 className="text-xl font-bold mb-4">User Details</h2>
+          <p>
+            <strong>Name:</strong> {modalData.name}
+          </p>
+          <p>
+            <strong>Email:</strong> {modalData.Email}
+          </p>
+          <p>
+            <strong>Phone:</strong> {modalData.Phone}
+          </p>
+        </div>
+      </DashboardModal>
     </div>
   );
 };
