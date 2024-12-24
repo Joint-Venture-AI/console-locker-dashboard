@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Setting = () => {
   const cards = [
     { id: 1, text: "Personal Information", icon: <FaAngleRight color="black" />, link: "/profile" },
-    { id: 2, text: "Change Password", icon: <FaAngleRight color="black" />, link: "/settings" },
+    { id: 2, text: "Change Password", icon: <FaAngleRight color="black" />, link: "/change-password" },
     { id: 3, text: "Terms & Condition", icon: <FaAngleRight color="black" />, link: "/notifications" },
     { id: 4, text: "Privacy Policy", icon: <FaAngleRight color="black" />, link: "/analytics" },
     { id: 5, text: "Privacy Policy", icon: <FaAngleRight color="black" />, link: "/messages" },

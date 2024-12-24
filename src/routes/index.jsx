@@ -8,6 +8,7 @@ import ForgotPassword from "../pages/Auth/ForgotPassword";
 import VerifyEmail from "../pages/Auth/VerifyEmail";
 import ResetPassword from "../pages/Auth/ResetPassword";
 import ChatPage from "../pages/Main/Support/ChatPage";
+import ChangePassword from "../pages/Main/Setting/Change-password/ChangePassword";
 
 const router = createBrowserRouter([
   {
@@ -20,12 +21,16 @@ const router = createBrowserRouter([
     element: <ChatPage />
   },
   {
+    path: "/change-password",
+    element: <ChangePassword />
+  },
+  {
     path: "/auth",
     element: <Auth />,
     children: [
       {
         path: "/auth",
-        element: <Navigate to={"/auth/sign-in"}/>,
+        element: <Navigate to={"/auth/sign-in"} />,
       },
       {
         path: "/auth/sign-in",
