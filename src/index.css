@@ -63,6 +63,19 @@
   background: #61D0FF; /* Darker thumb when hovered */
 }
 
+/* recent-users-table header backgroundColor */
+.recent-users-table .ant-table-thead>tr>th{
+  background:#333333;
+  text-align: center;
+  font-weight: lighter;
+  font-size: 18px;
+}
+
+.recent-users-table .ant-table-tbody>.ant-table-row>.ant-table-cell {
+  text-align: center;
+  border-bottom: 1px solid #b9b5b5;
+}
+
 
 
 

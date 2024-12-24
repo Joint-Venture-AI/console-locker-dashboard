@@ -65,7 +65,7 @@ const BarChartComponent = () => {
             tickFormatter={(value) => `${value / 1000}k`} // Converts numbers to "k" format
           />
           <Tooltip cursor={{fill: 'transparent'}} />
-          <Legend />
+          {/* <Legend /> */}
           <Bar dataKey="uv" fill="#00000" barSize={40}  />
         </BarChart>
       </ResponsiveContainer>

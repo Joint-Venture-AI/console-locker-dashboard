@@ -1,19 +1,19 @@
 import { Table } from "antd";
 import { Link } from "react-router-dom";
-
+import exlamIcon from "../assets/images/exclamation-circle.png";
 
 const DashboardHomeTable = () => {
 
 
   const columns = [
     {
-      title: "#SI No.",
+      title: "#SI",
       dataIndex: "transIs",
       key: "transIs",
       render: (text) => <a>{text}</a>,
     },
     {
-      title: "User Name",
+      title: "Name",
       dataIndex: "name",
       key: "name",
     },
@@ -23,33 +23,22 @@ const DashboardHomeTable = () => {
       key: "Email",
     },
     {
-      title: "Report",
-      key: "Report",
-      dataIndex: "Report",
+      title: "Phone Number",
+      key: "Phone",
+      dataIndex: "Phone",
     },
     {
-      title: "See Review",
+      title: "Action",
       key: "Review",
       aligen: 'center',
       render: (_, data) => (
-        <div className="  items-center justify-around">
+        <div className="  items-center justify-around textcenter flex">
           {/* Review Icon */}
-          <Link to={'/reviews'} className="btn bg-[#052255] text-white px-3 py-1 text-sm rounded-full">
-            {/* <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="text-gray-600"
-                    >
-                      View
-                    </svg> */}
+          <img src={exlamIcon} alt="" className="btn  px-3 py-1 text-sm rounded-full" />
+          {/* <Link to={'/reviews'} className="btn bg-black text-white px-3 py-1 text-sm rounded-full">
+           
             View
-          </Link>
+          </Link> */}
         </div>
       ),
     },
@@ -61,7 +50,7 @@ const DashboardHomeTable = () => {
       transIs: `${index + 1}`,
       name: "Henry",
       Email: "sharif@gmail.com",
-      Report: "5",
+      Phone: "+1 2746478994",
       Review: "See Review",
       date: "16 Apr 2024",
       _id: index,
@@ -69,8 +58,8 @@ const DashboardHomeTable = () => {
   }
 
   return (
-    <div className="rounded-lg border py-4 px-6 bg-white shadow-lg mt-8">
-      <h3 className="text-2xl font-semibold mb-4">Recent Users</h3>
+    <div className="rounded-lg border py-4 border-black mt-8 recent-users-table">
+      <h3 className="text-2xl text-black mb-4 pl-2">Recent Users</h3>
 
       {/* Ant Design Table */}
       <Table
