@@ -1,5 +1,6 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo1.png";
+import logout from "../../assets/images/logout.png";
 import { createElement, useEffect, useState } from "react";
 import { routeLinkGenerators } from "../../utils/routeLinkGenerators";
 import { dashboardItems } from "../../constants/router.constants";
@@ -33,7 +34,7 @@ const Sidebar = () => {
     // console.log(location.pathname.includes("earnings"));
   }, [location.pathname]);
   return (
-    <div className="fixed top-0 left-0 w-[310px] min-h-screen h-full pr-0 bg-white">
+    <div className="fixed top-0 left-0 w-[290px] min-h-screen h-full pr-0 bg-white">
       <div className="h-full flex flex-col justify-between  pt-[50px] border drop-shadow">
         <div className="space-y[24px">
           <div className="px-[38px]">
@@ -130,13 +131,13 @@ const Sidebar = () => {
             )}
           </ul>
         </div>
-        <div className="p-4 mt-auto text-center">
+        <div className="p-4 mt-auto  text-center">
           <button
             onClick={handleLogOut}
-            className="bg-light-gray w-full bg-[#afacfb] text-black  font-semibold px-4 py-3 flex items-center justify-start gap-3 text-md outline-none rounded-lg"
+            className=" w-full bg-red text-black  font-semibold px-12 py-3 flex items-center justify-center gap-3 text-md outline-none rounded-full"
           >
-            <FiLogOut className="text-red-400" size={20} />
-            <span>Logout</span>
+           <img className="" src={logout} alt="" />
+            <span className="text-white font-light">Logout</span>
           </button>
         </div>
       </div>

@@ -6,7 +6,8 @@ export default {
       colors: {
         primary: "#ffebff",
         playground: "#052255",
-        black: "#333333"
+        black: "#333333",
+        red: "#F70300",
       },
     },
   },
