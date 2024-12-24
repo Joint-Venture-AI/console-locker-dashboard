@@ -27,6 +27,11 @@ import TrainerPost from "../pages/Main/ApproveRequest/TrainerPost";
 import Review from "../pages/Main/Users/Review";
 import StudioList from "../pages/Main/StudioList/StudioList";
 import TrainerList from "../pages/Main/TrainerList/TrainerList";
+import Earnings from "../pages/Main/Earnings/Earnings";
+import Driver from "../pages/Main/Driver/Driver";
+import DriverRequest from "../pages/Main/DriverRequest/DriverRequest";
+import Setting from "../pages/Main/Setting/Setting";
+import Support from "../pages/Main/Support/Support";
 
 export const dashboardItems = [
   {
@@ -70,16 +75,34 @@ export const dashboardItems = [
   },
   
   {
-    name: "Studio List ",
-    path: "studioList",
+    name: "Earning",
+    path: "earnings",
     icon: MdOutlineAdminPanelSettings,
-    element: <StudioList />,
+    element: <Earnings />,
   },
   {
-    name: "Trainer List  ",
-    path: "trainerList",
+    name: "Driver",
+    path: "driver",
     icon: MdOutlineAdminPanelSettings,
-    element: <TrainerList />,
+    element: <Driver />,
+  },
+  {
+    name: "Driver Request",
+    path: "driver-request",
+    icon: MdOutlineAdminPanelSettings,
+    element: <DriverRequest />,
+  },
+  {
+    name: "Setting",
+    path: "setting",
+    icon: MdOutlineAdminPanelSettings,
+    element: <Setting />,
+  },
+  {
+    name: "Support",
+    path: "support",
+    icon: MdOutlineAdminPanelSettings,
+    element: <Support />,
   },
   {
     path: "/hosts/:id",
