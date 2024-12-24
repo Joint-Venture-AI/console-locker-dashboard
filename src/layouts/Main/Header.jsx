@@ -15,6 +15,7 @@ const Header = () => {
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
+  
 
   useEffect(() => {
     const handleClickOutside = (event) => {
