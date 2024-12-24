@@ -47,7 +47,7 @@ const SupportChatHeader = () => {
           {"Welcome, Jane Cooper"}
         </p>
         <p className="text-sm md:text-xl">{"Have a nice day!"}</p> */}
-        <img src={logoImg} alt="" className="" />
+        <img src={logoImg} alt="" className="w-40 h-40 object-contain" />
       </div>
       <div className="flex gap-x-[41px]">
         <div
