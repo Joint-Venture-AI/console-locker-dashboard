@@ -1,9 +1,11 @@
 import { FaArrowLeft, FaRegEyeSlash } from "react-icons/fa6"
 import { MdLockOutline } from "react-icons/md"
 import { LuMailOpen } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
 
 
 const ForgotPassword = () => {
+    const navigate = useNavigate();
     return (
         <div className="flex items-center justify-center ">
             <div className="bg-white rounded-lg shadow-lg mt-8 w-[610px] h-[468px] mx-auto py-10 px-8">
@@ -15,11 +17,6 @@ const ForgotPassword = () => {
                     <h1>Please enter your email address  to reset your password </h1>
                     {/* Input Fields */}
                     <div className="flex flex-col w-full space-y-4">
-                        {/* {[
-                            { label: 'Enter old password', placeholder: 'Enter old password' },
-                            { label: 'Set new password', placeholder: 'Set new password' },
-                            { label: 'Re-enter new password', placeholder: 'Re-enter new password' },
-                        ].map(({ label, placeholder }, index) => ( */}
                         <div>
                             <h1 className="mb-3">Enter your email</h1>
                             <div className="relative flex items-center">
@@ -37,7 +34,7 @@ const ForgotPassword = () => {
                     </div>
 
                     {/* Send OTP Button */}
-                    <button className="mt-6 w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800">
+                    <button className="mt-6 w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800" onClick={(e) => navigate(`verify-email`)}>
                         Send OTP
                     </button>
                 </div>

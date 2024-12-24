@@ -8,8 +8,6 @@ const ChangePassword = () => {
     return (
         <div className="flex items-center justify-center ">
             <div className="bg-white rounded-lg shadow-lg mt-8 w-[610px] h-[725px] mx-auto py-10 px-8">
-
-
                 <div className="flex flex-col  w-full max-w-md mx-auto mt-10 p-4 rounded-lg space-y-4">
                     <div className="flex items-center gap-2">
                         <FaArrowLeft />

@@ -35,6 +35,7 @@ import Support from "../pages/Main/Support/Support";
 import earningImg from "../assets/images/earnings.png";
 import ChangePassword from "../pages/Main/Setting/Change-password/ChangePassword";
 import ForgotPassword from "../pages/Main/Setting/Change-password/ForgotPassword";
+import VerifyEmail from "../pages/Main/Setting/Change-password/VerifyEmail";
 
 export const dashboardItems = [
   {
@@ -135,6 +136,10 @@ export const dashboardItems = [
       {
         path: "settings/change-password/forgot-password",
         element: <ForgotPassword />,
+      },
+      {
+        path: "settings/change-password/forgot-password/verify-email",
+        element: <VerifyEmail />,
       },
       {
         name: "Terms & Services",
