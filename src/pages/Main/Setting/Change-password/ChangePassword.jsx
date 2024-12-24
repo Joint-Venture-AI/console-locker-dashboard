@@ -1,8 +1,10 @@
 import { FaArrowLeft, FaEye, FaLock } from "react-icons/fa6";
 import { MdLockOutline } from "react-icons/md";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const ChangePassword = () => {
+    const navigate = useNavigate();
     return (
         <div className="flex items-center justify-center ">
             <div className="bg-white rounded-lg shadow-lg mt-8 w-[610px] h-[725px] mx-auto py-10 px-8">
@@ -40,7 +42,7 @@ const ChangePassword = () => {
                     </div>
 
                     {/* Forgot Password */}
-                    <p className="mt-4 text-sm text-black cursor-pointer hover:underline">
+                    <p className="mt-4 text-sm text-black font-bold cursor-pointer hover:underline" onClick={(e) => navigate(`forgot-password`)}>
                         Forgot Password?
                     </p>
 

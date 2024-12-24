@@ -34,6 +34,7 @@ import Setting from "../pages/Main/Setting/Setting";
 import Support from "../pages/Main/Support/Support";
 import earningImg from "../assets/images/earnings.png";
 import ChangePassword from "../pages/Main/Setting/Change-password/ChangePassword";
+import ForgotPassword from "../pages/Main/Setting/Change-password/ForgotPassword";
 
 export const dashboardItems = [
   {
@@ -130,6 +131,10 @@ export const dashboardItems = [
         icon: FaServicestack,
         path: "settings/change-password",
         element: <ChangePassword />,
+      },
+      {
+        path: "settings/change-password/forgot-password",
+        element: <ForgotPassword />,
       },
       {
         name: "Terms & Services",
