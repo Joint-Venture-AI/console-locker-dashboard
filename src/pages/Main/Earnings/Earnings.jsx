@@ -18,7 +18,7 @@ const Earnings = () => {
 
   const columns = [
     {
-      title: "#SI",
+      title: "#SL",
       dataIndex: "transIs",
       key: "transIs",
       render: (text) => <a>{text}</a>,

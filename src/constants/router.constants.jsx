@@ -94,16 +94,16 @@ export const dashboardItems = [
     element: <DriverRequest />,
   },
   {
-    name: "Setting",
-    path: "setting",
-    icon: MdOutlineAdminPanelSettings,
-    element: <Setting />,
-  },
-  {
     name: "Support",
     path: "support",
     icon: MdOutlineAdminPanelSettings,
     element: <Support />,
+  },
+  {
+    name: "Setting",
+    path: "setting",
+    icon: MdOutlineAdminPanelSettings,
+    element: <Setting />,
   },
   {
     path: "/hosts/:id",
