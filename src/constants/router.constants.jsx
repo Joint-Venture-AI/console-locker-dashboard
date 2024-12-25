@@ -36,6 +36,8 @@ import earningImg from "../assets/images/earnings.png";
 import ChangePassword from "../pages/Main/Setting/Change-password/ChangePassword";
 import ForgotPassword from "../pages/Main/Setting/Change-password/ForgotPassword";
 import VerifyEmail from "../pages/Main/Setting/Change-password/VerifyEmail";
+import Trust from "../pages/Settings/Trust";
+import EditTrust from "../pages/Settings/EditTrust";
 
 export const dashboardItems = [
   {
@@ -162,14 +164,14 @@ export const dashboardItems = [
         element: <EditPrivacyPolicy />,
       },
       {
-        name: "About Us",
+        name: "Trust & Safety",
         icon: BiMessageSquareDetail,
-        path: "settings/about-us",
-        element: <AboutUs />,
+        path: "settings/trust-safety",
+        element: <Trust />,
       },
       {
-        path: "settings/about-us/edit",
-        element: <EditAboutUs />,
+        path: "settings/trust-safety/edit",
+        element: <EditTrust />,
       },
     ],
   },
