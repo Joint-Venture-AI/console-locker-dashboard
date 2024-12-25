@@ -92,24 +92,37 @@
 }
 
 /* React Quill */
-/* .ql-toolbar.ql-snow {
+/* Parent Container */
+.ql-toolbar-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Quill Toolbar Styling */
+.ql-toolbar.ql-snow {
   display: flex;
   flex-wrap: wrap;
   border: 1px solid #888787;
   padding: 5px;
-  width: 26%;
+  width: 30%;
+  /* margin: 0 auto;  */
+  box-sizing: border-box; /* Ensure padding is included in width calculation */
 }
 
+/* Separate Toolbar Groups with Borders */
 .ql-toolbar.ql-snow .ql-formats {
   border-right: 1px solid #474747;
   padding-right: 8px;
   margin-right: 8px;
-} */
+}
 
-.ql-toolbar.ql-snow.ql-formats.ql-font.ql-picker.ql-picker-label{
-  border-right: 1px solid #474747;
-  padding-right: 8px;
-  margin-right: 8px;
+.ql-toolbar.ql-snow .ql-formats:last-child {
+  border-right: none; /* Remove border for the last group */
+}
+
+/* Quill Editor Wrapper */
+.ql-container.ql-snow {
+  border: none !important; /* Ensure the toolbar and editor appear as a single unit */
 }
 
 

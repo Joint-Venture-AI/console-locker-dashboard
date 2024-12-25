@@ -47,16 +47,18 @@ const EditTermsConditions = () => {
             Terms & Condition Edit
           </h3>
           <div className="w-full px-16">
-            <div className="h-full">
-              <ReactQuill
-                placeholder="Enter your update terms & conditions..."
-                theme="snow"
-                value={content}
-                onChange={(value) => setContent(value)}
-                modules={modules}
-                formats={formats}
-                className="h-[30vh] "
-              />
+            <div className="h-full border border-gray-400 rounded-md">
+              <div className="ql-toolbar-container h-56">
+                <ReactQuill
+                  placeholder="Enter your update terms & conditions..."
+                  theme="snow"
+                  value={content}
+                  onChange={(value) => setContent(value)}
+                  modules={modules}
+                  formats={formats}
+                  className=""
+                />
+              </div>
             </div>
 
           </div>
