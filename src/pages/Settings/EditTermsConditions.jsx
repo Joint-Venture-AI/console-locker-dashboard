@@ -17,8 +17,8 @@ const modules = {
     container: [
       [{ size: ["14px", "16px", "18px"] }], // Use whitelisted sizes
       [{ color: [] }], // Text color dropdown
+      ["bold", "italic", "underline", 'strike'], // Formatting options
       [{ align: [] }], // Text alignment
-      ["bold", "italic", "underline"], // Formatting options
     ],
   },
 };
