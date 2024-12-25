@@ -7,6 +7,7 @@ import PhoneCountryInput from "../../Components/PhoneCountryInput";
 import PageHeading from "../../Components/PageHeading";
 import PasswordChangeModalForm from "../../Components/User/PasswordChangeModalForm";
 import { FaAngleLeft } from "react-icons/fa6";
+import { FaRegEdit } from "react-icons/fa";
 
 
 const MyProfile = () => {
@@ -38,9 +39,10 @@ const MyProfile = () => {
                   onClick={() => setIsModalOpen(true)}
                   size="large"
                   type="default"
-                  className="px-8"
+                  className="px-8 bg-black text-white hover:bg-black/90 rounded-full font-semibold"
                 >
-                  Change Password
+                  <FaRegEdit />
+                  Edit Profile
                 </Button>
               </div>
               <Form
@@ -90,21 +92,14 @@ const MyProfile = () => {
                       className="h-[56px] rounded-lg"
                     />
                   </Form.Item>
-                  <Button
-                    onClick={(e) => navigate(`edit`)}
-                    size="large"
-                    type="primary"
-                    className="px-8 w-1/2 mx-auto rounded-full font-semibold bg-playground"
+
+                  <Form.Item
+                    className="text-lg text-[#222222] font-medium"
+                    label="Phone Number"
+                    name="phone"
                   >
-                    <FiEdit /> Edit Profile
-                  </Button>
-                  {/* <Form.Item
-              className="text-lg text-[#222222] font-medium"
-              label="Phone Number"
-              name="phone"
-            >
-              <PhoneCountryInput disabled={true} />
-            </Form.Item> */}
+                    <PhoneCountryInput />
+                  </Form.Item>
                 </div>
               </Form>
             </div>
