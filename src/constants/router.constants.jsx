@@ -38,6 +38,11 @@ import ForgotPassword from "../pages/Main/Setting/Change-password/ForgotPassword
 import VerifyEmail from "../pages/Main/Setting/Change-password/VerifyEmail";
 import Trust from "../pages/Settings/Trust";
 import EditTrust from "../pages/Settings/EditTrust";
+import { TbCash } from "react-icons/tb";
+import { PiLaptopThin } from "react-icons/pi";
+import { GrUserManager } from "react-icons/gr";
+import { BiSupport } from "react-icons/bi";
+import { IoSettingsOutline } from "react-icons/io5";
 
 export const dashboardItems = [
   {
@@ -83,31 +88,31 @@ export const dashboardItems = [
   {
     name: "Earning",
     path: "earnings",
-    icon: () => <img src={earningImg} alt="Earnings" style={{ width: "20px", height: "20px" }} className="bg-white" />,
+    icon: TbCash,
     element: <Earnings />,
   },
   {
     name: "Driver",
     path: "driver",
-    icon: MdOutlineAdminPanelSettings,
+    icon: GrUserManager,
     element: <Driver />,
   },
   {
     name: "Driver Request",
     path: "driver-request",
-    icon: MdOutlineAdminPanelSettings,
+    icon: PiLaptopThin,
     element: <DriverRequest />,
   },
   {
     name: "Support",
     path: "support",
-    icon: MdOutlineAdminPanelSettings,
+    icon: BiSupport,
     element: <Support />,
   },
   {
     name: "Setting",
     path: "settings",
-    icon: MdOutlineAdminPanelSettings,
+    icon: IoSettingsOutline,
     element: <Setting />,
   },
   {
