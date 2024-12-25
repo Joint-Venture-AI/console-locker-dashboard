@@ -142,7 +142,7 @@ export const dashboardItems = [
         element: <VerifyEmail />,
       },
       {
-        name: "Terms & Services",
+        name: "Terms & Condition",
         icon: FaServicestack,
         path: "settings/terms-conditions",
         element: <TermsConditions />,
