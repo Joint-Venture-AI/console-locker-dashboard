@@ -125,6 +125,46 @@
   border: none !important; /* Ensure the toolbar and editor appear as a single unit */
 }
 
+.ql-toolbar .ql-picker.ql-size {
+  width: auto; /* Ensure the dropdown can expand */
+}
+
+.ql-toolbar .ql-picker-options {
+  max-height: 200px; /* Prevent overflowing */
+  overflow-y: auto;
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="14px"]::before {
+  content: '14';
+  font-size: 14px !important;
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="16px"]::before {
+  content: '16';
+  /* font-size: 16px !important; */
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="18px"]::before {
+  content: '18';
+  /* font-size: 18px !important; */
+}
+
+/* Custom label for the selected value */
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value="14px"]::before {
+  content: "14";
+  font-size: 14px !important;
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value="16px"]::before {
+  content: "16";
+  /* font-size: 16px !important; */
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value="18px"]::before {
+  content: "18";
+  /* font-size: 18px !important; */
+}
+
 
 
 

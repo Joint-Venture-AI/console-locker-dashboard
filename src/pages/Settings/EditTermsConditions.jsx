@@ -5,36 +5,37 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useState } from "react";
 import { FaAngleLeft } from "react-icons/fa6";
+import Quill from "quill";
 
+// Import 'size' style attributor
+const Size = Quill.import("attributors/style/size");
+Size.whitelist = ["14px", "16px", "18px"]; // Custom font sizes
+Quill.register(Size, true);
+
+const modules = {
+  toolbar: {
+    container: [
+      [{ size: ["14px", "16px", "18px"] }], // Use whitelisted sizes
+      [{ color: [] }], // Text color dropdown
+      [{ align: [] }], // Text alignment
+      ["bold", "italic", "underline"], // Formatting options
+    ],
+  },
+};
+
+const formats = [
+  "size", // Custom font sizes
+  "color",
+  "align",
+  "bold",
+  "italic",
+  "underline",
+];
 const EditTermsConditions = () => {
   const navigate = useNavigate();
   const [content, setContent] = useState("");
   console.log(content);
 
-  // Custom toolbar options
-  const modules = {
-    toolbar: {
-      container: [
-        [{ font: [] }], // Font size selector
-        [{ color: [] }], // Text color selector
-        [{ align: [] }], // Text alignment options
-        ["bold", "italic", "underline"], // Additional formatting options
-      ],
-      handlers: {
-        // Custom handlers can be added here if needed
-      },
-    },
-  };
-
-  // Custom formats supported by Quill editor
-  const formats = [
-    "font",
-    "color",
-    "align",
-    "bold",
-    "italic",
-    "underline",
-  ];
   return (
     <>
       <div className="flex items-center gap-2 text-xl">
@@ -56,7 +57,7 @@ const EditTermsConditions = () => {
                   onChange={(value) => setContent(value)}
                   modules={modules}
                   formats={formats}
-                  className=""
+                  className="custom-quill-editor"
                 />
               </div>
             </div>
