@@ -91,6 +91,27 @@
   color: gray;
 }
 
+/* React Quill */
+/* .ql-toolbar.ql-snow {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #888787;
+  padding: 5px;
+  width: 26%;
+}
+
+.ql-toolbar.ql-snow .ql-formats {
+  border-right: 1px solid #474747;
+  padding-right: 8px;
+  margin-right: 8px;
+} */
+
+.ql-toolbar.ql-snow.ql-formats.ql-font.ql-picker.ql-picker-label{
+  border-right: 1px solid #474747;
+  padding-right: 8px;
+  margin-right: 8px;
+}
+
 
 
 
