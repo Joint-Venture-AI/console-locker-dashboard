@@ -1,7 +1,25 @@
-import React from 'react'
+import Swal from "sweetalert2";
 import { driverItems } from '../../../constants/driver.constants'
 
 const DriverRequest = () => {
+  const handleDeleteConfirmation = () => {
+    Swal.fire({
+      text: "Are you sure you want to delete?",
+      showCancelButton: true,
+      confirmButtonText: "     Sure    ",
+      cancelButtonText: "Cancel",
+      showConfirmButton: true,
+      confirmButtonColor: "#DC2626",
+      reverseButtons: true,
+    }).then((res) => {
+      if (res.isConfirmed) {
+        // dispatch(logout());
+        // localStorage.removeItem("token");
+        // localStorage.removeItem("user-update");
+        // navigate("/auth");
+      }
+    });
+  };
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
       {driverItems.map((item, index) => (
@@ -44,7 +62,7 @@ const DriverRequest = () => {
               <button
                 className="w-fit bg-transparent text-black border border-black px-10 py-[7px] flex items-center justify-center gap-3 text-sm outline-none rounded-lg"
               >
-                <span className="text-black font-light">Delete</span>
+                <span className="text-black font-light" onClick={handleDeleteConfirmation}>Delete</span>
               </button>
             </div>
           </div>
