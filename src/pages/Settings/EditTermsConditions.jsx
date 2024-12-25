@@ -93,7 +93,7 @@ const EditTermsConditions = () => {
           </div>
           <div className="flex justify-end pt-8 pr-16">
             <Button
-              onClick={(e) => navigate(`edit`)}
+              // onClick={(e) => navigate(`edit`)}
               size="large"
               type="primary"
               className="px-8 bg-black text-white hover:bg-black/90 rounded-full font-semibold w-1/4"
