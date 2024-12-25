@@ -64,16 +64,16 @@ const EditMyProfile = () => {
                   <h4 className="text-2xl text-[#222222]">{"Admin"}</h4>
                 </div>
               </div>
-              <div className="col-span-9 space-y-[24px] w-full">
+              <div className="col-span-9 space-y-[14px] w-full">
                 <Form.Item
-                  className="text-lg  font-medium text-black"
+                  className="text-lg  font-medium text-black -mb-1"
                   label="Name"
                   name="name"
                 >
                   <Input
                     readOnly
                     size="large"
-                    className="h-[56px] rounded-lg"
+                    className="h-[53px] rounded-lg"
                   />
                 </Form.Item>
                 <Form.Item
@@ -84,7 +84,7 @@ const EditMyProfile = () => {
                   <Input
                     readOnly
                     size="large"
-                    className="h-[56px] rounded-lg"
+                    className="h-[53px] rounded-lg"
                   />
                 </Form.Item>
                 <Form.Item
