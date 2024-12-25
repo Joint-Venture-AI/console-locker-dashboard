@@ -28,7 +28,9 @@ const MyProfile = () => {
         <h1>Personal information</h1>
       </div>
       <div className="rounded-lg py-4 border-lightGray border-2 shadow-lg mt-8 bg-white">
-        <h3 className="text-2xl text-black mb-4 pl-5 border-b-2 border-lightGray/40 pb-3">Personal information</h3>
+        <h3 className="text-2xl text-black mb-4 pl-5 border-b-2 border-lightGray/40 pb-3">
+          Personal information
+        </h3>
         <div>
           <div className="space-y-[24px] min-h-[83vh] bg-light-gray rounded-2xl">
 
@@ -36,7 +38,7 @@ const MyProfile = () => {
               <div className="py-4 px-8 flex justify-end items-center">
                 {/* <h6 className="text-2xl text-white">Personal Information</h6> */}
                 <Button
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={(e) => navigate(`edit`)}
                   size="large"
                   type="default"
                   className="px-8 bg-black text-white hover:bg-black/90 rounded-full font-semibold"
