@@ -18,8 +18,15 @@ const modules = {
       [{ size: ["14px", "16px", "18px"] }], // Use whitelisted sizes
       [{ color: [] }], // Text color dropdown
       ["bold", "italic", "underline", 'strike'], // Formatting options
-      [{ align: [] }], // Text alignment
+      [{ align: [] }],
+      ["image", "link"],
+      [{ list: 'bullet' }],
     ],
+    handlers: {
+      align: function (value) {
+        this.quill.format('align', value);
+      },
+    },
   },
 };
 
@@ -30,6 +37,9 @@ const formats = [
   "bold",
   "italic",
   "underline",
+  "link",
+  "image",
+  "list",
 ];
 const EditTermsConditions = () => {
   const navigate = useNavigate();
@@ -50,6 +60,24 @@ const EditTermsConditions = () => {
           <div className="w-full px-16">
             <div className="h-full border border-gray-400 rounded-md">
               <div className="ql-toolbar-container h-56">
+                {/* <div id="toolbar">
+                  <span className="ql-formats">
+
+                    <button className="ql-align" value="left">
+                      Left
+                    </button>
+                    <button className="ql-align" value="center">
+                      Center
+                    </button>
+                    <button className="ql-align" value="right">
+                      Right
+                    </button>
+                    <button className="ql-align" value="justify">
+                      Justify
+                    </button>
+                  </span>
+
+                </div> */}
                 <ReactQuill
                   placeholder="Enter your update terms & conditions..."
                   theme="snow"
