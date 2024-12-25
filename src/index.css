@@ -16,22 +16,40 @@
 /* phone Input  */
 .PhoneInputInput {
   outline: none;
-  background-color: #EFFAFF;
-  padding: 14px 12px;
+  /* background-color: #EFFAFF; */
+  padding: 12px 12px;
   color: #222222;
   border-radius: 8px;
-  border: 1px solid #61D0FF;
-  margin-left: 10px;
+  border: 1px solid #888787;
+  margin-left: 2px;
+}
+
+.PhoneInputInput:focus {
+  border: 1px solid black;
+}
+
+.PhoneInputInput:hover {
+  border: 1px solid black;
+  transition: all 0.3s;
 }
 
 .PhoneInputCountry {
   margin-right: 15px !important;
   display: flex !important;
   gap: 15px;
-  background-color: #EFFAFF;
+  /* background-color: #EFFAFF; */
   padding: 14px 14px 14px 18px;
   border-radius: 8px;
-  border: 1px solid #61D0FF;
+  border: 1px solid #888787;
+}
+
+.PhoneInputCountry:focus {
+  border: 1px solid black;
+}
+
+.PhoneInputCountry:hover {
+  border: 1px solid black;
+  transition: all 0.3s;
 }
 
 /* responsive sidebar styles */
@@ -88,7 +106,7 @@
 }
 
 .ant-input {
-  border-color: black;
+  border-color: #888787;
 }
 
 .ant-input:hover {

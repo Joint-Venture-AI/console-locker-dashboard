@@ -35,6 +35,7 @@ const MyProfile = () => {
           <div className="space-y-[24px] min-h-[83vh] bg-light-gray rounded-2xl">
 
             <div className="w-full">
+
               <div className="py-4 px-8 flex justify-end items-center">
                 {/* <h6 className="text-2xl text-white">Personal Information</h6> */}
                 <Button
@@ -47,6 +48,7 @@ const MyProfile = () => {
                   Edit Profile
                 </Button>
               </div>
+
               <Form
                 name="basic"
                 layout="vertical"
@@ -71,16 +73,16 @@ const MyProfile = () => {
                   </div>
 
                 </div>
-                <div className="col-span-9 space-y-[24px] w-full">
+                <div className="col-span-9 space-y-[14px] w-full">
                   <Form.Item
-                    className="text-lg  font-medium text-black"
+                    className="text-lg  font-medium text-black -mb-1"
                     label="Name"
                     name="name"
                   >
                     <Input
                       readOnly
                       size="large"
-                      className="h-[56px] rounded-lg"
+                      className="h-[53px] rounded-lg"
                     />
                   </Form.Item>
                   <Form.Item
@@ -91,7 +93,7 @@ const MyProfile = () => {
                     <Input
                       readOnly
                       size="large"
-                      className="h-[56px] rounded-lg"
+                      className="h-[53px] rounded-lg"
                     />
                   </Form.Item>
 

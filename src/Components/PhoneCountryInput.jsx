@@ -18,9 +18,9 @@ const PhoneCountryInput = ({ disabled }) => {
       placeholder="Enter phone number"
       international
       countryCallingCodeEditable={false}
-      style={{
-        marginTop: "12px",
-      }}
+      // style={{
+      //   marginTop: "1px",
+      // }}
       defaultCountry="RU"
       value={phoneNumber?.toString()}
       onChange={setPhoneNumber}

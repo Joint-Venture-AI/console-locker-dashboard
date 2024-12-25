@@ -36,9 +36,9 @@ export const mainTheme = {
       borderRadius: 8,
       primaryShadow: "0 0px 0 rgba(5, 145, 255, 0.1)",
     },
-    //   Form: {
-    //     labelColor: "rgb(255, 255, 255)",
-    //   },
+    Form: {
+      // labelColor: "rgb(255, 255, 255)",
+    },
     Input: {
       controlHeightLG: 57,
       borderRadiusLG: 16,
@@ -85,11 +85,11 @@ export const mainTheme = {
       headerBorderRadius: 0,
       borderRadius: 0,
       headerSplitColor: "none",
-      
+
     },
     Modal: {
       // contentBg: "#5271FF",
-      
+
     },
   },
 };
