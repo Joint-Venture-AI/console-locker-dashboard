@@ -115,6 +115,7 @@
   width: 35%;
   /* margin: 0 auto;  */
   box-sizing: border-box;
+  border-radius: 8px;
   /* Ensure padding is included in width calculation */
 }
 
@@ -266,4 +267,20 @@
 #toolbar .ql-align:focus {
   outline: none;
   border-color: #4a90e2;
+}
+
+/* Quill placeholder text */
+/* .quill>.ql-container>.ql-editor.ql-blank::before {
+  font-size: 16px;
+  font-style: normal;
+  margin-top: 10px;
+} */
+
+.custom-quill-editor {
+  /* min-height: 220px; */
+  /* You can set a minimum height */
+  max-height: none;
+  /* Allow the editor to grow */
+  overflow-y: auto;
+  /* Enable vertical scrolling if necessary */
 }
