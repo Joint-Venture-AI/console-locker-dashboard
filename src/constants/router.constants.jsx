@@ -1,38 +1,26 @@
 import { CiSettings, CiUser } from "react-icons/ci";
-import { GrMoney } from "react-icons/gr";
 import { RiDashboardHorizontalFill } from "react-icons/ri";
 import DashboardHome from "../pages/Main/DashboardHome/DashboardHome";
-import Guests from "../pages/Main/Users/Products";
 import MyProfile from "../pages/Profile/MyProfile";
 import EditMyProfile from "../pages/Profile/EditMyProfile";
+
 import TermsConditions from "../pages/Settings/TermsConditions";
 import EditTermsConditions from "../pages/Settings/EditTermsConditions";
 import PrivacyPolicy from "../pages/Settings/PrivacyPolicy";
 import EditPrivacyPolicy from "../pages/Settings/EditPrivacyPolicy";
-import EditAboutUs from "../pages/Settings/EditAboutUs";
-import AboutUs from "../pages/Settings/AboutUs";
+
 import Notifications from "../pages/Main/Notifications/Notifications";
 import { FaUser } from "react-icons/fa";
 import {
-  MdOutlineAdminPanelSettings,
   MdOutlineSecurityUpdateWarning,
 } from "react-icons/md";
 import HostDetails from "../pages/Main/Host/HostDetails";
-import { LuWallet } from "react-icons/lu";
 import { FaServicestack } from "react-icons/fa6";
 import { BiMessageSquareDetail } from "react-icons/bi";
-import { PiHandWithdrawBold } from "react-icons/pi";
-import StudioPost from "../pages/Main/ApproveRequest/StudioPost";
-import TrainerPost from "../pages/Main/ApproveRequest/TrainerPost";
-import Review from "../pages/Main/Users/Review";
-import StudioList from "../pages/Main/StudioList/StudioList";
-import TrainerList from "../pages/Main/TrainerList/TrainerList";
-import Earnings from "../pages/Main/Earnings/BuyProducts";
-import Driver from "../pages/Main/Driver/Driver";
-import DriverRequest from "../pages/Main/DriverRequest/DriverRequest";
+;
+import DriverRequest from "../pages/Main/Transaction/Transaction";
 import Setting from "../pages/Main/Setting/Setting";
 import Support from "../pages/Main/Support/Support";
-import earningImg from "../assets/images/earnings.png";
 import ChangePassword from "../pages/Main/Setting/Change-password/ChangePassword";
 import ForgotPassword from "../pages/Main/Setting/Change-password/ForgotPassword";
 import VerifyEmail from "../pages/Main/Setting/Change-password/VerifyEmail";
@@ -45,6 +33,9 @@ import { BiSupport } from "react-icons/bi";
 import { IoSettingsOutline } from "react-icons/io5";
 import Products from "../pages/Main/Users/Products";
 import BuyProducts from "../pages/Main/Earnings/BuyProducts";
+import Blogs from "../pages/Main/Blog/Blogs";
+import BlogAdd from "../pages/Main/Blog/BlogAdd";
+import Transaction from "../pages/Main/Transaction/Transaction";
 
 export const dashboardItems = [
   {
@@ -94,16 +85,22 @@ export const dashboardItems = [
     element: <BuyProducts />,
   },
   {
-    name: "Driver",
-    path: "driver",
+    name: "Blog",
+    path: "blog",
     icon: GrUserManager,
-    element: <Driver />,
+    element: <Blogs />,
   },
   {
-    name: "Driver Request",
-    path: "driver-request",
+    // name: "addBlog",
+    path: "/addBlog",
+    // icon: GrUserManager,
+    element: <BlogAdd />,
+  },
+  {
+    name: "Transaction History",
+    path: "transaction",
     icon: PiLaptopThin,
-    element: <DriverRequest />,
+    element: <Transaction/>,
   },
   {
     name: "Support",
