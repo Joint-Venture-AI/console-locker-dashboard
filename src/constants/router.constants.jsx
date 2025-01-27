@@ -2,7 +2,7 @@ import { CiSettings, CiUser } from "react-icons/ci";
 import { GrMoney } from "react-icons/gr";
 import { RiDashboardHorizontalFill } from "react-icons/ri";
 import DashboardHome from "../pages/Main/DashboardHome/DashboardHome";
-import Guests from "../pages/Main/Users/Users";
+import Guests from "../pages/Main/Users/Products";
 import MyProfile from "../pages/Profile/MyProfile";
 import EditMyProfile from "../pages/Profile/EditMyProfile";
 import TermsConditions from "../pages/Settings/TermsConditions";
@@ -43,6 +43,7 @@ import { PiLaptopThin } from "react-icons/pi";
 import { GrUserManager } from "react-icons/gr";
 import { BiSupport } from "react-icons/bi";
 import { IoSettingsOutline } from "react-icons/io5";
+import Products from "../pages/Main/Users/Products";
 
 export const dashboardItems = [
   {
@@ -52,10 +53,10 @@ export const dashboardItems = [
     element: <DashboardHome />,
   },
   {
-    name: "User",
-    path: "users",
+    name: "Products",
+    path: "products",
     icon: FaUser,
-    element: <Guests />,
+    element: <Products />,
   },
   // {
   //   name: "Approve Request",

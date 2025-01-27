@@ -23,9 +23,9 @@ const DashboardHomeTable = () => {
       key: "Email",
     },
     {
-      title: "Phone Number",
-      key: "Phone",
-      dataIndex: "Phone",
+      title: "Address",
+      key: "Address",
+      dataIndex: "Address",
     },
     {
       title: "Action",
@@ -50,7 +50,7 @@ const DashboardHomeTable = () => {
       transIs: `${index + 1}`,
       name: "Henry",
       Email: "sharif@gmail.com",
-      Phone: "+12746478994",
+      Address: "bangladesh",
       Review: "See Review",
       date: "16 Apr 2024",
       _id: index,

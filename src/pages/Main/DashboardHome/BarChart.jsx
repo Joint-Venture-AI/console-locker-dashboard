@@ -26,7 +26,7 @@ const BarChartComponent = () => {
   return (
     <div>
       <div className='flex items-center justify-between py-7'>
-        <h1 className='text-sm md:text-2xl'>Overview</h1>
+        <h1 className='text-sm md:text-2xl'>Earnings</h1>
       <Select
             defaultValue="2024 May"
             style={{
@@ -47,7 +47,7 @@ const BarChartComponent = () => {
             ]}
           />
       </div>
-      <ResponsiveContainer width="100%" height={500}>
+      <ResponsiveContainer width="100%" height={300}>
         <BarChart
           width={500}
           height={300}
