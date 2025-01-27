@@ -1,13 +1,11 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import logo from "../../assets/images/logo1.png";
+import logo from "/logo.png";
 import logout from "../../assets/images/logout.png";
 import { createElement, useEffect, useState } from "react";
 import { routeLinkGenerators } from "../../utils/routeLinkGenerators";
 import { dashboardItems } from "../../constants/router.constants";
 import Swal from "sweetalert2";
-import { FiLogOut } from "react-icons/fi";
-import { MdOutlineArrowRight } from "react-icons/md";
-import { cn } from "../../lib/utils";
+
 
 const Sidebar = () => {
   const location = useLocation();
@@ -40,7 +38,7 @@ const Sidebar = () => {
       <div className="h-full flex flex-col justify-between  pt-[50px] border drop-shadow">
         <div className="space-y[24px">
           <div className="px-[38px]">
-            <img className="w-[60%] mx-auto" src={logo} alt="" />
+            <img className=" mx-auto" src={logo} alt="" />
           </div>
           <ul className="mt-10 max-h-[650px] overflow-y-auto space-y-1 xl:space-y-2 px-4">
             {routeLinkGenerators(dashboardItems).map(
@@ -121,7 +119,7 @@ const Sidebar = () => {
                         to={path}
                         className={({ isActive }) =>
                           isActive
-                            ? "bg-black text-white" +
+                            ? "bg-[#DAEDF2] text-[#101010]" +
                             " w-full px-4 py-3 flex items-center justify-start gap-3 text-md transition-all rounded-full"
                             : " hover:text-white  hover:bg-black" +
                             " w-full px-4 py-3 flex items-center justify-start gap-3 text-md transition-all rounded-full"

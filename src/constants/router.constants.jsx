@@ -18,9 +18,7 @@ import HostDetails from "../pages/Main/Host/HostDetails";
 import { FaServicestack } from "react-icons/fa6";
 import { BiMessageSquareDetail } from "react-icons/bi";
 ;
-import DriverRequest from "../pages/Main/Transaction/Transaction";
 import Setting from "../pages/Main/Setting/Setting";
-import Support from "../pages/Main/Support/Support";
 import ChangePassword from "../pages/Main/Setting/Change-password/ChangePassword";
 import ForgotPassword from "../pages/Main/Setting/Change-password/ForgotPassword";
 import VerifyEmail from "../pages/Main/Setting/Change-password/VerifyEmail";
@@ -35,7 +33,10 @@ import Products from "../pages/Main/Users/Products";
 import BuyProducts from "../pages/Main/Earnings/BuyProducts";
 import Blogs from "../pages/Main/Blog/Blogs";
 import BlogAdd from "../pages/Main/Blog/BlogAdd";
-import Transaction from "../pages/Main/Transaction/Transaction";
+import Transaction from "../pages/Main/DriverRequest/Transaction";
+import Orders from "../pages/Main/Orders/Orders";
+import AddProducts from "../pages/Main/AddProducts/AddProducts";
+import { CalendarArrowDown, CreditCard, Newspaper, ShoppingBag, TableCellsSplit } from "lucide-react";
 
 export const dashboardItems = [
   {
@@ -47,8 +48,14 @@ export const dashboardItems = [
   {
     name: "Products",
     path: "products",
-    icon: FaUser,
+    icon: TableCellsSplit ,
     element: <Products />,
+  },
+  {
+    // name: "Products",
+    path: "addProducts",
+    // icon: FaUser,
+    element: <AddProducts />,
   },
   // {
   //   name: "Approve Request",
@@ -69,10 +76,10 @@ export const dashboardItems = [
   //     },
   //   ],
   // },
-  // {
-  //   path: "notifications",
-  //   element: <Notifications />,
-  // },
+  {
+    path: "notifications",
+    element: <Notifications />,
+  },
   // {
   //   path: '/reviews',
   //   element: <Review></Review>
@@ -81,13 +88,13 @@ export const dashboardItems = [
   {
     name: "Buy Products",
     path: "buyProducts",
-    icon: TbCash,
+    icon: ShoppingBag ,
     element: <BuyProducts />,
   },
   {
     name: "Blog",
     path: "blog",
-    icon: GrUserManager,
+    icon: Newspaper,
     element: <Blogs />,
   },
   {
@@ -99,14 +106,14 @@ export const dashboardItems = [
   {
     name: "Transaction History",
     path: "transaction",
-    icon: PiLaptopThin,
+    icon: CreditCard ,
     element: <Transaction/>,
   },
   {
-    name: "Support",
-    path: "support",
-    icon: BiSupport,
-    element: <Support />,
+    name: "Manage Orders",
+    path: "orders",
+    icon: CalendarArrowDown,
+    element: <Orders />,
   },
   {
     name: "Setting",

@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { User, Calendar } from "lucide-react"; // Import icons from lucide-react
+import { User, Calendar, ArrowLeft } from "lucide-react"; // Import icons from lucide-react
 import { Link } from "react-router-dom";
+import { Button } from "antd";
 
 export default function Blogs() {
   const blogs = [
@@ -131,7 +132,20 @@ export default function Blogs() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between  items-center mb-5">
-        <h1 className="text-3xl font-bold text-center ">Blogs</h1>
+      <div className="flex items-center gap-2">
+          <Link to={'/'}>
+            <Button
+              type="link"
+              icon={
+                <span className="material-icons">
+                  <ArrowLeft />
+                </span>
+              }
+              className="text-black text-lg"
+            />
+          </Link>
+          <h2 className="text-3xl font-semibold">Buy Product </h2>
+        </div>
         <Link to={'/addBlog'}>
           <button className="bg-[#101010] px-6 py-3 rounded-lg text-white font-normal">
             Add Blog

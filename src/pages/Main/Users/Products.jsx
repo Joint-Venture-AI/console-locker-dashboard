@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { ArrowLeft, ArrowLeftToLine, Info } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "antd";
+import Swal from "sweetalert2";
 
 export default function ProductPage() {
   const [view, setView] = useState("grid");
@@ -99,16 +102,27 @@ export default function ProductPage() {
   return (
     <div>
       <div className="flex justify-between px-7 items-center mb-4 container mx-auto">
-        <div className="flex items-center gap-4">
-          <ArrowLeft />
-          <h2 className="text-4xl font-semibold">Products</h2>
+        
+        <div className="flex items-center gap-2">
+          <Link to={'/'}>
+            <Button
+              type="link"
+              icon={
+                <span className="material-icons">
+                  <ArrowLeft />
+                </span>
+              }
+              className="text-black text-lg"
+            />
+          </Link>
+          <h2 className="text-3xl font-semibold">Products</h2>
         </div>
 
-        <div className="flex gap-2 items-center cursor-pointer">
-          <button className="bg-black px-6 py-4 rounded-lg text-xl font-normal text-white">
-            Products
+        <Link to={'/addProducts'} className="flex gap-2 items-center cursor-pointer">
+          <button className="bg-black px-6 py-3 rounded-lg  font-normal text-white">
+          Add  Products
           </button>
-        </div>
+        </Link>
       </div>
       <div className="flex flex-col lg:flex-row container mx-auto px-4 py-8">
         <div className="w-full lg:ml-6">
@@ -141,18 +155,38 @@ export default function ProductPage() {
                       <Info className="cursor-pointer" />
                       {openMenu === product.id && (
                         <div className="absolute right-0 top-6 bg-white shadow-lg rounded-md py-2 w-32 z-10">
+                          <Link to={'/addProducts'}>
                           <button
                             onClick={() => alert("Edit clicked")}
                             className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
                           >
                             Edit
                           </button>
+                          </Link>
+                         
                           <button
-                            onClick={() => alert("Delete clicked")}
+                            onClick={() => Swal.fire({
+                              title: "Are you sure?",
+                              text: "You won't be able to revert this!",
+                              icon: "warning",
+                              showCancelButton: true,
+                              confirmButtonColor: "#3085d6",
+                              cancelButtonColor: "#d33",
+                              confirmButtonText: "Yes, delete it!"
+                            }).then((result) => {
+                              if (result.isConfirmed) {
+                                Swal.fire({
+                                  title: "Deleted!",
+                                  text: "Your file has been deleted.",
+                                  icon: "success"
+                                });
+                              }
+                            })}
                             className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100 text-red-500"
                           >
                             Delete
                           </button>
+                          
                         </div>
                       )}
                     </div>
