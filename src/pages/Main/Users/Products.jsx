@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Info } from "lucide-react";
+import { ArrowLeft, ArrowLeftToLine, Info } from "lucide-react";
 
 export default function ProductPage() {
   const [view, setView] = useState("grid");
@@ -99,7 +99,11 @@ export default function ProductPage() {
   return (
     <div>
       <div className="flex justify-between px-7 items-center mb-4 container mx-auto">
-        <h2 className="text-4xl font-semibold">Products</h2>
+        <div className="flex items-center gap-4">
+          <ArrowLeft />
+          <h2 className="text-4xl font-semibold">Products</h2>
+        </div>
+
         <div className="flex gap-2 items-center cursor-pointer">
           <button className="bg-black px-6 py-4 rounded-lg text-xl font-normal text-white">
             Products

@@ -27,7 +27,7 @@ import TrainerPost from "../pages/Main/ApproveRequest/TrainerPost";
 import Review from "../pages/Main/Users/Review";
 import StudioList from "../pages/Main/StudioList/StudioList";
 import TrainerList from "../pages/Main/TrainerList/TrainerList";
-import Earnings from "../pages/Main/Earnings/Earnings";
+import Earnings from "../pages/Main/Earnings/BuyProducts";
 import Driver from "../pages/Main/Driver/Driver";
 import DriverRequest from "../pages/Main/DriverRequest/DriverRequest";
 import Setting from "../pages/Main/Setting/Setting";
@@ -44,6 +44,7 @@ import { GrUserManager } from "react-icons/gr";
 import { BiSupport } from "react-icons/bi";
 import { IoSettingsOutline } from "react-icons/io5";
 import Products from "../pages/Main/Users/Products";
+import BuyProducts from "../pages/Main/Earnings/BuyProducts";
 
 export const dashboardItems = [
   {
@@ -87,10 +88,10 @@ export const dashboardItems = [
   // },
 
   {
-    name: "Earning",
-    path: "earnings",
+    name: "Buy Products",
+    path: "buyProducts",
     icon: TbCash,
-    element: <Earnings />,
+    element: <BuyProducts />,
   },
   {
     name: "Driver",
