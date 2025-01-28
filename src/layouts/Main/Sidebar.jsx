@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from "/logo.png";
 import logout from "../../assets/images/logout.png";

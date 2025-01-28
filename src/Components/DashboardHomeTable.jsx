@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Table, Modal, Button } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
 import exlamIcon from "../assets/images/exclamation-circle.png";
 
 const DashboardHomeTable = () => {
@@ -76,7 +75,7 @@ const DashboardHomeTable = () => {
         columns={columns}
         dataSource={data}
         pagination={{ position: ["bottomCenter"] }}
-        className="rounded-lg"
+        className="rounded-lg "
         rowKey="userId"
       />
 

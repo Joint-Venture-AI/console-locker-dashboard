@@ -1,4 +1,3 @@
-import { DatePicker } from "antd";
 
 export const mainTheme = {
   token: {
@@ -80,7 +79,7 @@ export const mainTheme = {
       colorTextHeading: "#758DFF",
       colorBgContainer: "#FFFFFF66",
       // colorText: "#ffffff",
-      headerBg: "#052255",
+      headerBg: "#101010",
       headerColor: "#ffffff",
       headerBorderRadius: 0,
       borderRadius: 0,
