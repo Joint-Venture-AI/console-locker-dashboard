@@ -120,12 +120,12 @@ export default function EditProduct() {
               </div>
 
               <div className="flex justify-end gap-3 mt-4">
-                <Button danger onClick={() => toggleForm(question.id)}>
+                <Button className="py-5 px-6" danger onClick={() => toggleForm(question.id)}>
                   Cancel
                 </Button>
-                <Button type="primary" className="bg-black" onClick={() => addVariant(question.id)}>
+                <button className="bg-black py-2 rounded-lg text-white px-7" onClick={() => addVariant(question.id)}>
                   Save
-                </Button>
+                </button>
               </div>
             </div>
           )}
@@ -144,9 +144,10 @@ export default function EditProduct() {
       ))}
 
       <div className="flex justify-end mt-6">
-        <Button type="primary" className="bg-black px-6 py-2">
+        <button 
+         className="bg-[#101010] text-white rounded-lg text-xs px-6 py-3">
           Add New Question
-        </Button>
+        </button>
       </div>
     </div>
   );

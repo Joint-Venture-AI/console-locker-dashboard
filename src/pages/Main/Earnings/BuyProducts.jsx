@@ -52,7 +52,7 @@
 //       price: "$299",
 //       image: "/projects.png",
 //       brand: "Xbox",
-//       status: "Confirm",
+//       status: "Delivered",
 //       id: 5,
 //     },
 //     {
@@ -61,7 +61,7 @@
 //       price: "$299",
 //       image: "/projects.png",
 //       brand: "Xbox",
-//       status: "Confirm",
+//       status: "Delivered",
 //       id: 6,
 //     },
 //     {
@@ -70,7 +70,7 @@
 //       price: "$299",
 //       image: "/projects.png",
 //       brand: "Xbox",
-//       status: "Confirm",
+//       status: "Delivered",
 //       id: 7,
 //     },
 //     {
@@ -79,7 +79,7 @@
 //       price: "$299",
 //       image: "/projects.png",
 //       brand: "Xbox",
-//       status: "Confirm",
+//       status: "Delivered",
 //       id: 8,
 //     },
 //     {
@@ -88,7 +88,7 @@
 //       price: "$299",
 //       image: "/projects.png",
 //       brand: "Xbox",
-//       status: "Confirm",
+//       status: "Delivered",
 //       id: 9,
 //     },
 //     {
@@ -239,11 +239,11 @@
 //           </button>
 //           <button
 //             className={`${
-//               filter === "Confirm" ? "bg-[#101010] text-white" : "bg-gray-50"
+//               filter === "Delivered" ? "bg-[#101010] text-white" : "bg-gray-50"
 //             } hover:bg-black hover:text-white px-4 py-2 rounded-full`}
-//             onClick={() => setFilter("Confirm")}
+//             onClick={() => setFilter("Delivered")}
 //           >
-//             Confirm
+//             Delivered
 //           </button>
 //           <button
 //             className={`${
@@ -439,7 +439,7 @@ const BuyProducts = () => {
       price: "$299",
       image: "/projects.png",
       brand: "Xbox",
-      status: "Confirm",
+      status: "Delivered",
       id: 5,
     },
     {
@@ -448,7 +448,7 @@ const BuyProducts = () => {
       price: "$299",
       image: "/projects.png",
       brand: "Xbox",
-      status: "Confirm",
+      status: "Delivered",
       id: 6,
     },
     {
@@ -457,7 +457,7 @@ const BuyProducts = () => {
       price: "$299",
       image: "/projects.png",
       brand: "Xbox",
-      status: "Confirm",
+      status: "Delivered",
       id: 7,
     },
     {
@@ -466,7 +466,7 @@ const BuyProducts = () => {
       price: "$299",
       image: "/projects.png",
       brand: "Xbox",
-      status: "Confirm",
+      status: "Delivered",
       id: 8,
     },
     {
@@ -475,7 +475,7 @@ const BuyProducts = () => {
       price: "$299",
       image: "/projects.png",
       brand: "Xbox",
-      status: "Confirm",
+      status: "Delivered",
       id: 9,
     },
     {
@@ -597,8 +597,8 @@ const BuyProducts = () => {
     setIsModalOpen(true);
   };
 
-  const handleConfirm = () => {
-    alert("Product Confirmed!");
+  const handleDelivered = () => {
+    alert("Product Delivereded!");
     setIsModalOpen(false);
   };
 
@@ -639,11 +639,11 @@ const BuyProducts = () => {
           </button>
           <button
             className={`${
-              filter === "Confirm" ? "bg-[#101010] text-white" : "bg-gray-50"
+              filter === "Delivered" ? "bg-[#101010] text-white" : "bg-gray-50"
             } hover:bg-black hover:text-white px-4 py-2 rounded-full`}
-            onClick={() => setFilter("Confirm")}
+            onClick={() => setFilter("Delivered")}
           >
-            Confirm
+            Delivered
           </button>
           <button
             className={`${
@@ -805,10 +805,10 @@ const BuyProducts = () => {
                 Cancel
               </button>
               <button
-                onClick={handleConfirm}
+                onClick={handleDelivered}
                 className="w-full py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-all"
               >
-                Confirm
+                Delivered
               </button>
             </div>
           </div>
