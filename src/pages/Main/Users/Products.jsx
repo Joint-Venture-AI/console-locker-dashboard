@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { ArrowLeft, ArrowLeftToLine, Info } from "lucide-react";
+import { ArrowLeft, Info } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "antd";
 import Swal from "sweetalert2";
 
 export default function ProductPage() {
-  const [view, setView] = useState("grid");
+  const [view] = useState("grid");
   const [page, setPage] = useState(1);
   const [openMenu, setOpenMenu] = useState(null); // Tracks the open menu for each product
   const itemsPerPage = 12;

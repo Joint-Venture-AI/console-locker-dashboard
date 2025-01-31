@@ -29,6 +29,9 @@ import Transaction from "../pages/Main/DriverRequest/Transaction";
 import Orders from "../pages/Main/Orders/Orders";
 import AddProducts from "../pages/Main/AddProducts/AddProducts";
 import { CalendarArrowDown, CreditCard, Newspaper, ShoppingBag, TableCellsSplit } from "lucide-react";
+import ProductQuesation from "../pages/Main/ProductQuesation/ProductQuesation";
+import ProductForm from "../pages/Main/ProductForm/ProductForm";
+import EditProduct from "../pages/Main/EditProducts/EditProduct";
 
 export const dashboardItems = [
   {
@@ -42,6 +45,20 @@ export const dashboardItems = [
     path: "products",
     icon: TableCellsSplit ,
     element: <Products />,
+  },
+  {
+    name: "Product Question",
+    path: "productQuestion",
+    icon: TableCellsSplit ,
+    element: <ProductQuesation/> ,
+  },
+  {
+    path: "productForm",
+    element: <ProductForm/> ,
+  },
+  {
+    path: "editProducts",
+    element: <EditProduct/> ,
   },
   {
     // name: "Products",
