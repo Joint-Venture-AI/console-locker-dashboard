@@ -8,9 +8,7 @@ import EditTermsConditions from "../pages/Settings/EditTermsConditions";
 import PrivacyPolicy from "../pages/Settings/PrivacyPolicy";
 import EditPrivacyPolicy from "../pages/Settings/EditPrivacyPolicy";
 import Notifications from "../pages/Main/Notifications/Notifications";
-import {
-  MdOutlineSecurityUpdateWarning,
-} from "react-icons/md";
+import { MdOutlineSecurityUpdateWarning } from "react-icons/md";
 import HostDetails from "../pages/Main/Host/HostDetails";
 import { FaServicestack } from "react-icons/fa6";
 import { BiMessageSquareDetail } from "react-icons/bi";
@@ -28,10 +26,18 @@ import BlogAdd from "../pages/Main/Blog/BlogAdd";
 import Transaction from "../pages/Main/DriverRequest/Transaction";
 import Orders from "../pages/Main/Orders/Orders";
 import AddProducts from "../pages/Main/AddProducts/AddProducts";
-import { CalendarArrowDown, CreditCard, Newspaper, ShoppingBag, TableCellsSplit } from "lucide-react";
+import {
+  CalendarArrowDown,
+  CreditCard,
+  Newspaper,
+  ShoppingBag,
+  TableCellsSplit,
+} from "lucide-react";
 import ProductQuesation from "../pages/Main/ProductQuesation/ProductQuesation";
 import ProductForm from "../pages/Main/ProductForm/ProductForm";
 import EditProduct from "../pages/Main/EditProducts/EditProduct";
+import AddProductEdit from "../pages/Main/AddProductEdit/AddProductEdit";
+import BlogsDetails from "../pages/Main/Blog/BlogsDetails";
 
 export const dashboardItems = [
   {
@@ -43,61 +49,42 @@ export const dashboardItems = [
   {
     name: "Products",
     path: "products",
-    icon: TableCellsSplit ,
+    icon: TableCellsSplit,
     element: <Products />,
   },
   {
     name: "Product Question",
     path: "productQuestion",
-    icon: TableCellsSplit ,
-    element: <ProductQuesation/> ,
+    icon: TableCellsSplit,
+    element: <ProductQuesation />,
   },
   {
     path: "productForm",
-    element: <ProductForm/> ,
+    element: <ProductForm />,
   },
   {
     path: "editProducts",
-    element: <EditProduct/> ,
+    element: <EditProduct />,
   },
   {
-    // name: "Products",
+    path: "addEditProducts/:id",
+    element: <AddProductEdit />,
+    loader: ({ params }) =>fetch(`${import.meta.env.VITE_IMAGE_API}/admin/product/${params.id}`),
+  },
+  {
     path: "addProducts",
-    // icon: FaUser,
     element: <AddProducts />,
   },
-  // {
-  //   name: "Approve Request",
-  //   rootPath: "approveRequest",
-  //   icon: GrMoney,
-  //   children: [
-  //     {
-  //       name: "Studio Post",
-  //       path: "approveRequest/all-earnings",
-  //       icon: LuWallet,
-  //       element: <StudioPost />,
-  //     },
-  //     {
-  //       name: "Trainer Post",
-  //       path: "approveRequest/withdraw",
-  //       icon: PiHandWithdrawBold,
-  //       element: <TrainerPost />,
-  //     },
-  //   ],
-  // },
+
   {
     path: "notifications",
     element: <Notifications />,
   },
-  // {
-  //   path: '/reviews',
-  //   element: <Review></Review>
-  // },
 
   {
     name: "Buy Products",
     path: "buyProducts",
-    icon: ShoppingBag ,
+    icon: ShoppingBag,
     element: <BuyProducts />,
   },
   {
@@ -107,16 +94,19 @@ export const dashboardItems = [
     element: <Blogs />,
   },
   {
-    // name: "addBlog",
+    path: "blogsDetails/:id",
+    element: <BlogsDetails />,
+    loader: ({ params }) => fetch(`${import.meta.env.VITE_IMAGE_API}/blogs/${params.id}`),
+  },
+  {
     path: "/addBlog",
-    // icon: GrUserManager,
     element: <BlogAdd />,
   },
   {
     name: "Transaction History",
     path: "transaction",
-    icon: CreditCard ,
-    element: <Transaction/>,
+    icon: CreditCard,
+    element: <Transaction />,
   },
   {
     name: "Manage Orders",

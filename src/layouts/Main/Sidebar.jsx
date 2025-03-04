@@ -25,8 +25,8 @@ const Sidebar = () => {
     }).then((res) => {
       if (res.isConfirmed) {
         // dispatch(logout());
-        // localStorage.removeItem("token");
-        // localStorage.removeItem("user-update");
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("admin");
         navigate("/auth");
       }
     });

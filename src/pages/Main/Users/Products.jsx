@@ -248,10 +248,15 @@ import { ArrowLeft, Info } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "antd";
 import Swal from "sweetalert2";
-import { useAllProductGetQuery } from "../../../redux/features/productsSlice";
+import {
+  useAllProductGetQuery,
+  useDeleteProductMutation,
+} from "../../../redux/features/productsSlice";
 
 export default function ProductPage() {
-  const { data, isLoading, isError } = useAllProductGetQuery();
+  const { data, isLoading, isError, refetch} = useAllProductGetQuery({ limit: 1000 });
+  console.log(data?.data.products);
+  const [deleteProduct ] = useDeleteProductMutation();
   const [view] = useState("grid");
   const [page, setPage] = useState(1);
   const [openMenu, setOpenMenu] = useState(null);
@@ -259,6 +264,7 @@ export default function ProductPage() {
 
   // Extract products from API response safely
   const products = data?.data?.products || [];
+  console.log(products);
 
   const IMAGE = import.meta.env.VITE_IMAGE_API;
   console.log(IMAGE, "image api");
@@ -268,6 +274,45 @@ export default function ProductPage() {
     (page - 1) * itemsPerPage,
     page * itemsPerPage
   );
+
+  const handleDeleteProduct = async (productId) => {
+    try {
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      });
+
+      if (result.isConfirmed) {
+        // Call the deleteProduct mutation
+        await deleteProduct(productId).unwrap();
+
+        // Show success message
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your product has been deleted.",
+          icon: "success",
+
+        });
+        refetch()
+
+        // Optionally, you can refetch the products list here if needed
+        // refetch();
+      }
+    } catch (error) {
+      // Handle error
+      Swal.fire({
+        title: "Error!",
+        text: "An error occurred while deleting the product.",
+        icon: "error",
+      });
+      console.error("Error deleting product:", error);
+    }
+  };
 
   return (
     <div>
@@ -349,31 +394,13 @@ export default function ProductPage() {
                         <Info className="cursor-pointer" />
                         {openMenu === product._id && (
                           <div className="absolute right-0 top-6 bg-white shadow-lg rounded-md py-2 w-32 z-10">
-                            <Link to={"/addProducts"}>
+                            <Link to={`/addEditProducts/${product?.slug}`}>
                               <button className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100">
                                 Edit
                               </button>
                             </Link>
                             <button
-                              onClick={() =>
-                                Swal.fire({
-                                  title: "Are you sure?",
-                                  text: "You won't be able to revert this!",
-                                  icon: "warning",
-                                  showCancelButton: true,
-                                  confirmButtonColor: "#3085d6",
-                                  cancelButtonColor: "#d33",
-                                  confirmButtonText: "Yes, delete it!",
-                                }).then((result) => {
-                                  if (result.isConfirmed) {
-                                    Swal.fire({
-                                      title: "Deleted!",
-                                      text: "Your product has been deleted.",
-                                      icon: "success",
-                                    });
-                                  }
-                                })
-                              }
+                              onClick={() => handleDeleteProduct(product._id)}
                               className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100 text-red-500"
                             >
                               Delete

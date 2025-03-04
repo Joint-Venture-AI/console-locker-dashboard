@@ -1,0 +1,121 @@
+// import { useParams } from "react-router-dom";
+// import { useSingleBlogsQuery } from "../../../redux/features/blogSlice";
+
+// export default function BlogsDetails() {
+//   const { id } = useParams(); // Get product ID from the URL
+//   console.log(
+//     id,
+//     "id in AddProductEdit.js  is not defined here  but it is in AddProduct.js  and we are passing id from AddProduct.js to AddProductEdit.js  using use"
+//   );
+// const { data } = useSingleBlogsQuery({
+//   slug: id,
+// });
+// console.log(data?.data, "data in AddProductEdit.js");
+
+//   return (
+//     <div>
+//       <h2 className="text-2xl font-bold">Edit Product</h2>
+//       <p>Product ID: {id}</p>
+//       {/* Add form or other UI for editing */}
+//     </div>
+//   );
+// }
+
+
+import { useState } from "react";
+import {
+  FacebookIcon,
+  TwitterIcon,
+  LinkedinIcon,
+  ChevronLeft,
+  ChevronRight,
+  Share2,
+  User,
+} from "lucide-react";
+import { useSingleBlogsQuery } from "../../../redux/features/blogSlice";
+import { Link, useParams } from "react-router-dom";
+
+export default function BlogDetail() {
+  const [copied, setCopied] = useState(false);
+  const { id } = useParams();
+  const { data: blog, isLoading, isError } = useSingleBlogsQuery(id);
+  const IMAGE = import.meta.env.VITE_IMAGE_API;
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error Occurred! {isError.message}</div>;
+
+  return (
+    <div className="min-h-screen pb-12">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 my-6">
+          {blog?.data?.title}
+        </h1>
+
+        <div className="w-full h-[300px] sm:h-[400px] lg:h-[500px] relative">
+          <img
+            src={`${IMAGE}${blog?.data?.image}`}
+            alt="Gaming Console"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative">
+          <article className="bg-white rounded-lg shadow-lg p-6 sm:p-8 mb-8">
+            <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
+              <div className="flex items-center gap-2">
+                {/* <img
+                  src={"/clients/client1.png"}
+                  width={30}
+                  height={30}
+                  className="w-8 h-8 bg-gray-200 rounded-full"
+                  alt="admin"
+                /> */}
+                <User></User>
+                <span>Admin</span>
+              </div>
+              <time>{blog?.data?.createdAt?.split("T")[0]}</time>
+            </div>
+
+            <div className="flex items-center gap-4 mb-8 flex-wrap">
+              <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
+                <FacebookIcon size={18} />
+                <span className="hidden sm:inline">Share</span>
+              </button>
+              <button className="flex items-center gap-2 px-4 py-2 bg-sky-500 text-white rounded-full hover:bg-sky-600 transition-colors">
+                <TwitterIcon size={18} />
+                <span className="hidden sm:inline">Tweet</span>
+              </button>
+              <button className="flex items-center gap-2 px-4 py-2 bg-blue-700 text-white rounded-full hover:bg-blue-800 transition-colors">
+                <LinkedinIcon size={18} />
+                <span className="hidden sm:inline">Share</span>
+              </button>
+              <button
+                onClick={copyToClipboard}
+                className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition-colors ml-auto"
+              >
+                <Share2 size={18} />
+                <span>{copied ? "Copied!" : "Copy Link"}</span>
+              </button>
+            </div>
+
+            <div className="prose prose-lg max-w-none">
+              <p>{blog?.data?.description}</p>
+            </div>
+          </article>
+
+       
+        </main>
+      </div>
+    </div>
+  );
+}

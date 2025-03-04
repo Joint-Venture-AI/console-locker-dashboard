@@ -1,16 +1,24 @@
 import { useState } from "react";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import { Input, Select } from "antd";
-import { FlagIcon } from 'react-world-flags';
+
 
 const PhoneCountryInput = ({ disabled }) => {
   const [phoneNumber, setPhoneNumber] = useState("+1 4575454545");
-  const [countryCode, setCountryCode] = useState("US");
   // console.log(phoneNumber);
-  const handleCountryChange = (value) => {
-    setCountryCode(value);
-  };
+
+
+   const storedData = localStorage.getItem("admin");
+    const adminData = storedData ? JSON.parse(storedData) : null;
+  
+    const profileData = {
+      name: adminData?.name || "Jane Kooper",
+      email: adminData?.email || "enrique@gmail.com",
+      phone: adminData?.phone || "+880 1550597212",
+      profile: adminData?.avatar ,
+      
+    };
+
   return (
     <PhoneInput
       disabled={disabled}
@@ -22,7 +30,7 @@ const PhoneCountryInput = ({ disabled }) => {
       //   marginTop: "1px",
       // }}
       defaultCountry="RU"
-      value={phoneNumber?.toString()}
+      value={profileData?.phone || phoneNumber?.toString()}
       onChange={setPhoneNumber}
     />
     // <Input.Group compact style={{ display: 'flex', alignItems: 'center' }}>

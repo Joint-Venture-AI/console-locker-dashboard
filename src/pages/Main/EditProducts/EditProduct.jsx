@@ -3,8 +3,12 @@ import { Button, Card, Input, Select, Divider } from "antd";
 import { PlusOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { useUpdateProductMutation } from "../../../redux/features/productsSlice";
 
 export default function EditProduct() {
+
+  const [updateProduct]= useUpdateProductMutation()
+
   const [questions, setQuestions] = useState([
     {
       id: 1,

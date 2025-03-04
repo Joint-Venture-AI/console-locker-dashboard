@@ -263,9 +263,11 @@ export default function SignIn() {
 
       if (response?.success) {
         const { accessToken, admin } = response.data;
+        console.log(response)
 
         if (admin) {
           localStorage.setItem("accessToken", accessToken);
+          localStorage.setItem("admin", JSON.stringify(admin));
           // dispatch(
           //   setUser({
           //     user: admin,
