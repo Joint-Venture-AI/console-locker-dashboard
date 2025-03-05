@@ -34,7 +34,7 @@
     "recharts": "^2.12.7",
     "slick-carousel": "^1.8.1",
     "sonner": "^1.7.3",
-    "sweetalert2": "^11.14.3",
+    "sweetalert2": "^11.17.2",
     "swiper": "^11.1.15",
     "tailwind-merge": "^2.5.4"
   },

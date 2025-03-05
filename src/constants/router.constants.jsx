@@ -63,8 +63,9 @@ export const dashboardItems = [
     element: <ProductForm />,
   },
   {
-    path: "editProducts",
+    path: "editProducts/:id",
     element: <EditProduct />,
+    loader: ({ params }) => fetch(`${import.meta.env.VITE_IMAGE_API}/admin/question/buy/${params.id}`),
   },
   {
     path: "addEditProducts/:id",

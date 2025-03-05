@@ -564,28 +564,28 @@ const BuyProducts = () => {
                 key={product._id}
                 className="shadow-md rounded-lg pb-2 relative"
               >
-                <img src={`${IMAGE}${product.product?.image}`} alt={product.product.name} />
+                <img src={`${IMAGE}${product.product?.image}`} alt={product?.product?.name} />
              
 
                 <div className="px-3">
                   <div className="flex justify-between items-center mt-4 mb-2">
-                    <h3 className="text-lg font-semibold">{product.product.name}</h3>
+                    <h3 className="text-lg font-semibold">{product?.product?.name}</h3>
                     <span className="text-green-500 font-semibold">
-                      ${product.price}
+                      ${product?.price}
                     </span>
                   </div>
 
                   <hr className="mb-3 pt-2" />
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-3">
-                      <img className="size-10" src={product.customer.avatar} alt={product.customer.name} />
+                      <img className="size-10" src={product?.customer?.avatar} alt={product?.customer?.name} />
                       <div>
-                        <h1>{product.customer.name}</h1>
+                        <h1>{product?.customer?.name}</h1>
                         <p className="text-sm">{new Date(product.createdAt).toLocaleDateString()}</p>
                       </div>
                     </div>
                     <button className="text-[#222C9B] px-5 py-2 bg-blue-100 text-sm rounded-3xl">
-                      {product.state}
+                      {product?.state}
                     </button>
                   </div>
 
