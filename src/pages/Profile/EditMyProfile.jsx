@@ -297,7 +297,9 @@ const EditMyProfile = () => {
     try {
       const response = await updateProfile(formData).unwrap();
       console.log("Profile updated successfully:", response);
+      localStorage.setItem("admin", JSON.stringify({...adminData,...response.data }));
       // Optionally, update local storage or state with the new data
+      navigate("/settings/profile");
     } catch (error) {
       console.error("Failed to update profile:", error);
     }

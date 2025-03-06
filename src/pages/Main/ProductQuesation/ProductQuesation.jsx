@@ -249,7 +249,7 @@ export default function ProductQuesation() {
   const [page, setPage] = useState(1);
   const pageSize = 6;
 
-  const { data, isLoading, isError, refetch } = useSellProductGetQuery();
+  const { data, isLoading, isError, refetch } = useSellProductGetQuery({limit:100 });
   const products = data?.data?.products || [];
   const [productQuestionDelete] = useProductQuestionDeleteMutation();
 

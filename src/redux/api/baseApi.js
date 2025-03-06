@@ -20,17 +20,17 @@ export const baseApi = createApi({
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("accessToken");
 
-      console.log("Current token:", token);
+      // console.log("Current token:", token);
       if (token) {
         headers.set("Authorization", `Bearer ${token}`); 
         
       } 
 
-      console.log("Prepared headers:", headers);
+      // console.log("Prepared headers:", headers);
       return headers;
     },
   }),
-  tagTypes: ["User","Transaction", 'Products', 'SellProduct','Blogs', "Notification",'Question'], // Added all necessary tags
+  tagTypes: ["User","Transaction", 'Products', 'SellProduct','Blogs', "Notification",'Question','Orders','Setting'], // Added all necessary tags
   endpoints: () => ({}),
 });
 

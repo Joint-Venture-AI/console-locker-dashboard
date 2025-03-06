@@ -34,6 +34,14 @@ export const authAPI = baseApi.injectEndpoints({
       }),
     }),
 
+    changePassword: builder.mutation({
+      query: (data) => ({
+        url: "/admin/change-password",
+        method: "POST",
+        body: data,
+      }),
+    }),
+
     // resetPassword: builder.mutation({
     //   query: (data) => ({
     //     // const token = localStorage.getItem("Authorization");
@@ -50,13 +58,12 @@ export const authAPI = baseApi.injectEndpoints({
     // }),
 
     resetPassword: builder.mutation({
-        query: (data) => ({
-          url: "/admin/reset-password",
-          method: "POST",
-          body: data,
-        }),
+      query: (data) => ({
+        url: "/admin/reset-password",
+        method: "POST",
+        body: data,
       }),
-
+    }),
   }),
 });
 
@@ -66,4 +73,5 @@ export const {
   useForgotPasswordMutation,
   useVerifyEmailMutation,
   useResetPasswordMutation,
+  useChangePasswordMutation
 } = authAPI;

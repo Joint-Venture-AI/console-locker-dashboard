@@ -63,7 +63,7 @@
 //       price: "$299",
 //       image: "/projects.png",
 //       brand: "Xbox",
-//       status: "Delivered",
+//       status: "Confirm",
 //       id: 5,
 //     },
 //     {
@@ -72,7 +72,7 @@
 //       price: "$299",
 //       image: "/projects.png",
 //       brand: "Xbox",
-//       status: "Delivered",
+//       status: "Confirm",
 //       id: 6,
 //     },
 //     {
@@ -81,7 +81,7 @@
 //       price: "$299",
 //       image: "/projects.png",
 //       brand: "Xbox",
-//       status: "Delivered",
+//       status: "Confirm",
 //       id: 7,
 //     },
 //     {
@@ -90,7 +90,7 @@
 //       price: "$299",
 //       image: "/projects.png",
 //       brand: "Xbox",
-//       status: "Delivered",
+//       status: "Confirm",
 //       id: 8,
 //     },
 //     {
@@ -99,7 +99,7 @@
 //       price: "$299",
 //       image: "/projects.png",
 //       brand: "Xbox",
-//       status: "Delivered",
+//       status: "Confirm",
 //       id: 9,
 //     },
 //     {
@@ -221,8 +221,8 @@
 //     setIsModalOpen(true);
 //   };
 
-//   const handleDelivered = () => {
-//     alert("Product Delivereded!");
+//   const handleConfirm = () => {
+//     alert("Product Confirmed!");
 //     setIsModalOpen(false);
 //   };
 
@@ -263,11 +263,11 @@
 //           </button>
 //           <button
 //             className={`${
-//               filter === "Delivered" ? "bg-[#101010] text-white" : "bg-gray-50"
+//               filter === "Confirm" ? "bg-[#101010] text-white" : "bg-gray-50"
 //             } hover:bg-black hover:text-white px-4 py-2 rounded-full`}
-//             onClick={() => setFilter("Delivered")}
+//             onClick={() => setFilter("Confirm")}
 //           >
-//             Delivered
+//             Confirm
 //           </button>
 //           <button
 //             className={`${
@@ -429,10 +429,10 @@
 //                 Cancel
 //               </button>
 //               <button
-//                 onClick={handleDelivered}
+//                 onClick={handleConfirm}
 //                 className="w-full py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-all"
 //               >
-//                 Delivered
+//                 Confirm
 //               </button>
 //             </div>
 //           </div>
@@ -483,9 +483,9 @@ const BuyProducts = () => {
     setIsModalOpen(true);
   };
 
-  const handleDelivered = () => {
+  const handleConfirm = () => {
     // Here you would typically make an API call to update the product state
-    alert("Product Delivered!");
+    alert("Product Confirm!");
     setIsModalOpen(false);
     refetch(); // Refetch data to update the UI
   };
@@ -536,11 +536,11 @@ const BuyProducts = () => {
           </button>
           <button
             className={`${
-              filter === "Delivered" ? "bg-[#101010] text-white" : "bg-gray-50"
+              filter === "Confirm" ? "bg-[#101010] text-white" : "bg-gray-50"
             } hover:bg-black hover:text-white px-4 py-2 rounded-full`}
-            onClick={() => setFilter("Delivered")}
+            onClick={() => setFilter("Confirm")}
           >
-            Delivered
+            Confirm
           </button>
           <button
             className={`${
@@ -704,10 +704,10 @@ const BuyProducts = () => {
                 Cancel
               </button>
               <button
-                onClick={handleDelivered}
+                onClick={handleConfirm}
                 className="w-full py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-all"
               >
-                Delivered
+                Confirm
               </button>
             </div>
           </div>

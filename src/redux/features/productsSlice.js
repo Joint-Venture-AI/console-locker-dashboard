@@ -51,11 +51,11 @@ export const productsApi = baseApi.injectEndpoints({
 
     editProduct: builder.mutation({
       query: ({ id, formData }) => ({
-        url: `/admin/product/${id}/edit`, 
+        url: `/admin/product/${id}/edit`,
         method: "PATCH",
-        body: formData, 
+        body: formData,
       }),
-      invalidatesTags: ["Products"], 
+      invalidatesTags: ["Products"],
     }),
 
     singleProductGet: builder.query({
