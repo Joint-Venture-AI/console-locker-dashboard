@@ -337,7 +337,7 @@ const Orders = () => {
         <Button
           type="primary"
           onClick={() => handleShipOrder(record._id)}
-          disabled={record.state === "shipped"}
+          disabled={record.state === "shipped"}  
         >
           {record.state === "shipped" ? "Shipped" : "Mark as Shipped"}
         </Button>

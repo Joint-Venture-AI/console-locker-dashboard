@@ -7,9 +7,8 @@ import { useAllTransactionGetQuery } from "../../../redux/features/transactionSl
 const Transaction = () => {
 
   const {data} = useAllTransactionGetQuery()
-  console.log(data?.data?.meta)
+  // console.log(data?.data?.meta)
   const total= data?.data?.meta || 0
-  console.log(total)
 
   return (
     <div className="space-y-[24px]">

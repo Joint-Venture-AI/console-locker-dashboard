@@ -132,11 +132,9 @@ export default function AddBlog() {
     if (image) {
       formData.append("images", image); // Corrected key to "image"
     }
-    console.log(image);
 
     try {
       const response = await postBlog(formData).unwrap();
-      console.log(response);
       message.success(response.message);
       navigate('/blog'); 
       // Optionally, you can reset the form here

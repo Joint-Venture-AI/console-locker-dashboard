@@ -1,14 +1,11 @@
-import { Button, DatePicker, Dropdown } from "antd";
+import {  DatePicker } from "antd";
 import { useState } from "react";
-import { FaChevronDown } from "react-icons/fa6";
 import {
-  Area,
-  AreaChart,
+
   Bar,
   BarChart,
   CartesianGrid,
   Rectangle,
-  Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
@@ -16,7 +13,6 @@ import {
 const DashboardChart = () => {
   const [cartYear, setCartYear] = useState("Select Year");
   const onChange = (date, dateString) => {
-    console.log(date, dateString);
   };
   const chart = [
     {

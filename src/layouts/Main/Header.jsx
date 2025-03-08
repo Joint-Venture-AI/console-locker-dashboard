@@ -93,7 +93,7 @@
 // export default Header;
 
 import { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Badge } from "antd";
 import profileImage from "../../assets/images/dash-profile.png";
 import { TbBellRinging } from "react-icons/tb";
@@ -135,7 +135,8 @@ const Header = () => {
       setUserInfo(parsedUserInfo);
     }
   }, []);
-  console.log(userInfo)
+
+  const IMAGE = import.meta.env.VITE_IMAGE_API;
 
   return (
     <div className="w-full h-[88px] flex justify-between items-center rounded-sm py-[16px] px-[32px] shadow-lg bg-white">
@@ -157,9 +158,9 @@ const Header = () => {
             />
           </Badge>
         </div>
-        <div className="flex items-center">
+        <Link to={'/settings/profile'} className="flex items-center">
           <div>
-            <img src={profileImage} alt="" className="rounded-full h-[42px] w-[42px]" />
+            <img  src={`${IMAGE}${userInfo?.avatar}`}  alt="" className="rounded-full h-[42px] w-[42px]" />
           </div>
 
           {/* <h1> {(userInfo ? userInfo.name : "Jane Cooper")}</h1> */}
@@ -182,7 +183,7 @@ const Header = () => {
               // }
             ]}
           /> */}
-        </div>
+        </Link>
       </div>
     </div>
   );

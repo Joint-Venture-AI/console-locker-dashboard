@@ -361,7 +361,7 @@ export default function ProductPage() {
               {paginatedProducts.map((product) => (
                 <div
                   key={product._id}
-                  className="shadow-xl rounded-lg pb-2 relative"
+                  className="shadow rounded-lg pb-2 relative"
                 >
                   <img
                     src={
@@ -397,6 +397,11 @@ export default function ProductPage() {
                             <Link to={`/addEditProducts/${product?.slug}`}>
                               <button className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100">
                                 Edit
+                              </button>
+                            </Link>
+                            <Link to={`/review/${product?.name}`}>
+                              <button className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100">
+                                Review
                               </button>
                             </Link>
                             <button

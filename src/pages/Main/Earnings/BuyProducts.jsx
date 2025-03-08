@@ -1,5 +1,3 @@
-
-
 // import { ArrowLeft } from "lucide-react";
 // import { useState } from "react";
 // import DashboardModal from "../../../Components/DashboardModal";
@@ -444,7 +442,6 @@
 
 // export default BuyProducts;
 
-
 import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import DashboardModal from "../../../Components/DashboardModal";
@@ -468,8 +465,9 @@ const BuyProducts = () => {
   const filteredProducts =
     filter === "All"
       ? products
-      : products.filter((product) => product.state.toLowerCase() === filter.toLowerCase());
-      console.log(filteredProducts)
+      : products.filter(
+          (product) => product.state.toLowerCase() === filter.toLowerCase()
+        );
 
   // Paginate the filtered products
   const paginatedProducts = filteredProducts.slice(
@@ -498,7 +496,6 @@ const BuyProducts = () => {
   };
 
   const IMAGE = import.meta.env.VITE_IMAGE_API;
-  console.log(IMAGE, 'image apiS');
   return (
     <div>
       <div className="px-8">
@@ -564,12 +561,26 @@ const BuyProducts = () => {
                 key={product._id}
                 className="shadow-md rounded-lg pb-2 relative"
               >
-                <img src={`${IMAGE}${product.product?.image}`} alt={product?.product?.name} />
-             
+                {/* <img src={`${IMAGE}${product.product?.image}`} alt={product?.product?.name} />  */}
+                {product?.product?.image ? (
+                  <img
+                    src={`${IMAGE}${product.product.image}`}
+                    alt={product?.product?.name}
+                    className="w-full h-48 object-cover"
+                  />
+                ) : (
+                  <img
+                    src="/projects.png"
+                    alt="Default"
+                    className="w-full h-48 object-cover"
+                  />
+                )}
 
                 <div className="px-3">
                   <div className="flex justify-between items-center mt-4 mb-2">
-                    <h3 className="text-lg font-semibold">{product?.product?.name}</h3>
+                    <h3 className="text-lg font-semibold">
+                      {product?.product?.name}
+                    </h3>
                     <span className="text-green-500 font-semibold">
                       ${product?.price}
                     </span>
@@ -578,10 +589,16 @@ const BuyProducts = () => {
                   <hr className="mb-3 pt-2" />
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-3">
-                      <img className="size-10" src={product?.customer?.avatar} alt={product?.customer?.name} />
+                      <img
+                        className="size-10"
+                        src={product?.customer?.avatar}
+                        alt={product?.customer?.name}
+                      />
                       <div>
                         <h1>{product?.customer?.name}</h1>
-                        <p className="text-sm">{new Date(product.createdAt).toLocaleDateString()}</p>
+                        <p className="text-sm">
+                          {new Date(product?.createdAt).toLocaleDateString()}
+                        </p>
                       </div>
                     </div>
                     <button className="text-[#222C9B] px-5 py-2 bg-blue-100 text-sm rounded-3xl">
@@ -653,22 +670,26 @@ const BuyProducts = () => {
             {/* Product Header */}
             <div className="flex justify-between items-center bg-blue-50 rounded-md p-4 mb-8 shadow-sm">
               <div>
-                <h3 className="text-xl font-medium">{modalData.product.name}</h3>
+                <h3 className="text-xl font-medium">
+                  {modalData?.product?.name}
+                </h3>
                 <p className="text-gray-600 flex items-center mt-2">
                   <img
-                    src={modalData.customer.avatar}
+                    src={modalData?.customer?.avatar}
                     alt="Seller"
                     className="w-8 h-8 rounded-full mr-2"
                   />
-                  <span className="font-medium">{modalData.customer.name}</span>
+                  <span className="font-medium">
+                    {modalData?.customer?.name}
+                  </span>
                 </p>
               </div>
               <div className="text-right">
                 <h3 className="text-xl font-semibold text-gray-800">
-                  ${modalData.price}
+                  ${modalData?.price}
                 </h3>
                 <p className="text-sm text-gray-500 mt-1">
-                  {new Date(modalData.createdAt).toLocaleDateString()}
+                  {new Date(modalData?.createdAt).toLocaleDateString()}
                 </p>
               </div>
             </div>
@@ -678,8 +699,8 @@ const BuyProducts = () => {
             <div className="grid grid-cols-2 gap-y-4 text-gray-700 mb-8">
               {modalData.information.map((info, index) => (
                 <div key={index}>
-                  <p className="font-medium">{info.ques}</p>
-                  <p>{info.value}</p>
+                  <p className="font-medium">{info?.ques}</p>
+                  <p>{info?.value}</p>
                 </div>
               ))}
             </div>
@@ -688,11 +709,11 @@ const BuyProducts = () => {
             <h3 className="text-lg font-semibold mb-4">Seller Information</h3>
             <div className="grid grid-cols-2 gap-y-4 text-gray-700 mb-8">
               <p className="font-medium">Account Number</p>
-              <p className="text-sm">0000 0000 0000 0000</p>
+              <p className="text-sm">{modalData?.phone}</p>
               <p className="font-medium">Phone</p>
-              <p className="text-sm">{modalData.customer.phone}</p>
+              <p className="text-sm">{modalData?.customer?.phone}</p>
               <p className="font-medium">Email</p>
-              <p className="text-sm">{modalData.customer.email}</p>
+              <p className="text-sm">{modalData?.customer?.email}</p>
             </div>
 
             {/* Action Buttons */}

@@ -8,7 +8,7 @@ import EditTermsConditions from "../pages/Settings/EditTermsConditions";
 import PrivacyPolicy from "../pages/Settings/PrivacyPolicy";
 import EditPrivacyPolicy from "../pages/Settings/EditPrivacyPolicy";
 import Notifications from "../pages/Main/Notifications/Notifications";
-import { MdOutlineSecurityUpdateWarning } from "react-icons/md";
+import { MdOutlineSecurityUpdateWarning, MdReviews } from "react-icons/md";
 import HostDetails from "../pages/Main/Host/HostDetails";
 import { FaServicestack } from "react-icons/fa6";
 import { BiMessageSquareDetail } from "react-icons/bi";
@@ -38,6 +38,8 @@ import ProductForm from "../pages/Main/ProductForm/ProductForm";
 import EditProduct from "../pages/Main/EditProducts/EditProduct";
 import AddProductEdit from "../pages/Main/AddProductEdit/AddProductEdit";
 import BlogsDetails from "../pages/Main/Blog/BlogsDetails";
+import Review from "../pages/Main/Reiview/Review";
+import AddReview from "../pages/Main/Reiview/AddReview";
 
 export const dashboardItems = [
   {
@@ -73,6 +75,18 @@ export const dashboardItems = [
     loader: ({ params }) =>fetch(`${import.meta.env.VITE_IMAGE_API}/admin/product/${params.id}`),
   },
   {
+
+    path: "review/:name",
+    element: <Review />,
+    loader: ({ params }) =>fetch(`${import.meta.env.VITE_IMAGE_API}/reviews/${params.name}`),
+  },
+  {
+
+    path: "addreview/:name",
+    element: <AddReview />,
+    loader: ({ params }) =>fetch(`${import.meta.env.VITE_IMAGE_API}/admin/reviews/create/${params.name}`),
+  },
+  {
     path: "addProducts",
     element: <AddProducts />,
   },
@@ -93,6 +107,13 @@ export const dashboardItems = [
     path: "blog",
     icon: Newspaper,
     element: <Blogs />,
+  },
+
+  {
+    // name: "Review",
+    path: "review",
+    icon: MdReviews,
+    // element: <Review />,
   },
   {
     path: "blogsDetails/:id",
