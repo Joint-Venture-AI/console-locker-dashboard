@@ -563,6 +563,7 @@ const AddProducts = () => {
   const navigate = useNavigate();
   const [addProduct] = useAddProductMutation();
   const [image, setImage] = useState(null);
+  const [productTypeColor, setProductTypeColor] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -588,6 +589,9 @@ const AddProducts = () => {
 
   const handleSelectChange = (name, value) => {
     setFormData({ ...formData, [name]: value });
+    if (name === "product_type") {
+      setProductTypeColor(value);
+    }
   };
 
   const handleSave = async () => {
@@ -655,8 +659,21 @@ const AddProducts = () => {
   //   console.log("Add Variant");
   // };
 
+  const getBackgroundColor = () => {
+    switch (productTypeColor) {
+      case "xbox":
+        return "bg-[#63B95D]";
+      case "playstation":
+        return "bg-[#1761BF]";
+      case "nintendo":
+        return "bg-[#F34040]";
+      default:
+        return "bg-white";
+    }
+  };
+
   return (
-    <div className="container mx-auto px-6 py-8 bg-white shadow-md rounded-md">
+    <div className={`container mx-auto px-6 py-8 shadow-md rounded-md ${getBackgroundColor()}`}>
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-2">
@@ -682,7 +699,7 @@ const AddProducts = () => {
         </div>
 
         {/* Form Inputs */}
-        <div className="col-span-2 mt-10 border p-4 rounded-lg">
+        <div className={`col-span-2 mt-10 border p-4 rounded-lg`}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <Input name="name" placeholder="Product Name" onChange={handleInputChange} />
             <Input name="brand" placeholder="Brand" onChange={handleInputChange} />
@@ -700,7 +717,20 @@ const AddProducts = () => {
             <Input name="quantity" placeholder="Available Products" type="number" onChange={handleInputChange} />
           </div>
 
-          <Input name="product_type" placeholder="Product Type" onChange={handleInputChange} />
+          <div>
+            <label className="block text-sm font-medium mb-1">Product Type</label>
+            <Select
+              placeholder="Product Type"
+              value={formData.product_type}   
+              options={[
+                { value: "xbox", label: "Xbox" },
+                { value: "playstation", label: "PlayStation" },
+                { value: "nintendo", label: "Nintendo" },
+              ]}
+              onChange={(value) => handleSelectChange("product_type", value)}
+              className="w-full h-10" // Fixed width and height
+            />
+          </div>
 
           {/* Action Buttons */}
           <div className="flex justify-end gap-4 mt-6">

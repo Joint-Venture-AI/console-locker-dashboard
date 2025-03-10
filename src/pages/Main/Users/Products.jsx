@@ -254,9 +254,11 @@ import {
 } from "../../../redux/features/productsSlice";
 
 export default function ProductPage() {
-  const { data, isLoading, isError, refetch} = useAllProductGetQuery({ limit: 1000 });
+  const { data, isLoading, isError, refetch } = useAllProductGetQuery({
+    limit: 1000,
+  });
   console.log(data?.data.products);
-  const [deleteProduct ] = useDeleteProductMutation();
+  const [deleteProduct] = useDeleteProductMutation();
   const [view] = useState("grid");
   const [page, setPage] = useState(1);
   const [openMenu, setOpenMenu] = useState(null);
@@ -296,9 +298,8 @@ export default function ProductPage() {
           title: "Deleted!",
           text: "Your product has been deleted.",
           icon: "success",
-
         });
-        refetch()
+        await refetch();
 
         // Optionally, you can refetch the products list here if needed
         // refetch();
