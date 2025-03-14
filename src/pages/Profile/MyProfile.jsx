@@ -127,7 +127,7 @@
 import { useState } from "react";
 import { Button, Form, Input } from "antd";
 import dashProfile from "../../assets/images/dashboard-profile.png";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import PhoneCountryInput from "../../Components/PhoneCountryInput";
 import PasswordChangeModalForm from "../../Components/User/PasswordChangeModalForm";
 import { FaAngleLeft } from "react-icons/fa6";
@@ -152,10 +152,10 @@ const MyProfile = () => {
 
   return (
     <>
-      <div className="flex items-center gap-2 text-xl">
+      <Link to={'/settings'} className="flex items-center gap-2 text-xl">
         <FaAngleLeft />
         <h1>Personal information</h1>
-      </div>
+      </Link>
       <div className="rounded-lg py-4 border-lightGray border-2 shadow-lg mt-8 bg-white">
         <h3 className="text-2xl text-black mb-4 pl-5 border-b-2 border-lightGray/40 pb-3">
           Personal information

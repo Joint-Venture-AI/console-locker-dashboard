@@ -213,8 +213,6 @@
 
 // export default AddProducts;
 
-
-
 // import { useState } from "react";
 // import { Input, Select, Button, Upload, Typography, message } from "antd";
 // import { UploadOutlined } from "@ant-design/icons";
@@ -549,7 +547,6 @@
 
 // export default AddProducts;
 
-
 import { useState } from "react";
 import { Input, Select, Button, Upload, Typography, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
@@ -645,7 +642,7 @@ const AddProducts = () => {
 
       const response = await addProduct(productData).unwrap();
 
-      navigate('/products'); // Redirect to product detail page after successful creation
+      navigate("/products"); // Redirect to product detail page after successful creation
 
       message.success(response.message);
       console.log("Product created successfully:", response.data);
@@ -673,12 +670,18 @@ const AddProducts = () => {
   };
 
   return (
-    <div className={`container mx-auto px-6 py-8 shadow-md rounded-md ${getBackgroundColor()}`}>
+    <div
+      className={`container mx-auto px-6 py-8 shadow-md rounded-md ${getBackgroundColor()}`}
+    >
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-2">
           <Link to={"/products"}>
-            <Button type="link" icon={<ArrowLeft />} className="text-black text-lg" />
+            <Button
+              type="link"
+              icon={<ArrowLeft />}
+              className="text-black text-lg"
+            />
           </Link>
           <h2 className="text-3xl font-semibold">Add Product</h2>
         </div>
@@ -688,7 +691,12 @@ const AddProducts = () => {
       <div className="gap-6">
         {/* Image Upload */}
         <div className="flex gap-10">
-          <Upload listType="picture-card" maxCount={1} beforeUpload={() => false} onChange={handleUpload}>
+          <Upload
+            listType="picture-card"
+            maxCount={1}
+            beforeUpload={() => false}
+            onChange={handleUpload}
+          >
             {!image && (
               <div className="text-center">
                 <UploadOutlined className="text-2xl mb-2" />
@@ -701,27 +709,90 @@ const AddProducts = () => {
         {/* Form Inputs */}
         <div className={`col-span-2 mt-10 border p-4 rounded-lg`}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <Input name="name" placeholder="Product Name" onChange={handleInputChange} />
-            <Input name="brand" placeholder="Brand" onChange={handleInputChange} />
-            <Input name="model" placeholder="Model Name" onChange={handleInputChange} />
-            <Select placeholder="Condition" options={[{ value: "New", label: "New" }, { value: "Used", label: "Used" }]} onChange={(value) => handleSelectChange("condition", value)} />
-            <Input name="controller" placeholder="Controller" type="number" onChange={handleInputChange} />
-            <Select placeholder="Memory" options={[{ value: "16GB", label: "16GB" }, { value: "32GB", label: "32GB" }, { value: "64GB", label: "64GB" }]} onChange={(value) => handleSelectChange("memory", value)} />
+            <Input
+              name="name"
+              placeholder="Product Name"
+              onChange={handleInputChange}
+            />
+            <Input
+              name="brand"
+              placeholder="Brand"
+              onChange={handleInputChange}
+            />
+            <Input
+              name="model"
+              placeholder="Model Name"
+              onChange={handleInputChange}
+            />
+            <Select
+              placeholder="Condition"
+              options={[
+                { value: "New", label: "New" },
+                { value: "Used", label: "Used" },
+              ]}
+              onChange={(value) => handleSelectChange("condition", value)}
+            />
+            <Input
+              name="controller"
+              placeholder="Controller"
+              type="number"
+              onChange={handleInputChange}
+            />
+            <Select
+              placeholder="Memory"
+              options={[
+                // { value: "16GB", label: "16GB" },
+                // { value: "32GB", label: "32GB" },
+                // { value: "64GB", label: "64GB" },
+                { value: "4GB", label: "4GB" },
+                { value: "8GB", label: "8GB" },
+                { value: "16GB", label: "16GB" },
+                { value: "32GB", label: "32GB" },
+                { value: "64GB", label: "64GB" },
+                { value: "128GB", label: "128GB" },
+                { value: "256GB", label: "256GB" },
+                { value: "512GB", label: "512GB" },
+              ]}
+              onChange={(value) => handleSelectChange("memory", value)}
+            />
           </div>
 
-          <TextArea name="description" className="mb-6" rows={4} placeholder="Product Description" onChange={handleInputChange} />
+          <TextArea
+            name="description"
+            className="mb-6"
+            rows={4}
+            placeholder="Product Description"
+            onChange={handleInputChange}
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <Input name="price" placeholder="Regular Price ($)" type="number" onChange={handleInputChange} />
-            <Input name="offer_price" placeholder="Offer Price ($)" type="number" onChange={handleInputChange} />
-            <Input name="quantity" placeholder="Available Products" type="number" onChange={handleInputChange} />
+            <Input
+              name="price"
+              placeholder="Regular Price ($)"
+              type="number"
+              onChange={handleInputChange}
+            />
+            <Input
+              name="offer_price"
+              placeholder="Offer Price ($)"
+              type="number"
+              onChange={handleInputChange}
+            />
+            <Input
+              name="quantity"
+              placeholder="Available Products"
+              type="number"
+              onChange={handleInputChange}
+            />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Product Type</label>
+            <label className="block text-sm font-medium mb-1">
+              Product Type
+            </label>
             <Select
               placeholder="Product Type"
-              value={formData.product_type}   
+              value={formData.product_type}
               options={[
                 { value: "xbox", label: "Xbox" },
                 { value: "playstation", label: "PlayStation" },
@@ -737,7 +808,11 @@ const AddProducts = () => {
             {/* <Button onClick={handleAddVariant} className="border border-black text-black hover:bg-gray-100">
               Add Variant
             </Button> */}
-            <Button type="primary" onClick={handleSave} className="bg-black text-white py-3">
+            <Button
+              type="primary"
+              onClick={handleSave}
+              className="bg-black text-white py-3"
+            >
               Save Product
             </Button>
           </div>

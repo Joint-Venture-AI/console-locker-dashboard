@@ -256,7 +256,7 @@
 
 import { useState } from "react";
 import { Button, Form, Input } from "antd";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaAngleLeft } from "react-icons/fa6";
 import PhoneCountryInput from "../../Components/PhoneCountryInput";
 import dashProfile from "../../assets/images/dashboard-profile.png";
@@ -318,10 +318,10 @@ const EditMyProfile = () => {
   return (
     <>
       {/* Header Section */}
-      <div className="flex items-center gap-2 text-xl">
+      <Link to={'/settings/profile'} className="flex items-center gap-2 text-xl">
         <FaAngleLeft />
         <h1>Personal Information</h1>
-      </div>
+      </Link>
 
       {/* Profile Form Card */}
       <div className="rounded-lg py-4 border-lightGray border-2 shadow-lg mt-8 bg-white">

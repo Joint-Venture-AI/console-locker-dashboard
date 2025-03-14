@@ -15,7 +15,7 @@ export const ReviewApi = baseApi.injectEndpoints({
     singleReviewGet: builder.query({
       query: ({ name }) => ({
         method: "GET",
-        url: `/reviews/${name}`,
+        url: `/reviews?productName=${name}`,
       }),
       providesTags: ["Review"],
     }),

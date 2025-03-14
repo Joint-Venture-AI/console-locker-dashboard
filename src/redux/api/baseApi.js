@@ -30,7 +30,7 @@ export const baseApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["User","Transaction", 'Products', 'SellProduct','Blogs', "Notification",'Question','Orders','Setting', "Review"], // Added all necessary tags
+  tagTypes: ["User","Transaction", 'Products', 'SellProduct','Blogs', "Notification",'Question','Orders','Setting', "Review",'Buy'], // Added all necessary tags
   endpoints: () => ({}),
 });
 

@@ -18,6 +18,7 @@ export const manageOrderApi = baseApi.injectEndpoints({
           url: `/admin/order/${orderId}/shipped`,
           method: 'POST',
         }),
+        invalidatesTags: ["Orders"],
       }),
     
 

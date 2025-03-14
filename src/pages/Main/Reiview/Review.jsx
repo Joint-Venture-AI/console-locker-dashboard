@@ -185,7 +185,6 @@
 //   );
 // }
 
-
 // import { ArrowLeft, EllipsisVertical, Star } from "lucide-react";
 // import { Link, useParams } from "react-router-dom";
 // import {
@@ -415,7 +414,6 @@
 //   );
 // }
 
-
 import { ArrowLeft, EllipsisVertical, Star } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import {
@@ -428,7 +426,7 @@ import Swal from "sweetalert2";
 
 export default function Review() {
   const { name } = useParams();
-  const { data ,refetch} = useSingleReviewGetQuery({ name });
+  const { data, refetch } = useSingleReviewGetQuery({ name });
   const [updateReview] = useUpdateReviewMutation();
   const [deleteReview] = useDeleteReviewMutation();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -440,7 +438,7 @@ export default function Review() {
   const [openDropdownId, setOpenDropdownId] = useState(null); // Track which dropdown is open
   const dropdownRef = useRef(null); // Ref to track the dropdown container
 
-  const reviews = data?.data || [];
+  const reviews = data?.data?.reviews || [];
   const IMAGE = import.meta.env.VITE_IMAGE_API;
 
   // Handle click outside to close dropdown
@@ -508,7 +506,7 @@ export default function Review() {
       try {
         await deleteReview(customer).unwrap();
         Swal.fire("Deleted!", "Your review has been deleted.", "success");
-        await refetch()
+        await refetch();
       } catch (error) {
         Swal.fire("Error!", "Failed to delete the review.", "error");
       }
@@ -545,10 +543,10 @@ export default function Review() {
             className="border border-gray-200 rounded-lg p-4 shadow-sm"
           >
             <div className="flex justify-between">
-              <p className="text-sm text-gray-700 mb-4 w-5/6">
+              <p className="text-sm text-gray-700 mb-4 w-full">
                 {review.comment}
               </p>
-              <div className="relative" ref={dropdownRef}>
+              {/* <div className="relative" ref={dropdownRef}>
                 <EllipsisVertical
                   className="cursor-pointer"
                   onClick={() => toggleDropdown(review._id)}
@@ -571,7 +569,7 @@ export default function Review() {
                     </div>
                   </div>
                 )}
-              </div>
+              </div> */}
             </div>
             <div className="flex items-center justify-between">
               <div className="flex items-center">
@@ -591,6 +589,7 @@ export default function Review() {
                   <p className="text-xs text-gray-500">{review.product}</p>
                 </div>
               </div>
+
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
                   <Star
@@ -603,11 +602,24 @@ export default function Review() {
                 ))}
               </div>
             </div>
+            <div className="flex gap-8 mt-4">
+              <button
+                onClick={() => handleEditClick(review)}
+                className="block w-full px-4 py-2 text-sm text-black bg-blue-500"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => handleDeleteReview(review._id)}
+                className="block w-full px-4 py-2 text-sm text-red-600  bg-red"
+              >
+                Delete
+              </button>
+            </div>
           </div>
         ))}
       </div>
 
-      {/* Update Review Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg w-96">

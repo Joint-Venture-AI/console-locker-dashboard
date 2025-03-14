@@ -1,25 +1,4 @@
-// import { useParams } from "react-router-dom";
-// import { useSingleBlogsQuery } from "../../../redux/features/blogSlice";
 
-// export default function BlogsDetails() {
-//   const { id } = useParams(); // Get product ID from the URL
-//   console.log(
-//     id,
-//     "id in AddProductEdit.js  is not defined here  but it is in AddProduct.js  and we are passing id from AddProduct.js to AddProductEdit.js  using use"
-//   );
-// const { data } = useSingleBlogsQuery({
-//   slug: id,
-// });
-// console.log(data?.data, "data in AddProductEdit.js");
-
-//   return (
-//     <div>
-//       <h2 className="text-2xl font-bold">Edit Product</h2>
-//       <p>Product ID: {id}</p>
-//       {/* Add form or other UI for editing */}
-//     </div>
-//   );
-// }
 
 
 import { useState } from "react";
@@ -27,19 +6,19 @@ import {
   FacebookIcon,
   TwitterIcon,
   LinkedinIcon,
-  ChevronLeft,
-  ChevronRight,
   Share2,
   User,
 } from "lucide-react";
 import { useSingleBlogsQuery } from "../../../redux/features/blogSlice";
-import { Link, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 
 export default function BlogDetail() {
   const [copied, setCopied] = useState(false);
   const { id } = useParams();
   const { data: blog, isLoading, isError } = useSingleBlogsQuery(id);
   const IMAGE = import.meta.env.VITE_IMAGE_API;
+  console.log(blog);
+  console.log(blog?.data?.blog?.title)
 
   const copyToClipboard = async () => {
     try {
@@ -58,12 +37,12 @@ export default function BlogDetail() {
     <div className="min-h-screen pb-12">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 my-6">
-          {blog?.data?.title}
+          {blog?.data?.blog?.title}
         </h1>
 
         <div className="w-full h-[300px] sm:h-[400px] lg:h-[500px] relative">
           <img
-            src={`${IMAGE}${blog?.data?.image}`}
+            src={`${IMAGE}${blog?.data?.blog?.image}`}
             alt="Gaming Console"
             className="w-full h-full object-cover"
           />
@@ -83,7 +62,7 @@ export default function BlogDetail() {
                 <User></User>
                 <span>Admin</span>
               </div>
-              <time>{blog?.data?.createdAt?.split("T")[0]}</time>
+              <time>{blog?.data?.blog?.createdAt?.split("T")[0]}</time>
             </div>
 
             <div className="flex items-center gap-4 mb-8 flex-wrap">
@@ -109,7 +88,7 @@ export default function BlogDetail() {
             </div>
 
             <div className="prose prose-lg max-w-none">
-              <p>{blog?.data?.description}</p>
+              <p>{blog?.data?.blog?.description}</p>
             </div>
           </article>
 

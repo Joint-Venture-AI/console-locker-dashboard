@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from "react";
 import { Input, Select, Button, Upload, Typography, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
@@ -21,7 +19,10 @@ const AddProductEdit = () => {
     slug: id,
   });
 
+  const IMAGE = import.meta.env.VITE_IMAGE_API;
+
   const [image, setImage] = useState(null);
+  const [oldImage, setOldImage] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -60,6 +61,7 @@ const AddProductEdit = () => {
 
   const handleUpload = ({ file }) => {
     setImage(file);
+    setOldImage(false);
   };
 
   const handleInputChange = (e) => {
@@ -81,32 +83,32 @@ const AddProductEdit = () => {
         message.error("Product type is required");
         return;
       }
-  
+
       if (!formData.price || isNaN(Number(formData.price))) {
         message.error("Price must be a valid number");
         return;
       }
-  
+
       if (!formData.offer_price || isNaN(Number(formData.offer_price))) {
         message.error("Offer price must be a valid number");
         return;
       }
-  
+
       if (!formData.controller || isNaN(Number(formData.controller))) {
         message.error("Controller must be a valid number");
         return;
       }
-  
+
       if (!formData.quantity || isNaN(Number(formData.quantity))) {
         message.error("Quantity must be a valid number");
         return;
       }
-  
-      if (!image) {
-        message.error("An image is required");
-        return;
-      }
-  
+
+      // if (!image) {
+      //   message.error("An image is required");
+      //   return;
+      // }
+
       // Create FormData object
       const productData = new FormData();
       productData.append("name", formData.name);
@@ -120,18 +122,18 @@ const AddProductEdit = () => {
       productData.append("memory", formData.memory);
       productData.append("quantity", Number(formData.quantity));
       productData.append("product_type", formData.product_type.trim());
-      productData.append("images", image);
-  
+      image && productData.append("images", image);
+
       console.log("Submitting Form Data:", Object.fromEntries(productData));
-  
+
       // Call the editProduct mutation with id and formData
       const response = await editProduct({
         id: data.data.product._id, // Pass the product ID
         formData: productData, // Pass the FormData object
       }).unwrap();
-  
+
       navigate("/products"); // Redirect to the product list page after successful update
-  
+
       message.success(response.message);
       console.log("Product updated successfully:", response.data);
     } catch (error) {
@@ -140,7 +142,8 @@ const AddProductEdit = () => {
     }
   };
 
-  const IMAGE = import.meta.env.VITE_IMAGE_API;
+
+
 
   const getBackgroundColor = () => {
     switch (productTypeColor) {
@@ -181,23 +184,27 @@ const AddProductEdit = () => {
             beforeUpload={() => false}
             onChange={handleUpload}
           >
-            {!image && (
-              <div className="text-center">
-                <UploadOutlined className="text-2xl mb-2" />
-                <Typography.Text>Upload Image</Typography.Text>
-              </div>
-            )}
-          </Upload>
-
           
+            {
+              oldImage ? <img src={IMAGE + data?.data?.product?.images?.[0]}/>: !image &&(
+                <div className="text-center">
+                  <UploadOutlined className="text-2xl mb-2" />
+                  <Typography.Text>Upload Image</Typography.Text>
+                </div>
+              )
+            }
+          </Upload>
         </div>
-          <img src={`${IMAGE}${data?.data?.images}`} alt="" />
 
         {/* Form Inputs */}
-        <div className={`col-span-2 mt-10 border p-4 rounded-lg ${getBackgroundColor()}`}>
+        <div
+          className={`col-span-2 mt-10 border p-4 rounded-lg ${getBackgroundColor()}`}
+        >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div>
-              <label className="block text-sm font-medium mb-1">Product Name</label>
+              <label className="block text-sm font-medium mb-1">
+                Product Name
+              </label>
               <Input
                 name="name"
                 placeholder="Product Name"
@@ -217,7 +224,9 @@ const AddProductEdit = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Model Name</label>
+              <label className="block text-sm font-medium mb-1">
+                Model Name
+              </label>
               <Input
                 name="model"
                 placeholder="Model Name"
@@ -227,7 +236,9 @@ const AddProductEdit = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Condition</label>
+              <label className="block text-sm font-medium mb-1">
+                Condition
+              </label>
               <Select
                 placeholder="Condition"
                 value={formData.condition}
@@ -240,7 +251,9 @@ const AddProductEdit = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Controller</label>
+              <label className="block text-sm font-medium mb-1">
+                Controller
+              </label>
               <Input
                 name="controller"
                 placeholder="Controller"
@@ -271,7 +284,9 @@ const AddProductEdit = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Product Description</label>
+            <label className="block text-sm font-medium mb-1">
+              Product Description
+            </label>
             <TextArea
               name="description"
               className="w-full h-24 mb-6" // Fixed width and height
@@ -284,7 +299,9 @@ const AddProductEdit = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <div>
-              <label className="block text-sm font-medium mb-1">Regular Price ($)</label>
+              <label className="block text-sm font-medium mb-1">
+                Regular Price ($)
+              </label>
               <Input
                 name="price"
                 placeholder="Regular Price ($)"
@@ -295,7 +312,9 @@ const AddProductEdit = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Offer Price ($)</label>
+              <label className="block text-sm font-medium mb-1">
+                Offer Price ($)
+              </label>
               <Input
                 name="offer_price"
                 placeholder="Offer Price ($)"
@@ -306,7 +325,9 @@ const AddProductEdit = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Available Products</label>
+              <label className="block text-sm font-medium mb-1">
+                Available Products
+              </label>
               <Input
                 name="quantity"
                 placeholder="Available Products"
@@ -319,10 +340,12 @@ const AddProductEdit = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Product Type</label>
+            <label className="block text-sm font-medium mb-1">
+              Product Type
+            </label>
             <Select
               placeholder="Product Type"
-              value={formData.product_type}   
+              value={formData.product_type}
               options={[
                 { value: "xbox", label: "Xbox" },
                 { value: "playstation", label: "PlayStation" },
