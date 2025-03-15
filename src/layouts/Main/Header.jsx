@@ -97,6 +97,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Badge } from "antd";
 import profileImage from "../../assets/images/dash-profile.png";
 import { TbBellRinging } from "react-icons/tb";
+import { useGetAllNotificationQuery } from "../../redux/features/notificationSlice";
 
 
 const Header = () => {
@@ -105,6 +106,9 @@ const Header = () => {
   const notificationRef = useRef(null);
   const [notificationPopup, setNotificationPopup] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
+
+  const {data}= useGetAllNotificationQuery()
+  console.log(data)
 
   
 

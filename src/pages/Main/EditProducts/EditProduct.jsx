@@ -240,6 +240,7 @@ export default function EditProduct() {
     const formData = new FormData();
     formData.append("name", values.name);
     formData.append("base_price", values.base_price);
+    formData.append("product_type", values.product_type);
 
     // Ensure price values are below 1
     const validatePrice = (price) => {
@@ -332,6 +333,15 @@ export default function EditProduct() {
               ]}
             >
               <Input className="py-3" placeholder="Enter an estimate price" />
+            </Form.Item>
+            <Form.Item
+              label="Product Types"
+              name="product_type"
+              rules={[
+                { required: true, message: "Please enter an product types" },
+              ]}
+            >
+              <Input className="py-3" placeholder="Enter your product types" />
             </Form.Item>
 
             {questions.map((question, qIndex) => (
