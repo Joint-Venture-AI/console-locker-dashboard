@@ -30,8 +30,10 @@ export const productsApi = baseApi.injectEndpoints({
     }),
 
     addProduct: builder.mutation({
-      query: (product) => ({
-        url: "/admin/product/create",
+      query: ({ product, ref_product }) => ({
+        url: ref_product
+          ? `/admin/product/${ref_product}/variant/create`
+          : "/admin/product/create",
         method: "POST",
         body: product,
       }),

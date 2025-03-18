@@ -16,7 +16,6 @@ const Header = () => {
   const [userInfo, setUserInfo] = useState(null);
 
   const {data}= useGetAllNotificationQuery()
-  console.log(data)
 
   
 

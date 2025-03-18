@@ -551,12 +551,18 @@ import { useState } from "react";
 import { Input, Select, Button, Upload, Typography, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { ArrowLeft } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAddProductMutation } from "../../../redux/features/productsSlice";
 
 const { TextArea } = Input;
 
 const AddProducts = () => {
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+
+  const ref_product = queryParams.get("product");
+
   const navigate = useNavigate();
   const [addProduct] = useAddProductMutation();
   const [image, setImage] = useState(null);
@@ -640,7 +646,7 @@ const AddProducts = () => {
 
       console.log("Submitting Form Data:", Object.fromEntries(productData));
 
-      const response = await addProduct(productData).unwrap();
+      const response = await addProduct({product: productData,ref_product}).unwrap();
 
       navigate("/products"); // Redirect to product detail page after successful creation
 
@@ -651,10 +657,6 @@ const AddProducts = () => {
       console.error("Error creating product:", error);
     }
   };
-
-  // const handleAddVariant = () => {
-  //   console.log("Add Variant");
-  // };
 
   const getBackgroundColor = () => {
     switch (productTypeColor) {

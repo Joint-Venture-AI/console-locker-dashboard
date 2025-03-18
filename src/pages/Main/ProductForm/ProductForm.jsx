@@ -146,6 +146,13 @@ export default function ProductForm() {
             >
               <Input className="py-3" placeholder="Enter your product Types" />
             </Form.Item>
+            {/* <Form.Item
+              label="Product Type"
+              name="product_type"
+              rules={[{ required: true, message: "Enter your product Types" }]}
+            >
+              <Input className="py-3" placeholder="Enter your product Types" />
+            </Form.Item> */}
 
             {/* Questions Section */}
             {questions.map((question, qIndex) => (
