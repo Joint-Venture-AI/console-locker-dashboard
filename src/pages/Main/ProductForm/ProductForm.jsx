@@ -30,6 +30,7 @@ export default function ProductForm() {
     formData.append("name", values.name);
     formData.append("base_price", values.base_price); 
     formData.append("product_type", values.product_type); 
+    formData.append("brand", values.brand); 
 
     // Ensure price values are below 1
     const validatePrice = (price) => {
@@ -146,13 +147,13 @@ export default function ProductForm() {
             >
               <Input className="py-3" placeholder="Enter your product Types" />
             </Form.Item>
-            {/* <Form.Item
-              label="Product Type"
-              name="product_type"
-              rules={[{ required: true, message: "Enter your product Types" }]}
+            <Form.Item
+              label="brand"
+              name="brand"
+              rules={[{ required: true, message: "Enter your brand" }]}
             >
-              <Input className="py-3" placeholder="Enter your product Types" />
-            </Form.Item> */}
+              <Input className="py-3" placeholder="Enter your product brand" />
+            </Form.Item>
 
             {/* Questions Section */}
             {questions.map((question, qIndex) => (

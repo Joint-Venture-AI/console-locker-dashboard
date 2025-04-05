@@ -202,7 +202,7 @@ import {
 } from "../../../redux/features/productQuestionSlice";
 
 export default function EditProduct() {
-  const { id } = useParams();
+  const { id } = useParams(); 
   const [fileList, setFileList] = useState([]);
   const [form] = Form.useForm();
   const [productQuestionEdit] = useProductQuestionEditMutation();

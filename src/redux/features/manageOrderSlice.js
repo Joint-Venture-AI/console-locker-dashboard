@@ -3,12 +3,18 @@ import baseApi from "../api/baseApi";
 export const manageOrderApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     allManageOrders: builder.query({
-      query: () => ({
-        url: "/admin/order",
-        method: "GET",
-      }),
+      query: ({page,limit}) => {
+        const queryParams = new URLSearchParams();
+        if(page) queryParams.append('page', page);
+        if(limit) queryParams.append('limit', limit);
+        return {
+          url: `/admin/order?${queryParams.toString()}`,
+          method: "GET"
+        };
+      },
       providesTags: ["Orders"],
     }),
+
 
     orderDetails: builder.query({
       query: ({ orderId }) => ({
