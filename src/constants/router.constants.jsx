@@ -27,11 +27,11 @@ import Transaction from "../pages/Main/DriverRequest/Transaction";
 import Orders from "../pages/Main/Orders/Orders";
 import AddProducts from "../pages/Main/AddProducts/AddProducts";
 import {
-  CalendarArrowDown,
-  CreditCard,
-  Newspaper,
-  ShoppingBag,
-  TableCellsSplit,
+	CalendarArrowDown,
+	CreditCard,
+	Newspaper,
+	ShoppingBag,
+	TableCellsSplit,
 } from "lucide-react";
 import ProductQuesation from "../pages/Main/ProductQuesation/ProductQuesation";
 import ProductForm from "../pages/Main/ProductForm/ProductForm";
@@ -42,169 +42,170 @@ import Review from "../pages/Main/Reiview/Review";
 import AddReview from "../pages/Main/Reiview/AddReview";
 
 export const dashboardItems = [
-  {
-    name: "Dashboard",
-    path: "/",
-    icon: RiDashboardHorizontalFill,
-    element: <DashboardHome />,
-  },
-  {
-    name: "Products",
-    path: "products",
-    icon: TableCellsSplit,
-    element: <Products />,
-  },
-  {
-    name: "Product Question",
-    path: "productQuestion",
-    icon: TableCellsSplit,
-    element: <ProductQuesation />,
-  },
-  {
-    path: "productForm",
-    element: <ProductForm />,
-  },
-  {
-    path: "editProducts/:id",
-    element: <EditProduct />,
-    loader: ({ params }) => fetch(`${import.meta.env.VITE_IMAGE_API}/admin/question/buy/${params.id}`),
-  },
-  {
-    path: "addEditProducts/:id",
-    element: <AddProductEdit />,
-    loader: ({ params }) =>fetch(`${import.meta.env.VITE_IMAGE_API}/admin/product/${params.id}`),
-  },
-  {
+	{
+		name: "Dashboard",
+		path: "/",
+		icon: RiDashboardHorizontalFill,
+		element: <DashboardHome />,
+	},
+	{
+		name: "Products",
+		path: "products",
+		icon: TableCellsSplit,
+		element: <Products />,
+	},
+	{
+		name: "Product Question",
+		path: "productQuestion",
+		icon: TableCellsSplit,
+		element: <ProductQuesation />,
+	},
+	{
+		path: "productForm",
+		element: <ProductForm />,
+	},
+	{
+		path: "editProducts/:id",
+		element: <EditProduct />,
+		loader: ({ params }) =>
+			fetch(`${import.meta.env.VITE_IMAGE_API}/admin/question/buy/${params.id}`),
+	},
+	{
+		path: "addEditProducts/:name",
+		element: <AddProductEdit />,
+		loader: ({ params }) =>
+			fetch(`${import.meta.env.VITE_IMAGE_API}/products/name/${params.name}`),
+	},
+	{
+		path: "review/:name",
+		element: <Review />,
+		loader: ({ params }) => fetch(`${import.meta.env.VITE_IMAGE_API}/reviews/${params.name}`),
+	},
+	{
+		path: "addreview/:name",
+		element: <AddReview />,
+		loader: ({ params }) =>
+			fetch(`${import.meta.env.VITE_IMAGE_API}/admin/reviews/create/${params.name}`),
+	},
+	{
+		path: "addProducts",
+		element: <AddProducts />,
+	},
 
-    path: "review/:name",
-    element: <Review />,
-    loader: ({ params }) =>fetch(`${import.meta.env.VITE_IMAGE_API}/reviews/${params.name}`),
-  },
-  {
+	{
+		path: "notifications",
+		element: <Notifications />,
+	},
 
-    path: "addreview/:name",
-    element: <AddReview />,
-    loader: ({ params }) =>fetch(`${import.meta.env.VITE_IMAGE_API}/admin/reviews/create/${params.name}`),
-  },
-  {
-    path: "addProducts",
-    element: <AddProducts />,
-  },
+	{
+		name: "Buy Products",
+		path: "buyProducts",
+		icon: ShoppingBag,
+		element: <BuyProducts />,
+	},
+	{
+		name: "Blog",
+		path: "blog",
+		icon: Newspaper,
+		element: <Blogs />,
+	},
 
-  {
-    path: "notifications",
-    element: <Notifications />,
-  },
-
-  {
-    name: "Buy Products",
-    path: "buyProducts",
-    icon: ShoppingBag,
-    element: <BuyProducts />,
-  },
-  {
-    name: "Blog",
-    path: "blog",
-    icon: Newspaper,
-    element: <Blogs />,
-  },
-
-  {
-    // name: "Review",
-    path: "review",
-    icon: MdReviews,
-    // element: <Review />,
-  },
-  {
-    path: "blogsDetails/:id",
-    element: <BlogsDetails />,
-    loader: ({ params }) => fetch(`${import.meta.env.VITE_IMAGE_API}/blogs/${params.id}`),
-  },
-  {
-    path: "/addBlog",
-    element: <BlogAdd />,
-  },
-  {
-    name: "Transaction History",
-    path: "transaction",
-    icon: CreditCard,
-    element: <Transaction />,
-  },
-  {
-    name: "Manage Orders",
-    path: "orders",
-    icon: CalendarArrowDown,
-    element: <Orders />,
-  },
-  {
-    name: "Setting",
-    path: "settings",
-    icon: IoSettingsOutline,
-    element: <Setting />,
-  },
-  {
-    path: "/hosts/:id",
-    element: <HostDetails />,
-  },
-  {
-    name: "Settings",
-    rootPath: "settings",
-    icon: CiSettings,
-    children: [
-      {
-        name: "Personal Information",
-        path: "settings/profile",
-        icon: CiUser,
-        element: <MyProfile />,
-      },
-      {
-        path: "settings/profile/edit",
-        element: <EditMyProfile />,
-      },
-      {
-        name: "Change Password",
-        icon: FaServicestack,
-        path: "settings/change-password",
-        element: <ChangePassword />,
-      },
-      {
-        path: "settings/change-password/forgot-password",
-        element: <ForgotPassword />,
-      },
-      {
-        path: "settings/change-password/forgot-password/verify-email",
-        element: <VerifyEmail />,
-      },
-      {
-        name: "Terms & Condition",
-        icon: FaServicestack,
-        path: "settings/terms-conditions",
-        element: <TermsConditions />,
-      },
-      {
-        path: "settings/terms-conditions/edit",
-        element: <EditTermsConditions />,
-      },
-      {
-        name: "Privacy Policy",
-        icon: MdOutlineSecurityUpdateWarning,
-        path: "settings/privacy-policy",
-        element: <PrivacyPolicy />,
-      },
-      {
-        path: "settings/privacy-policy/edit",
-        element: <EditPrivacyPolicy />,
-      },
-      {
-        name: "Trust & Safety",
-        icon: BiMessageSquareDetail,
-        path: "settings/trust-safety",
-        element: <Trust />,
-      },
-      {
-        path: "settings/trust-safety/edit",
-        element: <EditTrust />,
-      },
-    ],
-  },
+	{
+		// name: "Review",
+		path: "review",
+		icon: MdReviews,
+		// element: <Review />,
+	},
+	{
+		path: "blogsDetails/:id",
+		element: <BlogsDetails />,
+		loader: ({ params }) => fetch(`${import.meta.env.VITE_IMAGE_API}/blogs/${params.id}`),
+	},
+	{
+		path: "/addBlog",
+		element: <BlogAdd />,
+	},
+	{
+		name: "Transaction History",
+		path: "transaction",
+		icon: CreditCard,
+		element: <Transaction />,
+	},
+	{
+		name: "Manage Orders",
+		path: "orders",
+		icon: CalendarArrowDown,
+		element: <Orders />,
+	},
+	{
+		name: "Setting",
+		path: "settings",
+		icon: IoSettingsOutline,
+		element: <Setting />,
+	},
+	{
+		path: "/hosts/:id",
+		element: <HostDetails />,
+	},
+	{
+		name: "Settings",
+		rootPath: "settings",
+		icon: CiSettings,
+		children: [
+			{
+				name: "Personal Information",
+				path: "settings/profile",
+				icon: CiUser,
+				element: <MyProfile />,
+			},
+			{
+				path: "settings/profile/edit",
+				element: <EditMyProfile />,
+			},
+			{
+				name: "Change Password",
+				icon: FaServicestack,
+				path: "settings/change-password",
+				element: <ChangePassword />,
+			},
+			{
+				path: "settings/change-password/forgot-password",
+				element: <ForgotPassword />,
+			},
+			{
+				path: "settings/change-password/forgot-password/verify-email",
+				element: <VerifyEmail />,
+			},
+			{
+				name: "Terms & Condition",
+				icon: FaServicestack,
+				path: "settings/terms-conditions",
+				element: <TermsConditions />,
+			},
+			{
+				path: "settings/terms-conditions/edit",
+				element: <EditTermsConditions />,
+			},
+			{
+				name: "Privacy Policy",
+				icon: MdOutlineSecurityUpdateWarning,
+				path: "settings/privacy-policy",
+				element: <PrivacyPolicy />,
+			},
+			{
+				path: "settings/privacy-policy/edit",
+				element: <EditPrivacyPolicy />,
+			},
+			{
+				name: "Trust & Safety",
+				icon: BiMessageSquareDetail,
+				path: "settings/trust-safety",
+				element: <Trust />,
+			},
+			{
+				path: "settings/trust-safety/edit",
+				element: <EditTrust />,
+			},
+		],
+	},
 ];
