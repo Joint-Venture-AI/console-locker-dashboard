@@ -29,6 +29,14 @@ export const productsApi = baseApi.injectEndpoints({
 			invalidatesTags: ["Products"],
 		}),
 
+		deleteProductByName: builder.mutation({
+			query: (name) => ({
+				url: `/admin/product/delete/${name}`,
+				method: "DELETE",
+			}),
+			invalidatesTags: ["Products"],
+		}),
+
 		addProduct: builder.mutation({
 			query: ({ product, ref_product }) => ({
 				url: ref_product
@@ -114,4 +122,5 @@ export const {
 	useProductByNameQuery,
 	useProductInfoQuery,
 	useUpdateProductInfoMutation,
+	useDeleteProductByNameMutation,
 } = productsApi;

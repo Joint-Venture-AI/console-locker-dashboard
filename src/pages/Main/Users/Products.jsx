@@ -5,7 +5,7 @@ import { Button } from "antd";
 import Swal from "sweetalert2";
 import {
 	useAllProductGetQuery,
-	useDeleteProductMutation,
+	useDeleteProductByNameMutation,
 } from "../../../redux/features/productsSlice";
 
 export default function ProductPage() {
@@ -20,7 +20,7 @@ export default function ProductPage() {
 	});
 
 	console.log(data?.data.products);
-	const [deleteProduct] = useDeleteProductMutation();
+	const [deleteProduct] = useDeleteProductByNameMutation();
 	const [view] = useState("grid");
 	const [page, setPage] = useState(1);
 	const [openMenu, setOpenMenu] = useState(null);
@@ -36,7 +36,7 @@ export default function ProductPage() {
 	// Pagination Logic
 	const paginatedProducts = products.slice((page - 1) * itemsPerPage, page * itemsPerPage);
 
-	const handleDeleteProduct = async (productId) => {
+	const handleDeleteProduct = async (productName) => {
 		try {
 			const result = await Swal.fire({
 				title: "Are you sure?",
@@ -50,7 +50,7 @@ export default function ProductPage() {
 
 			if (result.isConfirmed) {
 				// Call the deleteProduct mutation
-				await deleteProduct(productId).unwrap();
+				await deleteProduct(productName).unwrap();
 
 				// Show success message
 				Swal.fire({
@@ -171,7 +171,7 @@ export default function ProductPage() {
 														)}
 														<button
 															onClick={() =>
-																handleDeleteProduct(product._id)
+																handleDeleteProduct(product?.name)
 															}
 															className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100 text-red-500"
 														>

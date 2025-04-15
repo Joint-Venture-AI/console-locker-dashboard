@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const baseApi = createApi({
 	reducerPath: "api",
 	baseQuery: fetchBaseQuery({
-		baseUrl: "http://192.168.10.132:3000/api/v1", // Replace with your backend URL
+		baseUrl: import.meta.env.VITE_IMAGE_API,
 		prepareHeaders: (headers) => {
 			const token = localStorage.getItem("accessToken");
 
