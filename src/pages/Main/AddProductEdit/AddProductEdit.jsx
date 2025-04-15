@@ -5,15 +5,18 @@ import { UploadOutlined } from "@ant-design/icons";
 import { ArrowLeft } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
+	useDeleteProductMutation,
 	useEditProductMutation,
 	useProductByNameQuery,
 } from "../../../redux/features/productsSlice";
+import Swal from "sweetalert2";
 
 const { TextArea } = Input;
 
-const AddProductEditComponent = ({ product }) => {
+const AddProductEditComponent = ({ product, refetch }) => {
 	const navigate = useNavigate();
 	const [editProduct] = useEditProductMutation();
+	const [deleteProduct] = useDeleteProductMutation();
 
 	const IMAGE = import.meta.env.VITE_IMAGE_API;
 
@@ -104,6 +107,44 @@ const AddProductEditComponent = ({ product }) => {
 		} catch (error) {
 			message.error("Failed to update product");
 			console.error("Error updating product:", error);
+		}
+	};
+
+	const handleDeleteProduct = async (productId) => {
+		try {
+			const result = await Swal.fire({
+				title: "Are you sure?",
+				text: "You won't be able to revert this!",
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Yes, delete it!",
+			});
+
+			if (result.isConfirmed) {
+				// Call the deleteProduct mutation
+				await deleteProduct(productId).unwrap();
+
+				// Show success message
+				Swal.fire({
+					title: "Deleted!",
+					text: "Your product has been deleted.",
+					icon: "success",
+				});
+				await refetch();
+
+				// Optionally, you can refetch the products list here if needed
+				// refetch();
+			}
+		} catch (error) {
+			// Handle error
+			Swal.fire({
+				title: "Error!",
+				text: "An error occurred while deleting the product.",
+				icon: "error",
+			});
+			console.error("Error deleting product:", error);
 		}
 	};
 
@@ -327,6 +368,13 @@ const AddProductEditComponent = ({ product }) => {
 						>
 							Save Product
 						</Button>
+						<Button
+							type="error"
+							onClick={() => handleDeleteProduct(product._id)}
+							className="bg-rose-500 text-white py-3"
+						>
+							Delete
+						</Button>
 					</div>
 				</div>
 			</div>
@@ -336,19 +384,19 @@ const AddProductEditComponent = ({ product }) => {
 
 const AddProductEdit = () => {
 	const [products, setProducts] = useState([]);
+	const navigate = useNavigate();
 
 	const { name } = useParams();
-	const { data } = useProductByNameQuery({
+	const { data, refetch } = useProductByNameQuery({
 		name,
 	});
 
 	useEffect(() => {
 		if (data) {
-			console.log(data?.data);
-
-			setProducts(data?.data);
+			if (data?.data?.length === 0) navigate("/products");
+			else setProducts(data?.data);
 		}
-	}, [data]);
+	}, [data, navigate]);
 
 	return (
 		<div className="flex flex-col gap-10">
@@ -356,6 +404,7 @@ const AddProductEdit = () => {
 				<AddProductEditComponent
 					key={product?._id}
 					product={product}
+					refetch={refetch}
 				/>
 			))}
 		</div>
