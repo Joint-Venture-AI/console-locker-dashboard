@@ -84,6 +84,23 @@ export const productsApi = baseApi.injectEndpoints({
 			}),
 			invalidatesTags: ["Products"],
 		}),
+
+		productInfo: builder.query({
+			query: () => ({
+				url: "/config-attr",
+				method: "GET",
+			}),
+			providesTags: ["Product-info"],
+		}),
+
+		updateProductInfo: builder.mutation({
+			query: (info) => ({
+				url: "/admin/config-attr/set",
+				method: "POST",
+				body: info,
+			}),
+			invalidatesTags: ["Product-info"],
+		}),
 	}),
 });
 
@@ -95,4 +112,6 @@ export const {
 	useSingleProductGetQuery,
 	useEditProductMutation,
 	useProductByNameQuery,
+	useProductInfoQuery,
+	useUpdateProductInfoMutation,
 } = productsApi;
