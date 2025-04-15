@@ -86,6 +86,7 @@ const AddProductEditComponent = ({ product }) => {
 			productData.append("memory", formData.memory);
 			productData.append("quantity", Number(formData.quantity));
 			productData.append("product_type", formData.product_type.trim());
+			productData.append("slug", formData.slug.trim());
 			image && productData.append("images", image);
 
 			console.log("Submitting Form Data:", Object.fromEntries(productData));
@@ -303,6 +304,17 @@ const AddProductEditComponent = ({ product }) => {
 							]}
 							onChange={(value) => handleSelectChange("product_type", value)}
 							className="w-full h-10" // Fixed width and height
+						/>
+					</div>
+
+					<div className="mt-6">
+						<label className="block text-sm font-medium mb-1">Slug</label>
+						<Input
+							name="slug"
+							placeholder="Slug"
+							value={formData.slug}
+							onChange={handleInputChange}
+							className="w-full h-10"
 						/>
 					</div>
 
