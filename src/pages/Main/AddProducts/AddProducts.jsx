@@ -557,271 +557,297 @@ import { useAddProductMutation } from "../../../redux/features/productsSlice";
 const { TextArea } = Input;
 
 const AddProducts = () => {
-  const location = useLocation();
+	const location = useLocation();
 
-  const queryParams = new URLSearchParams(location.search);
+	const queryParams = new URLSearchParams(location.search);
 
-  const ref_product = queryParams.get("product");
+	const ref_product = queryParams.get("product");
 
-  const navigate = useNavigate();
-  const [addProduct] = useAddProductMutation();
-  const [image, setImage] = useState(null);
-  const [productTypeColor, setProductTypeColor] = useState("");
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    price: "",
-    offer_price: "",
-    brand: "",
-    model: "",
-    condition: "",
-    controller: "",
-    memory: "",
-    quantity: "",
-    product_type: "",
-  });
+	const navigate = useNavigate();
+	const [addProduct] = useAddProductMutation();
+	const [image, setImage] = useState(null);
+	const [productTypeColor, setProductTypeColor] = useState("");
+	const [formData, setFormData] = useState({
+		name: "",
+		description: "",
+		price: "",
+		offer_price: "",
+		brand: "",
+		model: "",
+		condition: "",
+		controller: "",
+		memory: "",
+		quantity: "",
+		product_type: "",
+		modelDes: "",
+		conditionDes: "",
+		controllerDes: "",
+		memoryDes: "",
+	});
 
-  const handleUpload = ({ file }) => {
-    setImage(file);
-  };
+	const handleUpload = ({ file }) => {
+		setImage(file);
+	};
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+	const handleInputChange = (e) => {
+		const { name, value } = e.target;
+		setFormData({ ...formData, [name]: value });
+	};
 
-  const handleSelectChange = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-    if (name === "product_type") {
-      setProductTypeColor(value);
-    }
-  };
+	const handleSelectChange = (name, value) => {
+		setFormData({ ...formData, [name]: value });
+		if (name === "product_type") {
+			setProductTypeColor(value);
+		}
+	};
 
-  const handleSave = async () => {
-    try {
-      // Validate required fields
-      if (!formData.product_type.trim()) {
-        message.error("Product type is required");
-        return;
-      }
+	const handleSave = async () => {
+		try {
+			// Validate required fields
+			if (!formData.product_type.trim()) {
+				message.error("Product type is required");
+				return;
+			}
 
-      if (!formData.price || isNaN(Number(formData.price))) {
-        message.error("Price must be a valid number");
-        return;
-      }
+			if (!formData.price || isNaN(Number(formData.price))) {
+				message.error("Price must be a valid number");
+				return;
+			}
 
-      if (!formData.offer_price || isNaN(Number(formData.offer_price))) {
-        message.error("Offer price must be a valid number");
-        return;
-      }
+			if (!formData.offer_price || isNaN(Number(formData.offer_price))) {
+				message.error("Offer price must be a valid number");
+				return;
+			}
 
-      if (!formData.controller || isNaN(Number(formData.controller))) {
-        message.error("Controller must be a valid number");
-        return;
-      }
+			if (!formData.controller || isNaN(Number(formData.controller))) {
+				message.error("Controller must be a valid number");
+				return;
+			}
 
-      if (!formData.quantity || isNaN(Number(formData.quantity))) {
-        message.error("Quantity must be a valid number");
-        return;
-      }
+			if (!formData.quantity || isNaN(Number(formData.quantity))) {
+				message.error("Quantity must be a valid number");
+				return;
+			}
 
-      if (!image) {
-        message.error("An image is required");
-        return;
-      }
+			if (!image) {
+				message.error("An image is required");
+				return;
+			}
 
-      const productData = new FormData();
-      productData.append("name", formData.name);
-      productData.append("description", formData.description);
-      productData.append("price", Number(formData.price));
-      productData.append("offer_price", Number(formData.offer_price));
-      productData.append("brand", formData.brand);
-      productData.append("model", formData.model);
-      productData.append("condition", formData.condition);
-      productData.append("controller", Number(formData.controller));
-      productData.append("memory", formData.memory);
-      productData.append("quantity", Number(formData.quantity));
-      productData.append("product_type", formData.product_type.trim());
-      productData.append("images", image);
+			const productData = new FormData();
+			productData.append("name", formData.name);
+			productData.append("description", formData.description);
+			productData.append("price", Number(formData.price));
+			productData.append("offer_price", Number(formData.offer_price));
+			productData.append("brand", formData.brand);
+			productData.append("model", formData.model);
+			productData.append("condition", formData.condition);
+			productData.append("controller", Number(formData.controller));
+			productData.append("memory", formData.memory);
+			productData.append("quantity", Number(formData.quantity));
+			productData.append("product_type", formData.product_type.trim());
+			productData.append("images", image);
 
-      console.log("Submitting Form Data:", Object.fromEntries(productData));
+			productData.append("modelDes", formData.modelDes);
+			productData.append("conditionDes", formData.conditionDes);
+			productData.append("controllerDes", formData.controllerDes);
+			productData.append("memoryDes", formData.memoryDes);
 
-      const response = await addProduct({product: productData,ref_product}).unwrap();
+			console.log("Submitting Form Data:", Object.fromEntries(productData));
 
-      navigate("/products"); // Redirect to product detail page after successful creation
+			const response = await addProduct({ product: productData, ref_product }).unwrap();
 
-      message.success(response.message);
-      console.log("Product created successfully:", response.data);
-    } catch (error) {
-      message.error("Failed to create product");
-      console.error("Error creating product:", error);
-    }
-  };
+			navigate("/products"); // Redirect to product detail page after successful creation
 
-  const getBackgroundColor = () => {
-    switch (productTypeColor) {
-      case "xbox":
-        return "bg-[#63B95D]";
-      case "playstation":
-        return "bg-[#1761BF]";
-      case "nintendo":
-        return "bg-[#F34040]";
-      default:
-        return "bg-white";
-    }
-  };
+			message.success(response.message);
+			console.log("Product created successfully:", response.data);
+		} catch (error) {
+			message.error("Failed to create product");
+			console.error("Error creating product:", error);
+		}
+	};
 
-  return (
-    <div
-      className={`container mx-auto px-6 py-8 shadow-md rounded-md ${getBackgroundColor()}`}
-    >
-      {/* Header */}
-      <div className="flex justify-between items-center mb-6">
-        <div className="flex items-center gap-2">
-          <Link to={"/products"}>
-            <Button
-              type="link"
-              icon={<ArrowLeft />}
-              className="text-black text-lg"
-            />
-          </Link>
-          <h2 className="text-3xl font-semibold">Add Product</h2>
-        </div>
-      </div>
+	const getBackgroundColor = () => {
+		switch (productTypeColor) {
+			case "xbox":
+				return "bg-[#63B95D]";
+			case "playstation":
+				return "bg-[#1761BF]";
+			case "nintendo":
+				return "bg-[#F34040]";
+			default:
+				return "bg-white";
+		}
+	};
 
-      {/* Product Form */}
-      <div className="gap-6">
-        {/* Image Upload */}
-        <div className="flex gap-10">
-          <Upload
-            listType="picture-card"
-            maxCount={1}
-            beforeUpload={() => false}
-            onChange={handleUpload}
-          >
-            {!image && (
-              <div className="text-center">
-                <UploadOutlined className="text-2xl mb-2" />
-                <Typography.Text>Upload Image</Typography.Text>
-              </div>
-            )}
-          </Upload>
-        </div>
+	return (
+		<div className={`container mx-auto px-6 py-8 shadow-md rounded-md ${getBackgroundColor()}`}>
+			{/* Header */}
+			<div className='flex justify-between items-center mb-6'>
+				<div className='flex items-center gap-2'>
+					<Link to={"/products"}>
+						<Button
+							type='link'
+							icon={<ArrowLeft />}
+							className='text-black text-lg'
+						/>
+					</Link>
+					<h2 className='text-3xl font-semibold'>Add Product</h2>
+				</div>
+			</div>
 
-        {/* Form Inputs */}
-        <div className={`col-span-2 mt-10 border p-4 rounded-lg`}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <Input
-              name="name"
-              placeholder="Product Name"
-              onChange={handleInputChange}
-            />
-            <Input
-              name="brand"
-              placeholder="Brand"
-              onChange={handleInputChange}
-            />
-            <Input
-              name="model"
-              placeholder="Model Name"
-              onChange={handleInputChange}
-            />
-            <Select
-              placeholder="Condition"
-              options={[
-                { value: "New", label: "New" },
-                { value: "Used", label: "Used" },
-              ]}
-              onChange={(value) => handleSelectChange("condition", value)}
-            />
-            <Input
-              name="controller"
-              placeholder="Controller"
-              type="number"
-              onChange={handleInputChange}
-            />
-            <Select
-              placeholder="Memory"
-              options={[
-                // { value: "16GB", label: "16GB" },
-                // { value: "32GB", label: "32GB" },
-                // { value: "64GB", label: "64GB" },
-                { value: "4GB", label: "4GB" },
-                { value: "8GB", label: "8GB" },
-                { value: "16GB", label: "16GB" },
-                { value: "32GB", label: "32GB" },
-                { value: "64GB", label: "64GB" },
-                { value: "128GB", label: "128GB" },
-                { value: "256GB", label: "256GB" },
-                { value: "512GB", label: "512GB" },
-              ]}
-              onChange={(value) => handleSelectChange("memory", value)}
-            />
-          </div>
+			{/* Product Form */}
+			<div className='gap-6'>
+				{/* Image Upload */}
+				<div className='flex gap-10'>
+					<Upload
+						listType='picture-card'
+						maxCount={1}
+						beforeUpload={() => false}
+						onChange={handleUpload}>
+						{!image && (
+							<div className='text-center'>
+								<UploadOutlined className='text-2xl mb-2' />
+								<Typography.Text>Upload Image</Typography.Text>
+							</div>
+						)}
+					</Upload>
+				</div>
 
-          <TextArea
-            name="description"
-            className="mb-6"
-            rows={4}
-            placeholder="Product Description"
-            onChange={handleInputChange}
-          />
+				{/* Form Inputs */}
+				<div className={`col-span-2 mt-10 border p-4 rounded-lg`}>
+					<div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-6'>
+						<Input
+							name='name'
+							placeholder='Product Name'
+							onChange={handleInputChange}
+						/>
+						<Input
+							name='brand'
+							placeholder='Brand'
+							onChange={handleInputChange}
+						/>
+						<Input
+							name='model'
+							placeholder='Model Name'
+							onChange={handleInputChange}
+						/>
+						<Select
+							placeholder='Condition'
+							options={[
+								{ value: "New", label: "New" },
+								{ value: "Used", label: "Used" },
+							]}
+							onChange={(value) => handleSelectChange("condition", value)}
+						/>
+						<Input
+							name='controller'
+							placeholder='Controller'
+							type='number'
+							onChange={handleInputChange}
+						/>
+						<Select
+							placeholder='Memory'
+							options={[
+								// { value: "16GB", label: "16GB" },
+								// { value: "32GB", label: "32GB" },
+								// { value: "64GB", label: "64GB" },
+								{ value: "4GB", label: "4GB" },
+								{ value: "8GB", label: "8GB" },
+								{ value: "16GB", label: "16GB" },
+								{ value: "32GB", label: "32GB" },
+								{ value: "64GB", label: "64GB" },
+								{ value: "128GB", label: "128GB" },
+								{ value: "256GB", label: "256GB" },
+								{ value: "512GB", label: "512GB" },
+							]}
+							onChange={(value) => handleSelectChange("memory", value)}
+						/>
+					</div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <Input
-              name="price"
-              placeholder="Regular Price ($)"
-              type="number"
-              onChange={handleInputChange}
-            />
-            <Input
-              name="offer_price"
-              placeholder="Offer Price ($)"
-              type="number"
-              onChange={handleInputChange}
-            />
-            <Input
-              name="quantity"
-              placeholder="Available Products"
-              type="number"
-              onChange={handleInputChange}
-            />
-          </div>
+					<TextArea
+						name='description'
+						className='mb-6'
+						rows={4}
+						placeholder='Product Description'
+						onChange={handleInputChange}
+					/>
 
-          <div>
-            <label className="block text-sm font-medium mb-1">
-              Product Type
-            </label>
-            <Select
-              placeholder="Product Type"
-              value={formData.product_type}
-              options={[
-                { value: "xbox", label: "Xbox" },
-                { value: "playstation", label: "PlayStation" },
-                { value: "nintendo", label: "Nintendo" },
-              ]}
-              onChange={(value) => handleSelectChange("product_type", value)}
-              className="w-full h-10" // Fixed width and height
-            />
-          </div>
+					<div className='grid grid-cols-1 md:grid-cols-3 gap-4 mb-6'>
+						<Input
+							name='price'
+							placeholder='Regular Price ($)'
+							type='number'
+							onChange={handleInputChange}
+						/>
+						<Input
+							name='offer_price'
+							placeholder='Offer Price ($)'
+							type='number'
+							onChange={handleInputChange}
+						/>
+						<Input
+							name='quantity'
+							placeholder='Available Products'
+							type='number'
+							onChange={handleInputChange}
+						/>
+					</div>
 
-          {/* Action Buttons */}
-          <div className="flex justify-end gap-4 mt-6">
-            {/* <Button onClick={handleAddVariant} className="border border-black text-black hover:bg-gray-100">
+					<div>
+						<label className='block text-sm font-medium mb-1'>Product Type</label>
+						<Select
+							placeholder='Product Type'
+							value={formData.product_type}
+							options={[
+								{ value: "xbox", label: "Xbox" },
+								{ value: "playstation", label: "PlayStation" },
+								{ value: "nintendo", label: "Nintendo" },
+							]}
+							onChange={(value) => handleSelectChange("product_type", value)}
+							className='w-full h-10' // Fixed width and height
+						/>
+					</div>
+
+					<div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 my-4'>
+						<Input
+							name='modelDes'
+							placeholder='Model placeholder description'
+							onChange={handleInputChange}
+						/>
+						<Input
+							name='controllerDes'
+							placeholder='Controller placeholder description'
+							onChange={handleInputChange}
+						/>
+						<Input
+							name='memoryDes'
+							placeholder='Memory placeholder description'
+							onChange={handleInputChange}
+						/>
+						<Input
+							name='conditionDes'
+							placeholder='Condition placeholder description'
+							onChange={handleInputChange}
+						/>
+					</div>
+
+					{/* Action Buttons */}
+					<div className='flex justify-end gap-4 mt-6'>
+						{/* <Button onClick={handleAddVariant} className="border border-black text-black hover:bg-gray-100">
               Add Variant
             </Button> */}
-            <Button
-              type="primary"
-              onClick={handleSave}
-              className="bg-black text-white py-3"
-            >
-              Save Product
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+						<Button
+							type='primary'
+							onClick={handleSave}
+							className='bg-black text-white py-3'>
+							Save Product
+						</Button>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default AddProducts;
