@@ -40,7 +40,7 @@ import AddProductEdit from "../pages/Main/AddProductEdit/AddProductEdit";
 import BlogsDetails from "../pages/Main/Blog/BlogsDetails";
 import Review from "../pages/Main/Reiview/Review";
 import AddReview from "../pages/Main/Reiview/AddReview";
-import ProductInfo from "../pages/Main/ProductInfo/ProductInfo";
+// import ProductInfo from "../pages/Main/ProductInfo/ProductInfo";
 
 export const dashboardItems = [
 	{
@@ -55,12 +55,12 @@ export const dashboardItems = [
 		icon: TableCellsSplit,
 		element: <Products />,
 	},
-	{
-		name: "Product info",
-		path: "product-info",
-		icon: TableCellsSplit,
-		element: <ProductInfo />,
-	},
+	// {
+	// 	name: "Product info",
+	// 	path: "product-info",
+	// 	icon: TableCellsSplit,
+	// 	element: <ProductInfo />,
+	// },
 	{
 		name: "Product Question",
 		path: "productQuestion",
@@ -80,8 +80,7 @@ export const dashboardItems = [
 	{
 		path: "addEditProducts/:name",
 		element: <AddProductEdit />,
-		loader: ({ params }) =>
-			fetch(`${import.meta.env.VITE_IMAGE_API}/products/name/${params.name}`),
+		loader: ({ params }) => fetch(`${import.meta.env.VITE_IMAGE_API}/products/name/${params.name}`),
 	},
 	{
 		path: "review/:name",
