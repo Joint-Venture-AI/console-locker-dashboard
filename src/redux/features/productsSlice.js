@@ -39,8 +39,8 @@ export const productsApi = baseApi.injectEndpoints({
 		}),
 
 		editProduct: builder.mutation({
-			query: ({ id, formData }) => ({
-				url: `/admin/product/${id}/edit`,
+			query: ({ slug, formData }) => ({
+				url: `/admin/product/${slug}/edit`,
 				method: "PATCH",
 				body: formData,
 			}),

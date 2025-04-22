@@ -20,7 +20,7 @@ const AddProductEditComponent = ({ product, refetch }) => {
 	const IMAGE = import.meta.env.VITE_IMAGE_API;
 
 	const [image, setImage] = useState(null);
-	const [oldImage, setOldImage] = useState(true);
+	const [oldImage, setOldImage] = useState(product?.images?.length);
 	const [formData, setFormData] = useState(product);
 
 	const handleUpload = ({ file }) => {
@@ -30,7 +30,7 @@ const AddProductEditComponent = ({ product, refetch }) => {
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
-		setFormData({ ...formData, [name]: value });
+		setFormData({ ...formData, [name]: value ?? "" });
 	};
 
 	const handleSave = async () => {
@@ -51,8 +51,8 @@ const AddProductEditComponent = ({ product, refetch }) => {
 				return;
 			}
 
-			if (!formData.controller || isNaN(Number(formData.controller))) {
-				message.error("Controller must be a valid number");
+			if (!formData.controller.trim()) {
+				message.error("Controller is required");
 				return;
 			}
 
@@ -61,10 +61,10 @@ const AddProductEditComponent = ({ product, refetch }) => {
 				return;
 			}
 
-			// if (!image) {
-			//   message.error("An image is required");
-			//   return;
-			// }
+			if (!oldImage && !image) {
+				message.error("An image is required");
+				return;
+			}
 
 			// Create FormData object
 			const productData = new FormData();
@@ -91,7 +91,7 @@ const AddProductEditComponent = ({ product, refetch }) => {
 
 			// Call the editProduct mutation with id and formData
 			const response = await editProduct({
-				id: product._id, // Pass the product ID
+				slug: product.slug, // Pass the product ID
 				formData: productData, // Pass the FormData object
 			}).unwrap();
 
@@ -357,13 +357,15 @@ const AddProductEditComponent = ({ product, refetch }) => {
 						>
 							Save Product
 						</Button>
-						<Button
-							type="error"
-							onClick={() => handleDeleteProduct(product._id)}
-							className="bg-rose-500 text-white py-3"
-						>
-							Delete
-						</Button>
+						{product?._id && (
+							<Button
+								type="error"
+								onClick={() => handleDeleteProduct(product._id)}
+								className="bg-rose-500 text-white py-3"
+							>
+								Delete
+							</Button>
+						)}
 					</div>
 				</div>
 			</div>
@@ -411,6 +413,38 @@ const AddProductEdit = () => {
 					refetch={refetch}
 				/>
 			))}
+			<Button
+				type="primary"
+				disabled={!products.at(-1)?._id}
+				onClick={() => {
+					setProducts([
+						...products,
+						{
+							images: undefined,
+							name: products.at(-1)?.name,
+							description: "",
+							price: undefined,
+							offer_price: undefined,
+							brand: products.at(-1)?.brand,
+							model: "",
+							condition: "",
+							controller: "",
+							memory: "",
+							quantity: undefined,
+							isVariant: false,
+							product_type: products.at(-1)?.product_type,
+							slug: products.at(-1)?.slug + "-" + Date.now(),
+							modelDes: "",
+							conditionDes: "",
+							controllerDes: "",
+							memoryDes: "",
+						},
+					]);
+				}}
+				className="w-fit p-6"
+			>
+				Add Variant
+			</Button>
 		</div>
 	);
 };
