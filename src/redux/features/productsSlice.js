@@ -2,14 +2,6 @@ import baseApi from "../api/baseApi";
 
 export const productsApi = baseApi.injectEndpoints({
 	endpoints: (builder) => ({
-		// allProductGet: builder.query({
-		// query: () => ({
-		//     url: "/products",
-		//     method: "GET",
-		//   }),
-		//   providesTags: ["Products"],
-		// }),
-
 		allProductGet: builder.query({
 			query: ({ limit }) => {
 				let queryParams = new URLSearchParams();
@@ -20,7 +12,7 @@ export const productsApi = baseApi.injectEndpoints({
 			},
 			providesTags: ["Products"],
 		}),
-		// /admin/product/679b4adf5ba9ae72b0243019/delete
+
 		deleteProduct: builder.mutation({
 			query: (id) => ({
 				url: `/admin/product/${id}/delete`,
@@ -38,26 +30,13 @@ export const productsApi = baseApi.injectEndpoints({
 		}),
 
 		addProduct: builder.mutation({
-			query: ({ product, ref_product }) => ({
-				url: ref_product
-					? `/admin/product/${ref_product}/variant/create`
-					: "/admin/product/create",
+			query: ({ product }) => ({
+				url: "/admin/product/create",
 				method: "POST",
 				body: product,
 			}),
 			invalidatesTags: ["Products"],
 		}),
-
-		// /admin/product/679b4adf5ba9ae72b0243019/edit
-		// editProduct: builder.mutation({
-		//   query: (id) => ({
-		//     url: `/admin/product/${id}/edit`,
-		//     method: "PATCH",
-		//     // body: product,
-		//     formData:true,
-		//   }),
-		//   invalidatesTags: ["Products"],
-		// }),
 
 		editProduct: builder.mutation({
 			query: ({ id, formData }) => ({

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ArrowLeft, Info } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "antd";
 import Swal from "sweetalert2";
 import {
@@ -9,12 +9,6 @@ import {
 } from "../../../redux/features/productsSlice";
 
 export default function ProductPage() {
-	const location = useLocation();
-
-	const queryParams = new URLSearchParams(location.search);
-
-	const ref_product = queryParams.get("product");
-
 	const { data, isLoading, isError, refetch } = useAllProductGetQuery({
 		limit: 1000,
 	});
@@ -34,7 +28,10 @@ export default function ProductPage() {
 	console.log(IMAGE, "image api");
 
 	// Pagination Logic
-	const paginatedProducts = products.slice((page - 1) * itemsPerPage, page * itemsPerPage);
+	const paginatedProducts = products.slice(
+		(page - 1) * itemsPerPage,
+		page * itemsPerPage
+	);
 
 	const handleDeleteProduct = async (productName) => {
 		try {
@@ -93,7 +90,7 @@ export default function ProductPage() {
 				</div>
 
 				<Link
-					to={`/addProducts?product=${ref_product || ""}`}
+					to={`/addProducts`}
 					className="flex gap-2 items-center cursor-pointer"
 				>
 					<button className="bg-black px-6 py-3 rounded-lg font-normal text-white">
@@ -105,13 +102,17 @@ export default function ProductPage() {
 			{isLoading ? (
 				<p className="text-center text-lg">Loading products...</p>
 			) : isError ? (
-				<p className="text-center text-lg text-red-500">Error loading products.</p>
+				<p className="text-center text-lg text-red-500">
+					Error loading products.
+				</p>
 			) : (
 				<div className="flex flex-col lg:flex-row container mx-auto px-4 py-8">
 					<div className="w-full lg:ml-6">
 						<div
 							className={`grid ${
-								view === "grid" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" : ""
+								view === "grid"
+									? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+									: ""
 							} gap-6`}
 						>
 							{paginatedProducts.map((product) => (
@@ -150,11 +151,9 @@ export default function ProductPage() {
 												<Info className="cursor-pointer" />
 												{openMenu === product._id && (
 													<div className="absolute right-0 top-6 bg-white shadow-lg rounded-md py-2 w-32 z-10">
-														<Link
-															to={`/addEditProducts/${product?.name}`}
-														>
+														<Link to={`/addEditProducts/${product?.name}`}>
 															<button className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100">
-																Edit
+																Variant
 															</button>
 														</Link>
 														<Link to={`/review/${product?.name}`}>
@@ -162,17 +161,8 @@ export default function ProductPage() {
 																Review
 															</button>
 														</Link>
-														{!ref_product && !product?.isVariant && (
-															<Link to={`?product=${product?._id}`}>
-																<button className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100">
-																	Variant
-																</button>
-															</Link>
-														)}
 														<button
-															onClick={() =>
-																handleDeleteProduct(product?.name)
-															}
+															onClick={() => handleDeleteProduct(product?.name)}
 															className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100 text-red-500"
 														>
 															Delete
@@ -189,9 +179,7 @@ export default function ProductPage() {
 												</span>
 											</div>
 											{product.offer_price && (
-												<span className="line-through">
-													${product.price}
-												</span>
+												<span className="line-through">${product.price}</span>
 											)}
 										</div>
 									</div>

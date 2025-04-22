@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
-import { Input, Select, Button, Upload, Typography, message } from "antd";
+import { Input, Button, Upload, Typography, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { ArrowLeft } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -23,8 +23,6 @@ const AddProductEditComponent = ({ product, refetch }) => {
 	const [oldImage, setOldImage] = useState(true);
 	const [formData, setFormData] = useState(product);
 
-	const [productTypeColor, setProductTypeColor] = useState(product?.product_type);
-
 	const handleUpload = ({ file }) => {
 		setImage(file);
 		setOldImage(false);
@@ -33,13 +31,6 @@ const AddProductEditComponent = ({ product, refetch }) => {
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
-	};
-
-	const handleSelectChange = (name, value) => {
-		setFormData({ ...formData, [name]: value });
-		if (name === "product_type") {
-			setProductTypeColor(value);
-		}
 	};
 
 	const handleSave = async () => {
@@ -153,7 +144,7 @@ const AddProductEditComponent = ({ product, refetch }) => {
 	};
 
 	const getBackgroundColor = () => {
-		switch (productTypeColor) {
+		switch (product?.product_type) {
 			case "xbox":
 				return "bg-[#63B95D]";
 			case "playstation":
@@ -166,245 +157,211 @@ const AddProductEditComponent = ({ product, refetch }) => {
 	};
 
 	return (
-		<div className='container mx-auto px-6 py-8 bg-white shadow-md rounded-md'>
-			{/* Header */}
-			<div className='flex justify-between items-center mb-6'>
-				<div className='flex items-center gap-2'>
-					<Link to={"/products"}>
-						<Button
-							type='link'
-							icon={<ArrowLeft />}
-							className='text-black text-lg'
-						/>
-					</Link>
-					<h2 className='text-3xl font-semibold'>Edit Product</h2>
-				</div>
-			</div>
-
-			{/* Product Form */}
-			<div className='gap-6'>
-				{/* Image Upload */}
-				<div className='flex gap-10'>
-					<Upload
-						listType='picture-card'
-						maxCount={1}
-						beforeUpload={() => false}
-						onChange={handleUpload}>
-						{oldImage ? (
-							<img src={IMAGE + product?.images?.[0]} />
-						) : (
-							!image && (
-								<div className='text-center'>
-									<UploadOutlined className='text-2xl mb-2' />
-									<Typography.Text>Upload Image</Typography.Text>
-								</div>
-							)
-						)}
-					</Upload>
-				</div>
-
-				{/* Form Inputs */}
-				<div className={`col-span-2 mt-10 border p-4 rounded-lg ${getBackgroundColor()}`}>
-					<div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-6'>
-						<div>
-							<label className='block text-sm font-medium mb-1'>Product Name</label>
-							<Input
-								name='name'
-								placeholder='Product Name'
-								value={formData.name}
-								onChange={handleInputChange}
-								className='w-full h-10' // Fixed width and height
-							/>
-						</div>
-						<div>
-							<label className='block text-sm font-medium mb-1'>Brand</label>
-							<Input
-								name='brand'
-								placeholder='Brand'
-								value={formData.brand}
-								onChange={handleInputChange}
-								className='w-full h-10' // Fixed width and height
-							/>
-						</div>
-						<div>
-							<label className='block text-sm font-medium mb-1'>Model Name</label>
-							<Input
-								name='model'
-								placeholder='Model Name'
-								value={formData.model}
-								onChange={handleInputChange}
-								className='w-full h-10' // Fixed width and height
-							/>
-						</div>
-						<div>
-							<label className='block text-sm font-medium mb-1'>Condition</label>
-							<Select
-								placeholder='Condition'
-								value={formData.condition}
-								options={[
-									{ value: "New", label: "New" },
-									{ value: "Used", label: "Used" },
-								]}
-								onChange={(value) => handleSelectChange("condition", value)}
-								className='w-full h-10' // Fixed width and height
-							/>
-						</div>
-						<div>
-							<label className='block text-sm font-medium mb-1'>Controller</label>
-							<Input
-								name='controller'
-								placeholder='Controller'
-								type='number'
-								value={formData.controller}
-								onChange={handleInputChange}
-								className='w-full h-10' // Fixed width and height
-							/>
-						</div>
-						<div>
-							<label className='block text-sm font-medium mb-1'>Memory</label>
-							<Select
-								placeholder='Memory'
-								value={formData.memory}
-								options={[
-									{ value: "8GB", label: "8GB" },
-									{ value: "16GB", label: "16GB" },
-									{ value: "32GB", label: "32GB" },
-									{ value: "64GB", label: "64GB" },
-									{ value: "128GB", label: "128GB" },
-									{ value: "256GB", label: "256GB" },
-									{ value: "512GB", label: "512GB" },
-								]}
-								onChange={(value) => handleSelectChange("memory", value)}
-								className='w-full h-10' // Fixed width and height
-							/>
-						</div>
+		<div
+			className={`container mx-auto p-6 my-0 ${getBackgroundColor()} shadow-md rounded-md`}
+		>
+			<div className="gap-6">
+				<div className="flex gap-4 mb-4">
+					<div className="flex gap-10 h-fit bg-white rounded-lg p-2">
+						<Upload
+							listType="picture-card"
+							maxCount={1}
+							beforeUpload={() => false}
+							onChange={handleUpload}
+						>
+							{oldImage ? (
+								<img src={IMAGE + product?.images?.[0]} />
+							) : (
+								!image && (
+									<div className="text-center">
+										<UploadOutlined className="text-2xl mb-2" />
+										<Typography.Text>Upload Image</Typography.Text>
+									</div>
+								)
+							)}
+						</Upload>
 					</div>
-
-					<div>
-						<label className='block text-sm font-medium mb-1'>Product Description</label>
+					<div className="flex-grow">
+						<label className="block text-lg font-medium -mt-1 mb-1">
+							Description
+						</label>
 						<TextArea
-							name='description'
-							className='w-full h-24 mb-6' // Fixed width and height
-							rows={4}
-							placeholder='Product Description'
+							name="description"
+							className="w-full"
+							rows={8}
+							placeholder="Product Description"
 							value={formData.description}
 							onChange={handleInputChange}
 						/>
 					</div>
+				</div>
 
-					<div className='grid grid-cols-1 md:grid-cols-3 gap-4 mb-6'>
+				{/* Form Inputs */}
+				<div className={`col-span-2 border p-4 rounded-lg`}>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
 						<div>
-							<label className='block text-sm font-medium mb-1'>Regular Price ($)</label>
+							<label className="block text-sm font-medium mb-1">
+								Model Name
+							</label>
 							<Input
-								name='price'
-								placeholder='Regular Price ($)'
-								type='number'
+								name="model"
+								placeholder="Model Name"
+								value={formData.model}
+								onChange={handleInputChange}
+								className="w-full h-10"
+							/>
+						</div>
+						<div>
+							<label className="block text-sm font-medium mb-1">
+								Condition
+							</label>
+							<Input
+								name="condition"
+								placeholder="Condition"
+								type="text"
+								value={formData.condition}
+								onChange={handleInputChange}
+								className="w-full h-10"
+							/>
+						</div>
+						<div>
+							<label className="block text-sm font-medium mb-1">
+								Controller
+							</label>
+							<Input
+								name="controller"
+								placeholder="Controller"
+								type="text"
+								value={formData.controller}
+								onChange={handleInputChange}
+								className="w-full h-10"
+							/>
+						</div>
+						<div>
+							<label className="block text-sm font-medium mb-1">Memory</label>
+							<Input
+								name="memory"
+								placeholder="Memory"
+								type="text"
+								value={formData.memory}
+								onChange={handleInputChange}
+								className="w-full h-10"
+							/>
+						</div>
+					</div>
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+						<div>
+							<label className="block text-sm font-medium mb-1">
+								Regular Price ($)
+							</label>
+							<Input
+								name="price"
+								placeholder="Regular Price ($)"
+								type="number"
 								value={formData.price}
 								onChange={handleInputChange}
-								className='w-full h-10' // Fixed width and height
+								className="w-full h-10"
 							/>
 						</div>
 						<div>
-							<label className='block text-sm font-medium mb-1'>Offer Price ($)</label>
+							<label className="block text-sm font-medium mb-1">
+								Offer Price ($)
+							</label>
 							<Input
-								name='offer_price'
-								placeholder='Offer Price ($)'
-								type='number'
+								name="offer_price"
+								placeholder="Offer Price ($)"
+								type="number"
 								value={formData.offer_price}
 								onChange={handleInputChange}
-								className='w-full h-10' // Fixed width and height
+								className="w-full h-10"
 							/>
 						</div>
 						<div>
-							<label className='block text-sm font-medium mb-1'>Available Products</label>
+							<label className="block text-sm font-medium mb-1">
+								Available Products
+							</label>
 							<Input
-								name='quantity'
-								placeholder='Available Products'
-								type='number'
+								name="quantity"
+								placeholder="Available Products"
+								type="number"
 								value={formData.quantity}
 								onChange={handleInputChange}
-								className='w-full h-10' // Fixed width and height
+								className="w-full h-10"
 							/>
 						</div>
 					</div>
 
-					<div>
-						<label className='block text-sm font-medium mb-1'>Product Type</label>
-						<Select
-							placeholder='Product Type'
-							value={formData.product_type}
-							options={[
-								{ value: "xbox", label: "Xbox" },
-								{ value: "playstation", label: "PlayStation" },
-								{ value: "nintendo", label: "Nintendo" },
-							]}
-							onChange={(value) => handleSelectChange("product_type", value)}
-							className='w-full h-10' // Fixed width and height
-						/>
-					</div>
-
-					<div className='mt-6'>
-						<label className='block text-sm font-medium mb-1'>Slug</label>
+					<div className="mt-2">
+						<label className="block text-sm font-medium mb-1">Slug</label>
 						<Input
-							name='slug'
-							placeholder='Slug'
+							name="slug"
+							placeholder="Slug"
 							value={formData.slug}
 							onChange={handleInputChange}
-							className='w-full h-10'
+							className="w-full h-10"
 						/>
 					</div>
 
-					<div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 my-4'>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2 my-2">
 						<div>
-							<label className='block text-sm font-medium mb-1'>Model description</label>
+							<label className="block text-sm font-medium mb-1">
+								Model description
+							</label>
 							<Input
-								name='modelDes'
+								name="modelDes"
 								value={formData.modelDes}
-								placeholder='Model placeholder description'
+								placeholder="Model placeholder description"
 								onChange={handleInputChange}
 							/>
 						</div>
 						<div>
-							<label className='block text-sm font-medium mb-1'>Controller description</label>
+							<label className="block text-sm font-medium mb-1">
+								Controller description
+							</label>
 							<Input
-								name='controllerDes'
+								name="controllerDes"
 								value={formData.controllerDes}
-								placeholder='Controller placeholder description'
+								placeholder="Controller placeholder description"
 								onChange={handleInputChange}
 							/>
 						</div>
 						<div>
-							<label className='block text-sm font-medium mb-1'>Memory description</label>
+							<label className="block text-sm font-medium mb-1">
+								Memory description
+							</label>
 							<Input
-								name='memoryDes'
+								name="memoryDes"
 								value={formData.memoryDes}
-								placeholder='Memory placeholder description'
+								placeholder="Memory placeholder description"
 								onChange={handleInputChange}
 							/>
 						</div>
 						<div>
-							<label className='block text-sm font-medium mb-1'>Condition description</label>
+							<label className="block text-sm font-medium mb-1">
+								Condition description
+							</label>
 							<Input
-								name='conditionDes'
+								name="conditionDes"
 								value={formData.conditionDes}
-								placeholder='Condition placeholder description'
+								placeholder="Condition placeholder description"
 								onChange={handleInputChange}
 							/>
 						</div>
 					</div>
 
-					{/* Action Buttons */}
-					<div className='flex justify-end gap-4 mt-6'>
+					<div className="flex justify-end gap-4 mt-4">
 						<Button
-							type='primary'
+							type="primary"
 							onClick={handleSave}
-							className='bg-black text-white py-3'>
+							className="bg-black text-white py-3"
+						>
 							Save Product
 						</Button>
 						<Button
-							type='error'
+							type="error"
 							onClick={() => handleDeleteProduct(product._id)}
-							className='bg-rose-500 text-white py-3'>
+							className="bg-rose-500 text-white py-3"
+						>
 							Delete
 						</Button>
 					</div>
@@ -431,7 +388,22 @@ const AddProductEdit = () => {
 	}, [data, navigate]);
 
 	return (
-		<div className='flex flex-col gap-10'>
+		<div className="flex flex-col gap-6">
+			<div className="sticky top-0 z-10 p-4 bg-white">
+				<div className="flex items-center gap-2">
+					<Link to={"/products"}>
+						<Button
+							type="link"
+							icon={<ArrowLeft />}
+							className="text-black text-lg"
+						/>
+					</Link>
+					<div className="flex flex-col">
+						<h3 className="text-lg font-bold">{products[0]?.name}</h3>
+						<p>{products[0]?.brand}</p>
+					</div>
+				</div>
+			</div>
 			{products.map((product) => (
 				<AddProductEditComponent
 					key={product?._id}
