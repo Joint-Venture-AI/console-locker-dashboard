@@ -78,11 +78,6 @@ const AddProducts = () => {
 				return;
 			}
 
-			if (!formData.controller || isNaN(Number(formData.controller))) {
-				message.error("Controller must be a valid number");
-				return;
-			}
-
 			if (!formData.quantity || isNaN(Number(formData.quantity))) {
 				message.error("Quantity must be a valid number");
 				return;
