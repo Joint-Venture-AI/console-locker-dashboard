@@ -48,6 +48,20 @@ const AddProducts = () => {
 
 	const handleSave = async () => {
 		try {
+			const res = await fetch(
+				import.meta.env.VITE_IMAGE_API +
+					"/products/name/" +
+					formData?.name +
+					"/exists"
+			);
+
+			const data = await res.json();
+
+			if (data?.data?.exists) {
+				message.error("Product already exists");
+				return;
+			}
+
 			// Validate required fields
 			if (!formData.product_type.trim()) {
 				message.error("Product type is required");
@@ -104,7 +118,7 @@ const AddProducts = () => {
 				product: productData,
 			}).unwrap();
 
-			navigate("/products"); // Redirect to product detail page after successful creation
+			navigate("/products");
 
 			message.success(response.message);
 			console.log("Product created successfully:", response.data);
@@ -182,36 +196,23 @@ const AddProducts = () => {
 							placeholder="Model Name"
 							onChange={handleInputChange}
 						/>
-						<Select
+						<Input
+							name="condition"
 							placeholder="Condition"
-							options={[
-								{ value: "New", label: "New" },
-								{ value: "Used", label: "Used" },
-							]}
-							onChange={(value) => handleSelectChange("condition", value)}
+							type="text"
+							onChange={handleInputChange}
 						/>
 						<Input
 							name="controller"
 							placeholder="Controller"
-							type="number"
+							type="text"
 							onChange={handleInputChange}
 						/>
-						<Select
+						<Input
+							name="memory"
 							placeholder="Memory"
-							options={[
-								// { value: "16GB", label: "16GB" },
-								// { value: "32GB", label: "32GB" },
-								// { value: "64GB", label: "64GB" },
-								{ value: "4GB", label: "4GB" },
-								{ value: "8GB", label: "8GB" },
-								{ value: "16GB", label: "16GB" },
-								{ value: "32GB", label: "32GB" },
-								{ value: "64GB", label: "64GB" },
-								{ value: "128GB", label: "128GB" },
-								{ value: "256GB", label: "256GB" },
-								{ value: "512GB", label: "512GB" },
-							]}
-							onChange={(value) => handleSelectChange("memory", value)}
+							type="text"
+							onChange={handleInputChange}
 						/>
 					</div>
 
