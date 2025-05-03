@@ -8,8 +8,10 @@ import {
 	useDeleteProductMutation,
 	useEditProductMutation,
 	useProductByNameQuery,
+	useUpdateProductLabelMutation,
 } from "../../../redux/features/productsSlice";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const { TextArea } = Input;
 
@@ -375,6 +377,7 @@ const AddProductEditComponent = ({ product, refetch }) => {
 
 const AddProductEdit = () => {
 	const [products, setProducts] = useState([]);
+	const [updateLabel] = useUpdateProductLabelMutation();
 	const navigate = useNavigate();
 
 	const { name } = useParams();
@@ -406,6 +409,75 @@ const AddProductEdit = () => {
 					</div>
 				</div>
 			</div>
+			<form
+				onSubmit={async (e) => {
+					e.preventDefault();
+
+					const data = {
+						modelLabel: e.target.modelLabel.value,
+						controllerLabel: e.target.controllerLabel.value,
+						memoryLabel: e.target.memoryLabel.value,
+						conditionLabel: e.target.conditionLabel.value,
+					};
+
+					const toastId = toast.loading("Updating labels...");
+
+					try {
+						await updateLabel({
+							name,
+							data,
+						}).unwrap();
+						toast.success("Labels updated successfully", { id: toastId });
+					} catch {
+						toast.error("Failed to update labels", { id: toastId });
+					}
+				}}
+				className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2 my-2 bg-white p-4 rounded-lg"
+			>
+				<div>
+					<label className="block text-sm font-medium mb-1">Model label</label>
+					<input
+						name="modelLabel"
+						defaultValue={products[0]?.modelLabel}
+						className="w-full border px-2 py-1 rounded-sm"
+						placeholder="Model placeholder label"
+					/>
+				</div>
+				<div>
+					<label className="block text-sm font-medium mb-1">
+						Controller label
+					</label>
+					<input
+						name="controllerLabel"
+						defaultValue={products[0]?.controllerLabel}
+						className="w-full border px-2 py-1 rounded-sm"
+						placeholder="Controller placeholder label"
+					/>
+				</div>
+				<div>
+					<label className="block text-sm font-medium mb-1">Memory label</label>
+					<input
+						name="memoryLabel"
+						defaultValue={products[0]?.memoryLabel}
+						className="w-full border px-2 py-1 rounded-sm"
+						placeholder="Memory placeholder label"
+					/>
+				</div>
+				<div>
+					<label className="block text-sm font-medium mb-1">
+						Condition label
+					</label>
+					<input
+						name="conditionLabel"
+						defaultValue={products[0]?.conditionLabel}
+						className="w-full border px-2 py-1 rounded-sm"
+						placeholder="Condition placeholder label"
+					/>
+				</div>
+				<Button htmlType="submit" type="primary" className="py-3 w-fit mt-2">
+					Save
+				</Button>
+			</form>
 			{products.map((product) => (
 				<AddProductEditComponent
 					key={product?._id}

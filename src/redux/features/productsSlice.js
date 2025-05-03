@@ -88,6 +88,14 @@ export const productsApi = baseApi.injectEndpoints({
 			}),
 			invalidatesTags: ["Product-info"],
 		}),
+
+		updateProductLabel: builder.mutation({
+			query: ({ name, data }) => ({
+				url: `/admin/product/label/edit/${name}`,
+				method: "PATCH",
+				body: data,
+			}),
+		}),
 	}),
 });
 
@@ -102,4 +110,5 @@ export const {
 	useProductInfoQuery,
 	useUpdateProductInfoMutation,
 	useDeleteProductByNameMutation,
+	useUpdateProductLabelMutation
 } = productsApi;
