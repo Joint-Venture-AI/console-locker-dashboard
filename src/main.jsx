@@ -8,13 +8,15 @@ import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import store from "./redux/App/store.js";
 
+if (import.meta.env.VITE_NODE_ENV === "production") console.destroy();
+
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <AuthProvider>
-        <RouterProvider router={router} />
-        <Toaster />
-      </AuthProvider>
-    </Provider>
-  </React.StrictMode>
+	<React.StrictMode>
+		<Provider store={store}>
+			<AuthProvider>
+				<RouterProvider router={router} />
+				<Toaster />
+			</AuthProvider>
+		</Provider>
+	</React.StrictMode>
 );
