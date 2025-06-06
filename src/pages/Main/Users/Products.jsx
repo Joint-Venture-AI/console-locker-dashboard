@@ -1,19 +1,22 @@
 import { useState } from "react";
-import { ArrowLeft, Info } from "lucide-react";
+import { ArrowLeft, Info, Save } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "antd";
 import Swal from "sweetalert2";
 import {
 	useAllProductGetQuery,
 	useDeleteProductByNameMutation,
+	useUpdateProductLabelMutation,
 } from "../../../redux/features/productsSlice";
+import toast from "react-hot-toast";
 
 export default function ProductPage() {
 	const { data, isLoading, isError, refetch } = useAllProductGetQuery({
 		limit: 1000,
 	});
 
-	console.log(data?.data.products);
+	const [updateLabel] = useUpdateProductLabelMutation();
+
 	const [deleteProduct] = useDeleteProductByNameMutation();
 	const [view] = useState("grid");
 	const [page, setPage] = useState(1);
@@ -151,6 +154,40 @@ export default function ProductPage() {
 												<Info className="cursor-pointer" />
 												{openMenu === product._id && (
 													<div className="absolute right-0 top-6 bg-white shadow-lg rounded-md py-2 w-32 z-10">
+														<form
+															onClick={(e) => e.stopPropagation()}
+															onSubmit={async (e) => {
+																e.preventDefault();
+																const order = parseInt(e.target.order.value);
+																try {
+																	await updateLabel({
+																		name: product.name,
+																		data: { order },
+																	}).unwrap();
+																} catch (error) {
+																	toast.error(error.message);
+																}
+															}}
+															className="flex gap-2 px-4 py-2 w-full relative"
+														>
+															<input
+																type="number"
+																name="order"
+																defaultValue={
+																	product?.order > 1 &&
+																	product?.order <
+																		Number.MAX_SAFE_INTEGER - 1 &&
+																	product?.order
+																}
+																className="border border-gray-800 rounded-md w-full pl-2"
+															/>
+															<button
+																type="submit"
+																className="click hover:text-blue-500 transition"
+															>
+																<Save />
+															</button>
+														</form>
 														<Link to={`/addEditProducts/${product?.name}`}>
 															<button className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100">
 																Variant
