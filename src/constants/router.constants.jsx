@@ -9,7 +9,6 @@ import PrivacyPolicy from "../pages/Settings/PrivacyPolicy";
 import EditPrivacyPolicy from "../pages/Settings/EditPrivacyPolicy";
 import Notifications from "../pages/Main/Notifications/Notifications";
 import { MdOutlineSecurityUpdateWarning, MdReviews } from "react-icons/md";
-import HostDetails from "../pages/Main/Host/HostDetails";
 import { FaServicestack } from "react-icons/fa6";
 import { BiMessageSquareDetail } from "react-icons/bi";
 import Setting from "../pages/Main/Setting/Setting";
@@ -40,7 +39,6 @@ import AddProductEdit from "../pages/Main/AddProductEdit/AddProductEdit";
 import BlogsDetails from "../pages/Main/Blog/BlogsDetails";
 import Review from "../pages/Main/Reiview/Review";
 import AddReview from "../pages/Main/Reiview/AddReview";
-// import ProductInfo from "../pages/Main/ProductInfo/ProductInfo";
 
 export const dashboardItems = [
 	{
@@ -55,12 +53,6 @@ export const dashboardItems = [
 		icon: TableCellsSplit,
 		element: <Products />,
 	},
-	// {
-	// 	name: "Product info",
-	// 	path: "product-info",
-	// 	icon: TableCellsSplit,
-	// 	element: <ProductInfo />,
-	// },
 	{
 		name: "Product Question",
 		path: "productQuestion",
@@ -75,23 +67,29 @@ export const dashboardItems = [
 		path: "editProducts/:id",
 		element: <EditProduct />,
 		loader: ({ params }) =>
-			fetch(`${import.meta.env.VITE_IMAGE_API}/admin/question/buy/${params.id}`),
+			fetch(
+				`${import.meta.env.VITE_IMAGE_API}/admin/question/buy/${params.id}`
+			),
 	},
 	{
 		path: "addEditProducts/:name",
 		element: <AddProductEdit />,
-		loader: ({ params }) => fetch(`${import.meta.env.VITE_IMAGE_API}/products/name/${params.name}`),
+		loader: ({ params }) =>
+			fetch(`${import.meta.env.VITE_IMAGE_API}/products/name/${params.name}`),
 	},
 	{
 		path: "review/:name",
 		element: <Review />,
-		loader: ({ params }) => fetch(`${import.meta.env.VITE_IMAGE_API}/reviews/${params.name}`),
+		loader: ({ params }) =>
+			fetch(`${import.meta.env.VITE_IMAGE_API}/reviews/${params.name}`),
 	},
 	{
 		path: "addreview/:name",
 		element: <AddReview />,
 		loader: ({ params }) =>
-			fetch(`${import.meta.env.VITE_IMAGE_API}/admin/reviews/create/${params.name}`),
+			fetch(
+				`${import.meta.env.VITE_IMAGE_API}/admin/reviews/create/${params.name}`
+			),
 	},
 	{
 		path: "addProducts",
@@ -117,15 +115,14 @@ export const dashboardItems = [
 	},
 
 	{
-		// name: "Review",
 		path: "review",
 		icon: MdReviews,
-		// element: <Review />,
 	},
 	{
 		path: "blogsDetails/:id",
 		element: <BlogsDetails />,
-		loader: ({ params }) => fetch(`${import.meta.env.VITE_IMAGE_API}/blogs/${params.id}`),
+		loader: ({ params }) =>
+			fetch(`${import.meta.env.VITE_IMAGE_API}/blogs/${params.id}`),
 	},
 	{
 		path: "/addBlog",
@@ -148,10 +145,6 @@ export const dashboardItems = [
 		path: "settings",
 		icon: IoSettingsOutline,
 		element: <Setting />,
-	},
-	{
-		path: "/hosts/:id",
-		element: <HostDetails />,
 	},
 	{
 		name: "Settings",
