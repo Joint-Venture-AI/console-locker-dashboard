@@ -12,6 +12,7 @@ import {
 } from "../../../redux/features/productsSlice";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { getBackgroundColor } from "../../../lib/productTypeColor";
 
 const { TextArea } = Input;
 
@@ -422,6 +423,10 @@ const AddProductEdit = () => {
 				onSubmit={async (e) => {
 					e.preventDefault();
 
+					const product_type = e.target.product_type.value;
+
+					if (!product_type) toast.error("Please select a product type");
+
 					const data = {
 						modelLabel: e.target.modelLabel.value,
 						controllerLabel: e.target.controllerLabel.value,
@@ -429,6 +434,7 @@ const AddProductEdit = () => {
 						conditionLabel: e.target.conditionLabel.value,
 						name: e.target.name.value,
 						brand: e.target.brand.value,
+						product_type,
 					};
 
 					const toastId = toast.loading("Updating labels...");
@@ -511,9 +517,45 @@ const AddProductEdit = () => {
 						placeholder="Condition placeholder label"
 					/>
 				</div>
-				<Button htmlType="submit" type="primary" className="py-3 w-fit mt-2">
-					Save
-				</Button>
+				<div className="flex gap-2 items-end">
+					<div>
+						<label className="block text-sm font-medium mb-1">
+							Product type
+						</label>
+						<select
+							name="product_type"
+							defaultValue={products[0]?.product_type ?? ""}
+							onChange={(e) => {
+								const x = getBackgroundColor(e.target.value);
+								e.target.style.backgroundColor = x;
+								if (x !== "white") e.target.style.color = "white";
+								else e.target.style.color = "black";
+							}}
+							className={`border rounded-md px-2 py-2 inline-block h-full bg-[${getBackgroundColor(
+								products[0]?.product_type
+							)}]`}
+						>
+							<option value="" disabled hidden>
+								Select Type
+							</option>
+							{[
+								{ value: "xbox", label: "Xbox" },
+								{ value: "playstation", label: "PlayStation" },
+								{ value: "nintendo", label: "Nintendo" },
+							].map(({ label, value }, idx) => (
+								<option key={idx} value={value}>
+									{label}
+								</option>
+							))}
+						</select>
+					</div>
+					<button
+						type="submit"
+						className="px-4 py-2 bg-sky-500 text-white rounded-md click"
+					>
+						Save
+					</button>
+				</div>
 			</form>
 			{products.map((product) => (
 				<AddProductEditComponent

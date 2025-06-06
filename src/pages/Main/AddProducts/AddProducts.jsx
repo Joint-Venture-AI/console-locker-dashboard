@@ -4,6 +4,7 @@ import { UploadOutlined } from "@ant-design/icons";
 import { ArrowLeft } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAddProductMutation } from "../../../redux/features/productsSlice";
+import { getBackgroundColor } from "../../../lib/productTypeColor";
 
 const { TextArea } = Input;
 
@@ -123,22 +124,11 @@ const AddProducts = () => {
 		}
 	};
 
-	const getBackgroundColor = () => {
-		switch (productTypeColor) {
-			case "xbox":
-				return "bg-[#63B95D]";
-			case "playstation":
-				return "bg-[#1761BF]";
-			case "nintendo":
-				return "bg-[#F34040]";
-			default:
-				return "bg-white";
-		}
-	};
-
 	return (
 		<div
-			className={`container mx-auto px-6 py-8 shadow-md rounded-md ${getBackgroundColor()}`}
+			className={`container mx-auto px-6 py-8 shadow-md rounded-md bg-[${getBackgroundColor(
+				productTypeColor
+			)}]`}
 		>
 			{/* Header */}
 			<div className="flex justify-between items-center mb-6">
