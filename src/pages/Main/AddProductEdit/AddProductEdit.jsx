@@ -378,6 +378,7 @@ const AddProductEditComponent = ({ product, refetch }) => {
 
 const AddProductEdit = () => {
 	const [products, setProducts] = useState([]);
+	const [productType, setProductType] = useState("");
 	const [updateLabel] = useUpdateProductLabelMutation();
 	const navigate = useNavigate();
 
@@ -398,7 +399,10 @@ const AddProductEdit = () => {
 		if (data?.data) {
 			if (data?.data?.length === 0) {
 				navigate("/products");
-			} else setProducts(data?.data);
+			} else {
+				setProducts(data?.data);
+				setProductType(data?.data[0]?.product_type);
+			}
 		}
 	}, [data, navigate]);
 
@@ -524,16 +528,16 @@ const AddProductEdit = () => {
 						</label>
 						<select
 							name="product_type"
-							defaultValue={products[0]?.product_type ?? ""}
+							value={productType}
 							onChange={(e) => {
-								const x = getBackgroundColor(e.target.value);
-								e.target.style.backgroundColor = x;
-								if (x !== "white") e.target.style.color = "white";
-								else e.target.style.color = "black";
+								const selectedValue = e.target.value;
+								setProductType(selectedValue);
+								const bgColor = getBackgroundColor(selectedValue);
+								e.target.style.backgroundColor = bgColor;
 							}}
 							className={`border rounded-md px-2 py-2 inline-block h-full bg-[${getBackgroundColor(
-								products[0]?.product_type
-							)}]`}
+								productType
+							)}] text-white`}
 						>
 							<option value="" disabled hidden>
 								Select Type

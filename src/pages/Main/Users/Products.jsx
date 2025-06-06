@@ -9,10 +9,15 @@ import {
 	useUpdateProductLabelMutation,
 } from "../../../redux/features/productsSlice";
 import toast from "react-hot-toast";
+import { getBackgroundColor } from "../../../lib/productTypeColor";
+
+const productTypes = ["xbox", "playstation", "nintendo"];
 
 export default function ProductPage() {
+	const [activeTab, setActiveTab] = useState(productTypes.at(0));
 	const { data, isLoading, isError, refetch } = useAllProductGetQuery({
-		limit: 1000,
+		limit: 12,
+		product_type: activeTab,
 	});
 
 	const [updateLabel] = useUpdateProductLabelMutation();
@@ -21,20 +26,13 @@ export default function ProductPage() {
 	const [view] = useState("grid");
 	const [page, setPage] = useState(1);
 	const [openMenu, setOpenMenu] = useState(null);
-	const itemsPerPage = 12;
 
 	// Extract products from API response safely
 	const products = data?.data?.products || [];
-	console.log(products);
+	console.log(data?.data);
 
 	const IMAGE = import.meta.env.VITE_IMAGE_API;
 	console.log(IMAGE, "image api");
-
-	// Pagination Logic
-	const paginatedProducts = products.slice(
-		(page - 1) * itemsPerPage,
-		page * itemsPerPage
-	);
 
 	const handleDeleteProduct = async (productName) => {
 		try {
@@ -102,6 +100,29 @@ export default function ProductPage() {
 				</Link>
 			</div>
 
+			<div className="flex flex-wrap gap-3 mt-[30px] mb-[20px] mx-10">
+				{productTypes.map((tab, idx) => (
+					<button
+						key={idx}
+						disabled={activeTab === tab}
+						className={`${
+							activeTab === tab
+								? "font-bold  border-0 cursor-not-allowed text-white"
+								: "text-gray-500 border-[#99caff] cursor-pointer border"
+						} py-3 px-5 rounded-md box-border capitalize`}
+						style={{
+							backgroundColor: activeTab === tab && getBackgroundColor(tab),
+							borderColor: activeTab !== tab && getBackgroundColor(tab),
+						}}
+						onClick={() => {
+							setActiveTab(tab);
+						}}
+					>
+						{tab}
+					</button>
+				))}
+			</div>
+
 			{isLoading ? (
 				<p className="text-center text-lg">Loading products...</p>
 			) : isError ? (
@@ -118,20 +139,28 @@ export default function ProductPage() {
 									: ""
 							} gap-6`}
 						>
-							{paginatedProducts.map((product) => (
+							{products.map((product) => (
 								<div
 									key={product._id}
 									className="shadow rounded-lg pb-2 relative"
 								>
-									<img
-										src={
-											product.images.length > 0
-												? `${IMAGE}${product.images[0]}`
-												: "/placeholder.png"
-										}
-										alt={product.name}
-										className="w-full h-48 object-cover rounded-t-lg"
-									/>
+									<div className="relative">
+										<img
+											src={
+												product.images.length > 0
+													? `${IMAGE}${product.images[0]}`
+													: "/placeholder.png"
+											}
+											alt={product.name}
+											className="w-full aspect-square object-center rounded-t-lg"
+										/>
+										{product?.order > 0 &&
+											product?.order < Number.MAX_SAFE_INTEGER - 1 && (
+												<span className="absolute top-0 right-0 bg-black/20 backdrop-blur-sm px-4 py-1 font-bold rounded-bl-2xl text-[14px] text-white drop-shadow-md z-50 ">
+													{product?.order}
+												</span>
+											)}
+									</div>
 									<div className="px-3">
 										<h3 className="text-lg font-semibold mb-2 mt-5">
 											{product.name}
@@ -173,8 +202,9 @@ export default function ProductPage() {
 															<input
 																type="number"
 																name="order"
+																placeholder="Order"
 																defaultValue={
-																	product?.order > 1 &&
+																	product?.order > 0 &&
 																	product?.order <
 																		Number.MAX_SAFE_INTEGER - 1 &&
 																	product?.order
@@ -225,7 +255,7 @@ export default function ProductPage() {
 						</div>
 
 						{/* Pagination */}
-						<div className="flex justify-center items-center gap-3 mt-6">
+						{/* <div className="flex justify-center items-center gap-3 mt-6">
 							<button
 								onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
 								className="px-4 py-2 bg-gray-200 rounded-md mr-2"
@@ -260,7 +290,7 @@ export default function ProductPage() {
 							>
 								Next
 							</button>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			)}
