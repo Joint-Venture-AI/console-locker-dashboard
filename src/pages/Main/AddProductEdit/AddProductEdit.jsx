@@ -380,15 +380,24 @@ const AddProductEdit = () => {
 	const [updateLabel] = useUpdateProductLabelMutation();
 	const navigate = useNavigate();
 
-	const { name } = useParams();
+	const params = useParams();
+
+	const [name, setName] = useState(params.name);
+
 	const { data, refetch } = useProductByNameQuery({
 		name,
 	});
 
 	useEffect(() => {
-		if (data) {
-			if (data?.data?.length === 0) navigate("/products");
-			else setProducts(data?.data);
+		refetch();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [name]);
+
+	useEffect(() => {
+		if (data?.data) {
+			if (data?.data?.length === 0) {
+				navigate("/products");
+			} else setProducts(data?.data);
 		}
 	}, [data, navigate]);
 
@@ -418,6 +427,8 @@ const AddProductEdit = () => {
 						controllerLabel: e.target.controllerLabel.value,
 						memoryLabel: e.target.memoryLabel.value,
 						conditionLabel: e.target.conditionLabel.value,
+						name: e.target.name.value,
+						brand: e.target.brand.value,
 					};
 
 					const toastId = toast.loading("Updating labels...");
@@ -430,10 +441,36 @@ const AddProductEdit = () => {
 						toast.success("Labels updated successfully", { id: toastId });
 					} catch {
 						toast.error("Failed to update labels", { id: toastId });
+					} finally {
+						history.pushState(
+							{},
+							"",
+							`/addEditProducts/${e.target.name.value}`
+						);
+
+						setName(e.target.name.value);
 					}
 				}}
 				className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2 my-2 bg-white p-4 rounded-lg"
 			>
+				<div>
+					<label className="block text-sm font-medium mb-1">Product Name</label>
+					<input
+						name="name"
+						defaultValue={products[0]?.name}
+						className="w-full border px-2 py-1 rounded-sm"
+						placeholder="product name"
+					/>
+				</div>
+				<div>
+					<label className="block text-sm font-medium mb-1">Brand</label>
+					<input
+						name="brand"
+						defaultValue={products[0]?.brand}
+						className="w-full border px-2 py-1 rounded-sm"
+						placeholder="Product brand"
+					/>
+				</div>
 				<div>
 					<label className="block text-sm font-medium mb-1">Model label</label>
 					<input

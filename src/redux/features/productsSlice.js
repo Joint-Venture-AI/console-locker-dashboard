@@ -95,6 +95,7 @@ export const productsApi = baseApi.injectEndpoints({
 				method: "PATCH",
 				body: data,
 			}),
+			invalidatesTags: ["Products"],
 		}),
 	}),
 });
@@ -110,5 +111,5 @@ export const {
 	useProductInfoQuery,
 	useUpdateProductInfoMutation,
 	useDeleteProductByNameMutation,
-	useUpdateProductLabelMutation
+	useUpdateProductLabelMutation,
 } = productsApi;
