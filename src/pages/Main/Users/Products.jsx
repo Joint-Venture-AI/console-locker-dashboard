@@ -182,7 +182,7 @@ export default function ProductPage() {
 											>
 												<Info className="cursor-pointer" />
 												{openMenu === product._id && (
-													<div className="absolute right-0 top-6 bg-white shadow-lg rounded-md py-2 w-32 z-10">
+													<div className="absolute right-0 top-6 bg-white shadow-lg rounded-md py-2 w-32 z-[99]">
 														<form
 															onClick={(e) => e.stopPropagation()}
 															onSubmit={async (e) => {
