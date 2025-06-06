@@ -156,7 +156,7 @@ export default function ProductPage() {
 										/>
 										{product?.order > 0 &&
 											product?.order < Number.MAX_SAFE_INTEGER - 1 && (
-												<span className="absolute top-0 right-0 bg-black/20 backdrop-blur-sm px-4 py-1 font-bold rounded-bl-2xl text-[14px] text-white drop-shadow-md z-50 ">
+												<span className="absolute top-0 right-0 bg-black/20 backdrop-blur-sm px-4 py-1 font-bold rounded-bl-2xl text-[14px] text-white drop-shadow-md">
 													{product?.order}
 												</span>
 											)}
