@@ -78,7 +78,7 @@ const AddProductEditComponent = ({ product, refetch }) => {
 			productData.append("brand", formData.brand);
 			productData.append("model", formData.model);
 			productData.append("condition", formData.condition);
-			productData.append("controller", Number(formData.controller));
+			productData.append("controller", formData.controller);
 			productData.append("memory", formData.memory);
 			productData.append("quantity", Number(formData.quantity));
 			productData.append("product_type", formData.product_type.trim());
