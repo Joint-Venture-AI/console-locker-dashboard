@@ -98,8 +98,6 @@ const AddProductEditComponent = ({ product, refetch }) => {
 				formData: productData, // Pass the FormData object
 			}).unwrap();
 
-			// navigate("/products"); // Redirect to the product list page after successful update
-
 			message.success(response.message);
 			console.log("Product updated successfully:", response.data);
 		} catch (error) {
@@ -410,7 +408,7 @@ const AddProductEdit = () => {
 		<div className="flex flex-col gap-6">
 			<div className="sticky top-0 z-10 p-4 bg-white">
 				<div className="flex items-center gap-2">
-					<Link to={"/products"}>
+					<Link to={`/products?product_type=${products[0]?.product_type}`}>
 						<Button
 							type="link"
 							icon={<ArrowLeft />}
