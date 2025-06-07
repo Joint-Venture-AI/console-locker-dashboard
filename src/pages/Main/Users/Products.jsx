@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowLeft, Info, Save } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight, Info, Save } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "antd";
 import Swal from "sweetalert2";
@@ -15,8 +15,11 @@ const productTypes = ["xbox", "playstation", "nintendo"];
 
 export default function ProductPage() {
 	const [activeTab, setActiveTab] = useState(productTypes.at(0));
+	const [page, setPage] = useState(1);
+
 	const { data, isLoading, isError, refetch } = useAllProductGetQuery({
 		limit: 12,
+		page,
 		product_type: activeTab,
 	});
 
@@ -24,12 +27,11 @@ export default function ProductPage() {
 
 	const [deleteProduct] = useDeleteProductByNameMutation();
 	const [view] = useState("grid");
-	const [page, setPage] = useState(1);
 	const [openMenu, setOpenMenu] = useState(null);
 
 	// Extract products from API response safely
 	const products = data?.data?.products || [];
-	console.log(data?.data);
+	const pagination = data?.data?.meta?.pagination || {};
 
 	const IMAGE = import.meta.env.VITE_IMAGE_API;
 	console.log(IMAGE, "image api");
@@ -255,42 +257,44 @@ export default function ProductPage() {
 						</div>
 
 						{/* Pagination */}
-						{/* <div className="flex justify-center items-center gap-3 mt-6">
+						<div className="flex justify-center items-center gap-2 mt-6 flex-wrap">
 							<button
 								onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-								className="px-4 py-2 bg-gray-200 rounded-md mr-2"
+								className={`px-4 py-2 rounded-md hover:bg-gray-300 transition ${
+									page === 1 ? "cursor-not-allowed opacity-50" : "bg-gray-200"
+								}`}
+								disabled={page === 1}
 							>
-								Previous
+								<ChevronLeft />
 							</button>
-							{[...Array(Math.ceil(products.length / itemsPerPage)).keys()].map(
-								(pageNumber) => (
-									<button
-										key={pageNumber + 1}
-										onClick={() => setPage(pageNumber + 1)}
-										className={`px-4 py-2 rounded-md ${
-											page === pageNumber + 1
-												? "bg-black text-white"
-												: "bg-gray-200"
-										}`}
-									>
-										{pageNumber + 1}
-									</button>
-								)
-							)}
+							{Array.from({ length: pagination?.total_pages }, (_, index) => (
+								<button
+									key={index + 1}
+									onClick={() => setPage(index + 1)}
+									className={`px-4 py-2 m-1 rounded-md transition ${
+										page === index + 1
+											? "bg-black text-white"
+											: "bg-gray-200 hover:bg-gray-300"
+									}`}
+									style={{ minWidth: "40px" }}
+								>
+									{index + 1}
+								</button>
+							))}
 							<button
 								onClick={() =>
-									setPage((prev) =>
-										Math.min(
-											prev + 1,
-											Math.ceil(products.length / itemsPerPage)
-										)
-									)
+									setPage((prev) => Math.min(prev + 1, pagination?.total_pages))
 								}
-								className="px-4 py-2 bg-gray-200 rounded-md ml-2"
+								className={`px-4 py-2 rounded-md hover:bg-gray-300 transition ${
+									page === pagination?.total_pages
+										? "cursor-not-allowed opacity-50"
+										: "bg-gray-200"
+								}`}
+								disabled={page === pagination?.total_pages}
 							>
-								Next
+								<ChevronRight />
 							</button>
-						</div> */}
+						</div>
 					</div>
 				</div>
 			)}

@@ -3,12 +3,14 @@ import baseApi from "../api/baseApi";
 export const productsApi = baseApi.injectEndpoints({
 	endpoints: (builder) => ({
 		allProductGet: builder.query({
-			query: ({ limit, product_type }) => {
+			query: ({ limit, product_type, page }) => {
 				let queryParams = new URLSearchParams();
 
 				if (limit) queryParams.append("limit", limit.toString());
 
 				if (product_type) queryParams.append("product_type", product_type);
+
+				if (page) queryParams.append("page", page);
 
 				return `products?${queryParams.toString()}`;
 			},
