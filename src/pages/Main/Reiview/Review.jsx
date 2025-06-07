@@ -1,4 +1,4 @@
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
 	useDeleteReviewMutation,
@@ -14,6 +14,8 @@ import { Button } from "antd";
 export default function Review() {
 	const { name } = useParams();
 	const navigate = useNavigate();
+	const [page, setPage] = useState(1);
+
 	const { data, refetch } = useSingleReviewGetQuery({ name });
 	const [updateReview] = useUpdateReviewMutation();
 	const [deleteReview] = useDeleteReviewMutation();
@@ -25,6 +27,8 @@ export default function Review() {
 	});
 
 	const reviews = data?.data?.reviews || [];
+	const meta = data?.data?.meta;
+
 	const IMAGE = import.meta.env.VITE_IMAGE_API;
 
 	// Open modal and set selected review
@@ -196,6 +200,48 @@ export default function Review() {
 					</div>
 				))}
 			</div>
+
+			{/* Pagination */}
+			{meta?.totalPage > 1 && (
+				<div className="flex justify-center items-center gap-2 mt-6 flex-wrap">
+					<button
+						onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+						className={`px-4 py-2 rounded-md hover:bg-gray-300 transition ${
+							page === 1 ? "cursor-not-allowed opacity-50" : "bg-gray-200"
+						}`}
+						disabled={page === 1}
+					>
+						<ChevronLeft />
+					</button>
+					{Array.from({ length: meta?.totalPage }, (_, index) => (
+						<button
+							key={index + 1}
+							onClick={() => setPage(index + 1)}
+							className={`px-4 py-2 m-1 rounded-md transition ${
+								page === index + 1
+									? "bg-black text-white"
+									: "bg-gray-200 hover:bg-gray-300"
+							}`}
+							style={{ minWidth: "40px" }}
+						>
+							{index + 1}
+						</button>
+					))}
+					<button
+						onClick={() =>
+							setPage((prev) => Math.min(prev + 1, meta?.totalPage))
+						}
+						className={`px-4 py-2 rounded-md hover:bg-gray-300 transition ${
+							page === meta?.totalPage
+								? "cursor-not-allowed opacity-50"
+								: "bg-gray-200"
+						}`}
+						disabled={page === meta?.totalPage}
+					>
+						<ChevronRight />
+					</button>
+				</div>
+			)}
 
 			{isModalOpen && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">

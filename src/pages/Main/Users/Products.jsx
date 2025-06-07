@@ -86,30 +86,30 @@ export default function ProductPage() {
 
 	return (
 		<div>
-			<div className="flex justify-between px-7 items-center mb-4 container mx-auto">
+			<div className="sticky top-0 z-10 p-4 bg-white mb-4">
 				<div className="flex items-center gap-2">
 					<Link to={"/"}>
 						<Button
 							type="link"
-							icon={
-								<span className="material-icons">
-									<ArrowLeft />
-								</span>
-							}
+							icon={<ArrowLeft />}
 							className="text-black text-lg"
 						/>
 					</Link>
-					<h2 className="text-3xl font-semibold">Products</h2>
-				</div>
 
-				<Link
-					to={`/addProducts`}
-					className="flex gap-2 items-center cursor-pointer"
-				>
-					<button className="bg-black px-6 py-3 rounded-lg font-normal text-white">
-						Add Products
-					</button>
-				</Link>
+					<div className="flex items-center flex-col py-3">
+						<h3 className="text-2xl font-bold">Products</h3>
+					</div>
+				</div>
+				{!products?.length || (
+					<Link
+						to={`/addProducts`}
+						className="absolute top-1/2 -translate-y-1/2 right-4"
+					>
+						<button className="bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded-md font-medium click">
+							Add Product
+						</button>
+					</Link>
+				)}
 			</div>
 
 			<div className="flex flex-wrap gap-3 mt-[30px] mb-[20px] mx-10">
@@ -267,44 +267,48 @@ export default function ProductPage() {
 						</div>
 
 						{/* Pagination */}
-						<div className="flex justify-center items-center gap-2 mt-6 flex-wrap">
-							<button
-								onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-								className={`px-4 py-2 rounded-md hover:bg-gray-300 transition ${
-									page === 1 ? "cursor-not-allowed opacity-50" : "bg-gray-200"
-								}`}
-								disabled={page === 1}
-							>
-								<ChevronLeft />
-							</button>
-							{Array.from({ length: pagination?.total_pages }, (_, index) => (
+						{pagination?.total_pages > 1 && (
+							<div className="flex justify-center items-center gap-2 mt-6 flex-wrap">
 								<button
-									key={index + 1}
-									onClick={() => setPage(index + 1)}
-									className={`px-4 py-2 m-1 rounded-md transition ${
-										page === index + 1
-											? "bg-black text-white"
-											: "bg-gray-200 hover:bg-gray-300"
+									onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+									className={`px-4 py-2 rounded-md hover:bg-gray-300 transition ${
+										page === 1 ? "cursor-not-allowed opacity-50" : "bg-gray-200"
 									}`}
-									style={{ minWidth: "40px" }}
+									disabled={page === 1}
 								>
-									{index + 1}
+									<ChevronLeft />
 								</button>
-							))}
-							<button
-								onClick={() =>
-									setPage((prev) => Math.min(prev + 1, pagination?.total_pages))
-								}
-								className={`px-4 py-2 rounded-md hover:bg-gray-300 transition ${
-									page === pagination?.total_pages
-										? "cursor-not-allowed opacity-50"
-										: "bg-gray-200"
-								}`}
-								disabled={page === pagination?.total_pages}
-							>
-								<ChevronRight />
-							</button>
-						</div>
+								{Array.from({ length: pagination?.total_pages }, (_, index) => (
+									<button
+										key={index + 1}
+										onClick={() => setPage(index + 1)}
+										className={`px-4 py-2 m-1 rounded-md transition ${
+											page === index + 1
+												? "bg-black text-white"
+												: "bg-gray-200 hover:bg-gray-300"
+										}`}
+										style={{ minWidth: "40px" }}
+									>
+										{index + 1}
+									</button>
+								))}
+								<button
+									onClick={() =>
+										setPage((prev) =>
+											Math.min(prev + 1, pagination?.total_pages)
+										)
+									}
+									className={`px-4 py-2 rounded-md hover:bg-gray-300 transition ${
+										page === pagination?.total_pages
+											? "cursor-not-allowed opacity-50"
+											: "bg-gray-200"
+									}`}
+									disabled={page === pagination?.total_pages}
+								>
+									<ChevronRight />
+								</button>
+							</div>
+						)}
 					</div>
 				</div>
 			)}
