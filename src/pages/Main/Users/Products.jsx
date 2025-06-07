@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeft, ChevronLeft, ChevronRight, Info, Save } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "antd";
 import Swal from "sweetalert2";
 import {
@@ -14,7 +14,17 @@ import { getBackgroundColor } from "../../../lib/productTypeColor";
 const productTypes = ["xbox", "playstation", "nintendo"];
 
 export default function ProductPage() {
-	const [activeTab, setActiveTab] = useState(productTypes.at(0));
+	const [searchParams, setSearchParams] = useSearchParams();
+
+	const [activeTab, setActiveTab] = useState(
+		productTypes.find((type) => type === searchParams.get("product_type")) ||
+			productTypes[0]
+	);
+
+	useEffect(() => {
+		setSearchParams({ product_type: activeTab });
+	}, [activeTab, setSearchParams]);
+
 	const [page, setPage] = useState(1);
 
 	const { data, isLoading, isError, refetch } = useAllProductGetQuery({
