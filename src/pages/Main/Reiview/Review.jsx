@@ -1,5 +1,5 @@
 import { ArrowLeft } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
 	useDeleteReviewMutation,
 	useSingleReviewGetQuery,
@@ -9,9 +9,11 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import { Rating } from "@smastrom/react-rating";
 import toast from "react-hot-toast";
+import { Button } from "antd";
 
 export default function Review() {
 	const { name } = useParams();
+	const navigate = useNavigate();
 	const { data, refetch } = useSingleReviewGetQuery({ name });
 	const [updateReview] = useUpdateReviewMutation();
 	const [deleteReview] = useDeleteReviewMutation();
@@ -91,17 +93,26 @@ export default function Review() {
 	};
 
 	return (
-		<div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+		<div className="w-full mx-auto pb-8">
 			{/* Header */}
-			<div className="flex justify-between items-center mb-8">
-				<Link to={"/products"} className="flex items-center">
-					<button className="mr-2">
-						<ArrowLeft className="h-5 w-5" />
-					</button>
-					<h1 className="text-xl font-semibold">Reviews</h1>
-				</Link>
+			<div className="sticky top-0 z-10 p-4 bg-white mb-4">
+				<div className="flex items-center gap-2">
+					<Button
+						type="link"
+						icon={<ArrowLeft />}
+						onClick={() => navigate(-1)}
+						className="text-black text-lg"
+					/>
+					<div className="flex flex-col">
+						<h3 className="text-lg font-bold">{name}</h3>
+						<p>Reviews</p>
+					</div>
+				</div>
 				{!reviews?.length || (
-					<Link to={`/addreview/${name}`} className="relative">
+					<Link
+						to={`/addreview/${name}`}
+						className="absolute top-1/2 -translate-y-1/2 right-4"
+					>
 						<button className="bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded-md font-medium click">
 							Add Review
 						</button>
