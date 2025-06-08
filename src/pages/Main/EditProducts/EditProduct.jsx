@@ -7,6 +7,7 @@ import {
 	useProductQuestionEditMutation,
 	useSellProductSingleQuery,
 } from "../../../redux/features/productQuestionSlice";
+import toast from "react-hot-toast";
 
 export default function EditProduct() {
 	const { id } = useParams();
@@ -50,24 +51,19 @@ export default function EditProduct() {
 	};
 
 	const onFinish = async (values) => {
+		const toastId = toast.loading("Updating product...");
 		const formData = new FormData();
 		formData.append("name", values.name);
 		formData.append("base_price", values.base_price);
 		formData.append("product_type", values.product_type);
 
-		// Ensure price values are below 1
-		const validatePrice = (price) => {
-			const parsedPrice = parseFloat(price);
-			return isNaN(parsedPrice) || parsedPrice >= 1 ? 0.99 : parsedPrice;
-		};
-
 		// Build the questions array dynamically
 		const questionsArray = questions.map((question, qIndex) => ({
 			name: values[`questionName${qIndex}`],
 			description: values[`questionDescription${qIndex}`],
-			options: question.options.map((option, oIndex) => ({
+			options: question.options.map((_, oIndex) => ({
 				option: values[`option${qIndex}_${oIndex}`],
-				price: validatePrice(values[`price${qIndex}_${oIndex}`]),
+				price: parseFloat(values[`price${qIndex}_${oIndex}`]),
 				description: values[`description${qIndex}_${oIndex}`],
 			})),
 		}));
@@ -85,8 +81,9 @@ export default function EditProduct() {
 			console.log(response);
 			form.resetFields();
 			setFileList([]);
+			toast.success("Product updated successfully", { id: toastId });
 		} catch (error) {
-			console.error("Failed to update product", error);
+			toast.error("Failed to update product", { id: toastId });
 		}
 	};
 
@@ -210,7 +207,7 @@ export default function EditProduct() {
 												{ required: true, message: "Please enter a price" },
 											]}
 										>
-											<Input placeholder="Enter price" />
+											<Input type="number" placeholder="Enter price" />
 										</Form.Item>
 										<Form.Item
 											label={`Description ${oIndex + 1}`}
