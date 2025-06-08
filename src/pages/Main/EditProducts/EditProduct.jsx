@@ -27,6 +27,7 @@ export default function EditProduct() {
 			form.setFieldsValue({
 				name: product.name || "",
 				base_price: product.base_price || 0,
+				product_type: product.product_type || "",
 			});
 
 			// Initialize questions if available
