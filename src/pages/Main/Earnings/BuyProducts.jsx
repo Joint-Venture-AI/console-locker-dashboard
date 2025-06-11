@@ -252,8 +252,18 @@ const BuyProducts = () => {
 						</div>
 						<h3 className="text-lg font-semibold mb-4">Seller Information</h3>
 						<div className="grid grid-cols-2 gap-y-4 text-gray-700 mb-8">
-							<p className="font-medium">Account Number</p>
-							<p className="text-sm">{modalData?.phone}</p>
+							{modalData?.payment?.paypal && (
+								<>
+									<p className="font-medium">Paypal</p>
+									<p className="text-sm">{modalData?.payment?.paypal}</p>
+								</>
+							)}
+							{modalData?.payment?.bank && (
+								<>
+									<p className="font-medium">Bank</p>
+									<p className="text-sm">{modalData?.payment?.bank}</p>
+								</>
+							)}
 							<p className="font-medium">Phone</p>
 							<p className="text-sm">{modalData?.customer?.phone}</p>
 							<p className="font-medium">Email</p>
