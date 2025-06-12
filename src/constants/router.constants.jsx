@@ -39,6 +39,7 @@ import AddProductEdit from "../pages/Main/AddProductEdit/AddProductEdit";
 import BlogsDetails from "../pages/Main/Blog/BlogsDetails";
 import Review from "../pages/Main/Reiview/Review";
 import AddReview from "../pages/Main/Reiview/AddReview";
+import BlogsUpdate from "../pages/Main/Blog/BlogsUpdate";
 
 export const dashboardItems = [
 	{
@@ -127,6 +128,12 @@ export const dashboardItems = [
 	{
 		path: "/addBlog",
 		element: <BlogAdd />,
+	},
+	{
+		path: "editBlog/:id",
+		element: <BlogsUpdate />,
+		loader: ({ params }) =>
+			fetch(`${import.meta.env.VITE_IMAGE_API}/blogs/${params.id}`),
 	},
 	{
 		name: "Transaction History",
