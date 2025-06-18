@@ -114,7 +114,6 @@ export const dashboardItems = [
 		icon: Newspaper,
 		element: <Blogs />,
 	},
-
 	{
 		path: "review",
 		icon: MdReviews,
