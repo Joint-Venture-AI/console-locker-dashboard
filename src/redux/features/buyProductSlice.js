@@ -28,6 +28,13 @@ export const transactionApi = baseApi.injectEndpoints({
 			}),
 			invalidatesTags: ["Buy"],
 		}),
+		sendReceipt: builder.mutation({
+			query: () => ({
+				url: '/admin/buy/send-mail',
+				method: "POST",
+			}),
+			invalidatesTags: ["Buy"],
+		})
 	}),
 });
 
@@ -35,4 +42,5 @@ export const {
 	useAllBuyProductGetQuery,
 	useProductCancleMutation,
 	useConfirmProductMutation,
+	useSendReceiptMutation
 } = transactionApi;
