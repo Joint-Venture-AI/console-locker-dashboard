@@ -33,7 +33,7 @@ export default function ProductPage() {
 
 	const [page, setPage] = useState(1);
 
-	const { data, isLoading, isError, refetch } = useAllProductGetQuery({
+	const { data, isFetching, isError, refetch } = useAllProductGetQuery({
 		limit: 12,
 		page,
 		product_type: activeTab,
@@ -110,7 +110,7 @@ export default function ProductPage() {
 						</h3>
 					</div>
 				</div>
-				{
+				{products.length > 0 && (
 					<Link
 						to={`/addProducts${
 							searchParams.get("ref") ? "?ref=" + searchParams.get("ref") : ""
@@ -118,12 +118,11 @@ export default function ProductPage() {
 						className="absolute top-1/2 -translate-y-1/2 right-4"
 					>
 						<button className="bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded-md font-medium click">
-							Add Product
+							Add {searchParams.get("ref") ? "Accessories" : "Product"}
 						</button>
 					</Link>
-				}
+				)}
 			</div>
-
 			<div className="flex flex-wrap gap-3 mt-[30px] mb-[10px] mx-10">
 				{productTypes.map((tab, idx) => (
 					<button
@@ -147,12 +146,28 @@ export default function ProductPage() {
 				))}
 			</div>
 
-			{isLoading ? (
+			{isFetching ? (
 				<p className="text-center text-lg">Loading products...</p>
 			) : isError ? (
 				<p className="text-center text-lg text-red-500">
 					Error loading products.
 				</p>
+			) : products.length < 1 ? (
+				<div className="text-center text-2xl items-center my-10 flex flex-col gap-4">
+					<span>
+						No {searchParams.get("ref") ? "Accessories" : "Products"} found.
+					</span>
+					<Link
+						to={`/addProducts${
+							searchParams.get("ref") ? "?ref=" + searchParams.get("ref") : ""
+						}`}
+						className="text-base"
+					>
+						<button className="bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded-md font-medium click">
+							Add {searchParams.get("ref") ? "Accessories" : "Product"}
+						</button>
+					</Link>
+				</div>
 			) : (
 				<div className="flex flex-col lg:flex-row container mx-auto px-4 py-8">
 					<div className="w-full lg:ml-6">
