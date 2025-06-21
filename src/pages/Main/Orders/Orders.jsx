@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import {
 	useAllManageOrdersQuery,
 	useOrderDetailsQuery,
-	useSendReceiptMutation,
+	useSendReceipt0Mutation,
 	useShipOrderMutation,
 } from "../../../redux/features/manageOrderSlice";
 import toast from "react-hot-toast";
@@ -24,7 +24,7 @@ const Orders = () => {
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const [receiptNumber, setReceiptNumber] = useState("");
 	const [shipOrder] = useShipOrderMutation();
-	const [sendReceipt] = useSendReceiptMutation();
+	const [sendReceipt] = useSendReceipt0Mutation();
 
 	// Fetch order details only if selectedOrder is defined
 	const { data: orderDetails } = useOrderDetailsQuery(

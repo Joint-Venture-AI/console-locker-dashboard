@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Input, Button, Upload, Typography, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { ArrowLeft } from "lucide-react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
 	useDeleteProductMutation,
 	useEditProductMutation,
@@ -396,7 +396,7 @@ const AddProductEdit = () => {
 	useEffect(() => {
 		if (data?.data) {
 			if (data?.data?.length === 0) {
-				navigate("/products");
+				navigate(-1);
 			} else {
 				setProducts(data?.data);
 				setProductType(data?.data[0]?.product_type);
@@ -408,13 +408,12 @@ const AddProductEdit = () => {
 		<div className="flex flex-col gap-6">
 			<div className="sticky top-0 z-10 p-4 bg-white">
 				<div className="flex items-center gap-2">
-					<Link to={`/products?product_type=${products[0]?.product_type}`}>
-						<Button
-							type="link"
-							icon={<ArrowLeft />}
-							className="text-black text-lg"
-						/>
-					</Link>
+					<Button
+						onClick={() => navigate(-1)}
+						type="link"
+						icon={<ArrowLeft />}
+						className="text-black text-lg"
+					/>
 					<div className="flex flex-col">
 						<h3 className="text-lg font-bold">{products[0]?.name}</h3>
 						<p>{products[0]?.brand}</p>

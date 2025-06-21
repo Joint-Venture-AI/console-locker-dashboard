@@ -2,13 +2,14 @@ import { useState } from "react";
 import { Input, Select, Button, Upload, Typography, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { ArrowLeft } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useAddProductMutation } from "../../../redux/features/productsSlice";
 import { getBackgroundColor } from "../../../lib/productTypeColor";
 
 const { TextArea } = Input;
 
 const AddProducts = () => {
+	const [searchParams] = useSearchParams();
 	const navigate = useNavigate();
 	const [addProduct] = useAddProductMutation();
 	const [image, setImage] = useState(null);
@@ -108,13 +109,12 @@ const AddProducts = () => {
 			productData.append("controllerDes", formData.controllerDes);
 			productData.append("memoryDes", formData.memoryDes);
 
-			console.log("Submitting Form Data:", Object.fromEntries(productData));
-
 			const response = await addProduct({
 				product: productData,
+				refProduct: searchParams.get("ref"),
 			}).unwrap();
 
-			navigate("/products");
+			navigate(-1);
 
 			message.success(response.message);
 			console.log("Product created successfully:", response.data);

@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { ArrowLeft, ChevronLeft, ChevronRight, Info, Save } from "lucide-react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "antd";
 import Swal from "sweetalert2";
 import {
@@ -14,6 +15,7 @@ import { getBackgroundColor } from "../../../lib/productTypeColor";
 const productTypes = ["xbox", "playstation", "nintendo"];
 
 export default function ProductPage() {
+	const navigate = useNavigate();
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	const [activeTab, setActiveTab] = useState(
@@ -22,8 +24,12 @@ export default function ProductPage() {
 	);
 
 	useEffect(() => {
-		setSearchParams({ product_type: activeTab });
-	}, [activeTab, setSearchParams]);
+		const params = new URLSearchParams(searchParams);
+		params.set("product_type", activeTab);
+		setSearchParams(params, {
+			replace: true,
+		});
+	}, [activeTab, setSearchParams, searchParams]);
 
 	const [page, setPage] = useState(1);
 
@@ -31,6 +37,7 @@ export default function ProductPage() {
 		limit: 12,
 		page,
 		product_type: activeTab,
+		refProduct: searchParams.get("ref"),
 	});
 
 	const [updateLabel] = useUpdateProductLabelMutation();
@@ -85,34 +92,39 @@ export default function ProductPage() {
 	};
 
 	return (
-		<div>
+		<div className="pb-[250px]">
 			<div className="sticky top-0 z-10 p-4 bg-white mb-4">
 				<div className="flex items-center gap-2">
-					<Link to={"/"}>
-						<Button
-							type="link"
-							icon={<ArrowLeft />}
-							className="text-black text-lg"
-						/>
-					</Link>
+					<Button
+						onClick={() => navigate(-1)}
+						type="link"
+						icon={<ArrowLeft />}
+						className="text-black text-lg"
+					/>
 
 					<div className="flex items-center flex-col py-3">
-						<h3 className="text-2xl font-bold">Products</h3>
+						<h3 className="text-2xl font-bold">
+							{searchParams?.get("ref")
+								? "Accessories of " + searchParams?.get("ref")
+								: "Products"}
+						</h3>
 					</div>
 				</div>
-				{!products?.length || (
+				{
 					<Link
-						to={`/addProducts`}
+						to={`/addProducts${
+							searchParams.get("ref") ? "?ref=" + searchParams.get("ref") : ""
+						}`}
 						className="absolute top-1/2 -translate-y-1/2 right-4"
 					>
 						<button className="bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded-md font-medium click">
 							Add Product
 						</button>
 					</Link>
-				)}
+				}
 			</div>
 
-			<div className="flex flex-wrap gap-3 mt-[30px] mb-[20px] mx-10">
+			<div className="flex flex-wrap gap-3 mt-[30px] mb-[10px] mx-10">
 				{productTypes.map((tab, idx) => (
 					<button
 						key={idx}
@@ -235,6 +247,20 @@ export default function ProductPage() {
 																Variant
 															</button>
 														</Link>
+														{!searchParams?.get("ref") && (
+															<button
+																onClick={() => {
+																	const params = new URLSearchParams(
+																		searchParams
+																	);
+																	params.set("ref", product?.name);
+																	setSearchParams(params);
+																}}
+																className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
+															>
+																Accessories
+															</button>
+														)}
 														<Link to={`/review/${product?.name}`}>
 															<button className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100">
 																Review

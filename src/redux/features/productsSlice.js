@@ -3,7 +3,7 @@ import baseApi from "../api/baseApi";
 export const productsApi = baseApi.injectEndpoints({
 	endpoints: (builder) => ({
 		allProductGet: builder.query({
-			query: ({ limit, product_type, page }) => {
+			query: ({ limit, product_type, page, refProduct }) => {
 				let queryParams = new URLSearchParams();
 
 				if (limit) queryParams.append("limit", limit.toString());
@@ -11,6 +11,8 @@ export const productsApi = baseApi.injectEndpoints({
 				if (product_type) queryParams.append("product_type", product_type);
 
 				if (page) queryParams.append("page", page);
+
+				if (refProduct) queryParams.append("product_ref", refProduct);
 
 				return `products?${queryParams.toString()}`;
 			},
@@ -34,8 +36,10 @@ export const productsApi = baseApi.injectEndpoints({
 		}),
 
 		addProduct: builder.mutation({
-			query: ({ product }) => ({
-				url: "/admin/product/create",
+			query: ({ product, refProduct = null }) => ({
+				url: `/admin/product${
+					refProduct ? `/${refProduct}/variant` : ""
+				}/create`,
 				method: "POST",
 				body: product,
 			}),
