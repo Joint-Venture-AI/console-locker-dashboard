@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Input, Select, Button, Upload, Typography, message } from "antd";
+import { Input, Select, Button, Upload, Typography } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { ArrowLeft } from "lucide-react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useAddProductMutation } from "../../../redux/features/productsSlice";
 import { getBackgroundColor } from "../../../lib/productTypeColor";
+import toast from "react-hot-toast";
 
 const { TextArea } = Input;
 
@@ -49,6 +50,8 @@ const AddProducts = () => {
 	};
 
 	const handleSave = async () => {
+		const toastId = toast.loading("Adding product...");
+
 		try {
 			const res = await fetch(
 				import.meta.env.VITE_IMAGE_API +
@@ -60,33 +63,33 @@ const AddProducts = () => {
 			const data = await res.json();
 
 			if (data?.data?.exists) {
-				message.error("Product already exists");
+				toast.error("Product already exists", { id: toastId });
 				return;
 			}
 
 			// Validate required fields
 			if (!formData.product_type.trim()) {
-				message.error("Product type is required");
+				toast.error("Product type is required", { id: toastId });
 				return;
 			}
 
 			if (!formData.price || isNaN(Number(formData.price))) {
-				message.error("Price must be a valid number");
+				toast.error("Price must be a valid number", { id: toastId });
 				return;
 			}
 
 			if (!formData.offer_price || isNaN(Number(formData.offer_price))) {
-				message.error("Offer price must be a valid number");
+				toast.error("Offer price must be a valid number", { id: toastId });
 				return;
 			}
 
 			if (!formData.quantity || isNaN(Number(formData.quantity))) {
-				message.error("Quantity must be a valid number");
+				toast.error("Quantity must be a valid number", { id: toastId });
 				return;
 			}
 
 			if (!image) {
-				message.error("An image is required");
+				toast.error("An image is required", { id: toastId });
 				return;
 			}
 
@@ -116,11 +119,9 @@ const AddProducts = () => {
 
 			navigate(-1);
 
-			message.success(response.message);
-			console.log("Product created successfully:", response.data);
-		} catch (error) {
-			message.error("Failed to create product");
-			console.error("Error creating product:", error);
+			toast.success(response.message, { id: toastId });
+		} catch {
+			toast.error("Failed to create product", { id: toastId });
 		}
 	};
 
