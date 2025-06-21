@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
-import { Input, Button, Upload, Typography, message } from "antd";
+import { Input, Button, Upload, Typography } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -37,35 +37,36 @@ const AddProductEditComponent = ({ product, refetch }) => {
 	};
 
 	const handleSave = async () => {
+		const toastId = toast.loading("Updating product...");
 		try {
 			// Validate required fields
 			if (!formData.product_type.trim()) {
-				message.error("Product type is required");
+				toast.error("Product type is required", { id: toastId });
 				return;
 			}
 
 			if (!formData.price || isNaN(Number(formData.price))) {
-				message.error("Price must be a valid number");
+				toast.error("Price must be a valid number", { id: toastId });
 				return;
 			}
 
 			if (!formData.offer_price || isNaN(Number(formData.offer_price))) {
-				message.error("Offer price must be a valid number");
+				toast.error("Offer price must be a valid number", { id: toastId });
 				return;
 			}
 
 			if (!formData.controller.trim()) {
-				message.error("Controller is required");
+				toast.error("Controller is required", { id: toastId });
 				return;
 			}
 
 			if (!formData.quantity || isNaN(Number(formData.quantity))) {
-				message.error("Quantity must be a valid number");
+				toast.error("Quantity must be a valid number", { id: toastId });
 				return;
 			}
 
 			if (!oldImage && !image) {
-				message.error("An image is required");
+				toast.error("An image is required", { id: toastId });
 				return;
 			}
 
@@ -93,16 +94,18 @@ const AddProductEditComponent = ({ product, refetch }) => {
 			console.log("Submitting Form Data:", Object.fromEntries(productData));
 
 			// Call the editProduct mutation with id and formData
-			const response = await editProduct({
+			await editProduct({
 				slug: product.slug, // Pass the product ID
 				formData: productData, // Pass the FormData object
 			}).unwrap();
 
-			message.success(response.message);
-			console.log("Product updated successfully:", response.data);
-		} catch (error) {
-			message.error("Failed to update product");
-			console.error("Error updating product:", error);
+			toast.success("Product updated successfully", {
+				id: toastId,
+			});
+		} catch {
+			toast.error("Failed to update product. Please try again.", {
+				id: toastId,
+			});
 		}
 	};
 
