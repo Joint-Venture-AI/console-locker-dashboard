@@ -48,7 +48,7 @@ export const RelatedProduct = ({ product }) => {
 						<input
 							key={index}
 							type="text"
-							defaultValue={product?.relatedProducts[index]}
+							defaultValue={product?.relatedProducts?.[index]}
 							className="w-full rounded-md py-2 px-4 focus:outline-none"
 							placeholder={`${label} related product`}
 							name={`r${index + 1}`}
