@@ -105,6 +105,15 @@ export const productsApi = baseApi.injectEndpoints({
 			}),
 			invalidatesTags: ["Products"],
 		}),
+
+		setRelatedProducts: builder.mutation({
+			query: ({ name, relatedProducts }) => ({
+				url: `/admin/product/related-products/${name}`,
+				method: "PATCH",
+				body: { relatedProducts },
+			}),
+			invalidatesTags: ["Products"],
+		}),
 	}),
 });
 
@@ -120,4 +129,5 @@ export const {
 	useUpdateProductInfoMutation,
 	useDeleteProductByNameMutation,
 	useUpdateProductLabelMutation,
+	useSetRelatedProductsMutation,
 } = productsApi;

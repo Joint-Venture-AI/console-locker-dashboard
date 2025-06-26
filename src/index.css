@@ -13,6 +13,52 @@
 	font-family: "Poppins", serif;
 }
 
+input.hide-range[type="range"]::-webkit-slider-thumb {
+	display: none;
+}
+
+input.hide-range[type="range"]::-moz-range-thumb {
+	display: none;
+}
+
+a,
+button {
+	@apply cursor-pointer;
+}
+
+.click:enabled:active {
+	transform: scale(0.85) translateY(2px); /* Slightly shrink the card on click and move it down a bit */
+	transition: transform 0.2s ease-in-out; /* Smooth transition */
+}
+
+.group:active > .click-group {
+	transform: scale(0.85) translateY(2px); /* Slightly shrink the card on click and move it down a bit */
+	transition: transform 0.2s ease-in-out; /* Smooth transition */
+}
+
+button:enabled:active {
+	transform: scale(0.85) translateY(2px); /* Slightly shrink the card on click and move it down a bit */
+	transition: transform 0.2s ease-in-out; /* Smooth transition */
+}
+
+.hide-scroll::-webkit-scrollbar {
+	display: none;
+}
+
+.hide-scroll {
+	-webkit-overflow-scrolling: touch;
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+.resize-model {
+	@apply resize overflow-auto;
+}
+
+.resize-model > * {
+	@apply h-full min-h-fit;
+}
+
 /* phone Input  */
 .PhoneInputInput {
 	outline: none;
