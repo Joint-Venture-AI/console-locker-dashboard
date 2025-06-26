@@ -13,6 +13,7 @@ import {
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { getBackgroundColor } from "../../../lib/productTypeColor";
+import Specification from "../../../Components/Specification";
 
 const { TextArea } = Input;
 
@@ -410,16 +411,21 @@ const AddProductEdit = () => {
 	return (
 		<div className="flex flex-col gap-6">
 			<div className="sticky top-0 z-10 p-4 bg-white">
-				<div className="flex items-center gap-2">
-					<Button
-						onClick={() => navigate(-1)}
-						type="link"
-						icon={<ArrowLeft />}
-						className="text-black text-lg"
-					/>
-					<div className="flex flex-col">
-						<h3 className="text-lg font-bold">{products[0]?.name}</h3>
-						<p>{products[0]?.brand}</p>
+				<div className="flex items-center justify-between gap-2">
+					<div className="flex items-center gap-2">
+						<Button
+							onClick={() => navigate(-1)}
+							type="link"
+							icon={<ArrowLeft />}
+							className="text-black text-lg"
+						/>
+						<div className="flex flex-col">
+							<h3 className="text-lg font-bold">{products[0]?.name}</h3>
+							<p>{products[0]?.brand}</p>
+						</div>
+					</div>
+					<div>
+						<Specification product={products[0]} />
 					</div>
 				</div>
 			</div>
