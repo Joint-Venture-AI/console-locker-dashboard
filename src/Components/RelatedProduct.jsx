@@ -17,7 +17,7 @@ export const RelatedProduct = ({ product }) => {
 				.map((value) => value.trim())
 				.splice(0, 4);
 
-			await setRelatedProducts({ name: "Xbox", relatedProducts });
+			await setRelatedProducts({ name: product.name, relatedProducts });
 
 			toast.success("Related products updated successfully", { id: toastId });
 		} catch (error) {
