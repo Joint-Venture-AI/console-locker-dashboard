@@ -216,7 +216,7 @@ export default function ProductForm() {
 												{ required: true, message: "Please enter a price" },
 											]}
 										>
-											<Input placeholder="Enter price" />
+											<Input type="number" placeholder="Enter price" />
 										</Form.Item>
 										<Form.Item
 											label={`Description ${oIndex + 1}`}
