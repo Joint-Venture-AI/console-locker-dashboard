@@ -91,6 +91,7 @@ const AddProductEditComponent = ({ product, refetch }) => {
 			productData.append("conditionDes", formData.conditionDes);
 			productData.append("controllerDes", formData.controllerDes);
 			productData.append("memoryDes", formData.memoryDes);
+			productData.append("caption", formData.caption);
 
 			console.log("Submitting Form Data:", Object.fromEntries(productData));
 
@@ -349,6 +350,17 @@ const AddProductEditComponent = ({ product, refetch }) => {
 								name="conditionDes"
 								value={formData.conditionDes}
 								placeholder="Condition placeholder description"
+								onChange={handleInputChange}
+							/>
+						</div>
+						<div>
+							<label className="block text-sm font-medium mb-1">
+								Card Caption
+							</label>
+							<Input
+								name="caption"
+								value={formData.caption}
+								placeholder="Card caption"
 								onChange={handleInputChange}
 							/>
 						</div>
